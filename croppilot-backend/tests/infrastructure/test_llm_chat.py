@@ -22,7 +22,10 @@ def test_gemini_generate_returns_string() -> None:
         try:
             from app.infrastructure.llm.chat import GeminiLlmService
 
-            service = GeminiLlmService(model_name="models/gemini-2.5-flash")
+            service = GeminiLlmService(
+                model_name="models/gemini-2.5-flash",
+                api_key="test-key",
+            )
             service._chain = mock_chain_result
 
             result = service.generate("Where is pepper grown?", "Pepper grows in tropics.")

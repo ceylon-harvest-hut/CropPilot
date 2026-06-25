@@ -12,11 +12,20 @@ def _build_chain(model):
 
 
 class GeminiLlmService:
-    def __init__(self, model_name: str, temperature: float = 0.2) -> None:
+    def __init__(
+        self,
+        model_name: str,
+        api_key: str,
+        temperature: float = 0.2,
+    ) -> None:
         from langchain_google_genai import ChatGoogleGenerativeAI
 
         self._chain = _build_chain(
-            ChatGoogleGenerativeAI(model=model_name, temperature=temperature)
+            ChatGoogleGenerativeAI(
+                model=model_name,
+                api_key=api_key,
+                temperature=temperature,
+            )
         )
 
     def generate(self, question: str, context: str) -> str:
@@ -34,10 +43,13 @@ class OllamaLlmService:
 
 
 class OpenAILlmService:
-    def __init__(self, model_name: str) -> None:
+    def __init__(self, model_name: str, api_key: str | None = None) -> None:
         from langchain_openai import ChatOpenAI
 
-        self._chain = _build_chain(ChatOpenAI(model=model_name))
+        kwargs = {"model": model_name}
+        if api_key is not None:
+            kwargs["api_key"] = api_key
+        self._chain = _build_chain(ChatOpenAI(**kwargs))
 
     def generate(self, question: str, context: str) -> str:
         return self._chain.invoke({"question": question, "context": context})

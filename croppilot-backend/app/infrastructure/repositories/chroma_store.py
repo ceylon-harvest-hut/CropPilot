@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import chromadb
 
+from app.domains.debug.data import StoredChunk
 from app.domains.inference.data import RetrievedChunk
 from app.domains.ingestion.data import KnowledgeChunk
 
@@ -63,6 +64,46 @@ class ChromaVectorStore:
             )
 
         return chunks
+
+    def list_chunks(
+        self,
+        crop_tag: str | None = None,
+        source_uri: str | None = None,
+        limit: int = 20,
+        offset: int = 0,
+    ) -> tuple[list[StoredChunk], int]:
+        where = None
+        if crop_tag and source_uri:
+            where = {"$and": [{"crop_tag": crop_tag}, {"source_uri": source_uri}]}
+        elif crop_tag:
+            where = {"crop_tag": crop_tag}
+        elif source_uri:
+            where = {"source_uri": source_uri}
+
+        data = self._collection.get(
+            where=where,
+            limit=limit,
+            offset=offset,
+            include=["documents", "metadatas"],
+        )
+
+        chunks = [
+            StoredChunk(
+                chunk_id=chunk_id,
+                crop_tag=meta.get("crop_tag", ""),
+                source_uri=meta.get("source_uri", ""),
+                section_name=meta.get("section_name", ""),
+                page_number=int(meta.get("page_number", 0)),
+                text_preview=document[:150],
+            )
+            for chunk_id, document, meta in zip(
+                data.get("ids", []),
+                data.get("documents", []),
+                data.get("metadatas", []),
+            )
+        ]
+
+        return chunks, self._collection.count()
 
     def count(self) -> int:
         return self._collection.count()

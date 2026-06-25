@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     # CORS (comma-separated list, e.g. "http://localhost:5173,http://localhost:3000")
     cors_allow_origins: str = "http://localhost:5173,http://localhost:3000"
 
+    debug_enabled: bool = True
+
     # LLM model names
     gemini_model: str = "models/gemini-2.5-flash"
     ollama_model: str = "llama3"

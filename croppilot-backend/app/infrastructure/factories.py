@@ -12,6 +12,7 @@ from app.infrastructure.loaders.registry import DocumentLoaderRegistry
 from app.infrastructure.loaders.text_loader import TextDocumentLoader
 from app.infrastructure.repositories.chroma_retriever import ChromaRetriever
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
+from app.infrastructure.repositories.debug_catalog_repo import SqlDebugCatalogRepository
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
 
@@ -54,7 +55,14 @@ def build_llm(settings: Settings) -> LlmService:
     if settings.llm_backend == "gemini":
         from app.infrastructure.llm.chat import GeminiLlmService
 
-        return GeminiLlmService(model_name=settings.gemini_model)
+        if not settings.google_api_key:
+            raise ValueError(
+                "Gemini API key required. Set GOOGLE_API_KEY or GEMINI_API_KEY in .env"
+            )
+        return GeminiLlmService(
+            model_name=settings.gemini_model,
+            api_key=settings.google_api_key,
+        )
 
     if settings.llm_backend == "ollama":
         from app.infrastructure.llm.chat import OllamaLlmService
@@ -64,7 +72,10 @@ def build_llm(settings: Settings) -> LlmService:
     if settings.llm_backend == "openai":
         from app.infrastructure.llm.chat import OpenAILlmService
 
-        return OpenAILlmService(model_name=settings.openai_model)
+        return OpenAILlmService(
+            model_name=settings.openai_model,
+            api_key=settings.openai_api_key,
+        )
 
     raise ValueError(f"Unknown LLM backend: {settings.llm_backend}")
 
@@ -75,6 +86,14 @@ def build_inference_service(settings: Settings) -> InferenceService:
         llm=build_llm(settings),
         top_k=settings.retrieval_top_k,
     )
+
+
+def build_chunk_catalog(settings: Settings) -> ChromaVectorStore:
+    return build_vector_store(settings)
+
+
+def build_source_catalog(session: Session) -> SqlDebugCatalogRepository:
+    return SqlDebugCatalogRepository(session)
 
 
 def build_ingestion_service(settings: Settings, session: Session) -> IngestionService:
