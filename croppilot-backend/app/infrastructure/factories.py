@@ -88,6 +88,31 @@ def build_inference_service(settings: Settings) -> InferenceService:
     )
 
 
+def build_loader_by_name(name: str) -> TextDocumentLoader:
+    if name == "text":
+        return TextDocumentLoader()
+    raise ValueError(f"Unknown loader: {name!r}. Available: text")
+
+
+def build_chunker_by_name(name: str, chunk_size: int = 500, chunk_overlap: int = 50) -> BaseChunker:
+    if name == "section":
+        return BaseChunker(SectionChunkingStrategy())
+    if name == "recursive":
+        return BaseChunker(
+            RecursiveChunkingStrategy(
+                chunk_size=chunk_size,
+                chunk_overlap=chunk_overlap,
+            )
+        )
+    raise ValueError(f"Unknown chunker: {name!r}. Available: section, recursive")
+
+
+def build_embedder_by_name(name: str) -> BaseEmbedder:
+    if name == "fast":
+        return FastEmbedEmbeddingService()
+    raise ValueError(f"Unknown embedder: {name!r}. Available: fast")
+
+
 def build_chunk_catalog(settings: Settings) -> ChromaVectorStore:
     return build_vector_store(settings)
 

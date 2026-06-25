@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.domains.debug.routes import router as debug_router
 from app.domains.inference.routes import router as inference_router
 from app.domains.ingestion.routes import router as ingestion_router
+from app.domains.lab.routes import router as lab_router
 from app.infrastructure.config import get_settings
 from app.infrastructure.repositories.db import init_db
 
@@ -35,3 +36,4 @@ app.add_middleware(
 app.include_router(ingestion_router, prefix="/api/v1", tags=["ingestion"])
 app.include_router(inference_router, prefix="/api/v1", tags=["inference"])
 app.include_router(debug_router, prefix="/api/v1/debug", tags=["debug"])
+app.include_router(lab_router, prefix="/api/v1/lab", tags=["lab"])
