@@ -5,6 +5,7 @@ import type {
   ChunkItem,
   ChunkResponse,
   CommitResponse,
+  DocumentItem,
   LabOptions,
   LoadResponse,
 } from "./api/types";
@@ -66,6 +67,7 @@ export default function LabPanel() {
 
   // Pipeline results
   const [loadResult, setLoadResult] = useState<LoadResponse | null>(null);
+  const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [chunkResult, setChunkResult] = useState<ChunkResponse | null>(null);
   const [reviewChunks, setReviewChunks] = useState<ChunkItem[]>([]);
   const [selectedEmbedder, setSelectedEmbedder] = useState("fast");
@@ -99,6 +101,7 @@ export default function LabPanel() {
     try {
       const result = await loadDocument({ source_uri: sourceUri, loader: selectedLoader });
       setLoadResult(result);
+      setDocuments(result.documents);
       setChunkResult(null);
       setReviewChunks([]);
       setCommitResult(null);
@@ -116,7 +119,7 @@ export default function LabPanel() {
     setLoading(true);
     try {
       const result = await chunkText({
-        text: loadResult.text,
+        documents,
         crop_name: cropName,
         chunker: selectedChunker,
         chunk_size: chunkSize,
@@ -159,6 +162,7 @@ export default function LabPanel() {
     setStep(1);
     setError(null);
     setLoadResult(null);
+    setDocuments([]);
     setChunkResult(null);
     setReviewChunks([]);
     setCommitResult(null);
@@ -217,7 +221,7 @@ export default function LabPanel() {
           <details className="doc-preview-accordion">
             <summary>
               Loaded document — {loadResult.char_count.toLocaleString()} chars,{" "}
-              {loadResult.line_count.toLocaleString()} lines
+              {loadResult.line_count.toLocaleString()} lines ({documents.length} part{documents.length !== 1 ? "s" : ""})
             </summary>
             <div className="lab-result-card">
               <div className="lab-meta">
@@ -227,7 +231,7 @@ export default function LabPanel() {
               <textarea
                 className="lab-text-preview"
                 readOnly
-                value={loadResult.text}
+                value={documents.map((d) => d.text).join("\n\n")}
                 rows={12}
               />
             </div>

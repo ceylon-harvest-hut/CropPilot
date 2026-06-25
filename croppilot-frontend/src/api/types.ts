@@ -43,8 +43,13 @@ export interface LoadRequest {
   loader: string;
 }
 
-export interface LoadResponse {
+export interface DocumentItem {
   text: string;
+  metadata: Record<string, unknown>;
+}
+
+export interface LoadResponse {
+  documents: DocumentItem[];
   source_uri: string;
   media_type: string;
   char_count: number;
@@ -52,7 +57,7 @@ export interface LoadResponse {
 }
 
 export interface ChunkRequest {
-  text: string;
+  documents: DocumentItem[];
   crop_name: string;
   chunker: string;
   chunk_size?: number;
