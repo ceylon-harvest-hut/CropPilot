@@ -1,0 +1,40 @@
+# --- Python & Conda ---
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.env
+# Keep the environment description, but ignore the actual binaries
+env/
+venv/
+*.egg-info/
+# Conda-specific
+conda-meta/
+.conda/
+environment.yaml
+
+# --- React / Node.js ---
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output
+dist/
+build/
+.next/
+.out/
+
+#experiments
+croppilot-backend/experiments/
+
+# --- Infrastructure / Terraform ---
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# --- OS & IDEs ---
+.DS_Store
+.vscode/
+.idea/
