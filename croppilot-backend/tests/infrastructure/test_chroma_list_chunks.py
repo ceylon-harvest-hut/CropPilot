@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.data import ChunkEmbedding, ChunkMetadata, KnowledgeChunk
+from app.domains.ingestion.data import ChunkEmbedding, KnowledgeChunk
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
 
 
@@ -14,17 +14,17 @@ def store(tmp_path: Path) -> ChromaVectorStore:
         KnowledgeChunk(
             chunk_id="cp-1",
             text_content="Pepper is cultivated in tropical climates.",
-            metadata=ChunkMetadata(section_name="Introduction", page_number=0, crop_tag="Pepper"),
+            metadata={"section_name": "Introduction", "page_number": 0, "crop_tag": "Pepper"},
         ),
         KnowledgeChunk(
             chunk_id="cp-2",
             text_content="Black pepper grows on vines and needs high humidity.",
-            metadata=ChunkMetadata(section_name="Cultivation", page_number=1, crop_tag="Pepper"),
+            metadata={"section_name": "Cultivation", "page_number": 1, "crop_tag": "Pepper"},
         ),
         KnowledgeChunk(
             chunk_id="tm-1",
             text_content="Tomato is a warm-season vegetable crop.",
-            metadata=ChunkMetadata(section_name="Introduction", page_number=0, crop_tag="Tomato"),
+            metadata={"section_name": "Introduction", "page_number": 0, "crop_tag": "Tomato"},
         ),
     ]
     for i, chunk in enumerate(chunks):
@@ -66,11 +66,11 @@ def test_list_respects_limit(store: ChromaVectorStore) -> None:
 
 def test_list_chunk_text_preview_is_truncated(store: ChromaVectorStore) -> None:
     long_text = "x" * 300
-    from app.domains.ingestion.data import KnowledgeChunk, ChunkMetadata, ChunkEmbedding
+    from app.domains.ingestion.data import KnowledgeChunk, ChunkEmbedding
     chunk = KnowledgeChunk(
         chunk_id="long-1",
         text_content=long_text,
-        metadata=ChunkMetadata(section_name="Test", page_number=0, crop_tag="Test"),
+        metadata={"section_name": "Test", "page_number": 0, "crop_tag": "Test"},
     )
     chunk.update_embedding(ChunkEmbedding(vector=[9.0, 10.0, 11.0]))
     store.upsert([chunk], source_uri="test.txt")

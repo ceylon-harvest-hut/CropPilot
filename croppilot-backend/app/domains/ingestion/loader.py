@@ -1,14 +1,29 @@
-from dataclasses import dataclass
-from typing import Protocol
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
+from typing import Any
 
 
-@dataclass(frozen=True)
-class LoadedDocument:
-    text: str
-    source_uri: str
-    media_type: str
+class KnowledgeDocument:
+    """Domain object representing a loaded document part.
+
+    Required metadata keys: source_uri, media_type.
+    Optional: page (Docling page number).
+    """
+
+    def __init__(self, text: str, metadata: dict[str, Any]) -> None:
+        self.text = text
+        self.metadata = metadata
+
+    @classmethod
+    def from_payload(cls, text: str, metadata: dict[str, Any]) -> KnowledgeDocument:
+        """Rehydrate from a lab API JSON payload."""
+        return cls(text=text, metadata=metadata)
 
 
-class DocumentLoader(Protocol):
+class DocumentLoader(ABC):
+    @abstractmethod
     def supports(self, source_uri: str) -> bool: ...
-    def load(self, source_uri: str) -> LoadedDocument: ...
+
+    @abstractmethod
+    def load(self, source_uri: str) -> list[KnowledgeDocument]: ...

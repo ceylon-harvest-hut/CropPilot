@@ -2,12 +2,15 @@ from sqlalchemy.orm import Session
 
 from app.domains.inference.repositories import LlmService
 from app.domains.inference.service import InferenceService
-from app.domains.ingestion.chunker import BaseChunker, SectionChunkingStrategy
+from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.service import IngestionService
-from app.infrastructure.chunkers.recursive_chunker import RecursiveChunkingStrategy
+from app.infrastructure.chunkers.recursive_chunker import RecursiveChunker
+from app.infrastructure.chunkers.section_chunker import SectionChunker
 from app.infrastructure.config import Settings
 from app.infrastructure.llm.base_embedder import BaseEmbedder
 from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
+from app.domains.ingestion.loader import DocumentLoader
+from app.infrastructure.loaders.docling_loader import DoclingDocumentLoader
 from app.infrastructure.loaders.registry import DocumentLoaderRegistry
 from app.infrastructure.loaders.text_loader import TextDocumentLoader
 from app.infrastructure.repositories.chroma_retriever import ChromaRetriever
@@ -18,19 +21,17 @@ from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSo
 
 def build_chunker(settings: Settings) -> BaseChunker:
     if settings.default_chunker == "section":
-        return BaseChunker(SectionChunkingStrategy())
+        return SectionChunker()
     if settings.default_chunker == "recursive":
-        return BaseChunker(
-            RecursiveChunkingStrategy(
-                chunk_size=settings.recursive_chunk_size,
-                chunk_overlap=settings.recursive_chunk_overlap,
-            )
+        return RecursiveChunker(
+            chunk_size=settings.recursive_chunk_size,
+            chunk_overlap=settings.recursive_chunk_overlap,
         )
     raise ValueError(f"Unknown chunker: {settings.default_chunker}")
 
 
 def build_loader_registry(settings: Settings) -> DocumentLoaderRegistry:
-    loaders = [TextDocumentLoader()]
+    loaders: list[DocumentLoader] = [TextDocumentLoader(), DoclingDocumentLoader()]
     return DocumentLoaderRegistry(loaders)
 
 
@@ -88,22 +89,19 @@ def build_inference_service(settings: Settings) -> InferenceService:
     )
 
 
-def build_loader_by_name(name: str) -> TextDocumentLoader:
+def build_loader_by_name(name: str) -> DocumentLoader:
     if name == "text":
         return TextDocumentLoader()
-    raise ValueError(f"Unknown loader: {name!r}. Available: text")
+    if name == "docling":
+        return DoclingDocumentLoader()
+    raise ValueError(f"Unknown loader: {name!r}. Available: text, docling")
 
 
 def build_chunker_by_name(name: str, chunk_size: int = 500, chunk_overlap: int = 50) -> BaseChunker:
     if name == "section":
-        return BaseChunker(SectionChunkingStrategy())
+        return SectionChunker()
     if name == "recursive":
-        return BaseChunker(
-            RecursiveChunkingStrategy(
-                chunk_size=chunk_size,
-                chunk_overlap=chunk_overlap,
-            )
-        )
+        return RecursiveChunker(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     raise ValueError(f"Unknown chunker: {name!r}. Available: section, recursive")
 
 

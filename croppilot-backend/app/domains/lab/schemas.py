@@ -1,3 +1,5 @@
+from typing import Any
+
 from pydantic import BaseModel
 
 
@@ -12,8 +14,13 @@ class LoadRequest(BaseModel):
     loader: str = "text"
 
 
-class LoadResponse(BaseModel):
+class DocumentItem(BaseModel):
     text: str
+    metadata: dict[str, Any]
+
+
+class LoadResponse(BaseModel):
+    documents: list[DocumentItem]
     source_uri: str
     media_type: str
     char_count: int
@@ -21,7 +28,7 @@ class LoadResponse(BaseModel):
 
 
 class ChunkRequest(BaseModel):
-    text: str
+    documents: list[DocumentItem]
     crop_name: str
     chunker: str = "section"
     chunk_size: int = 500

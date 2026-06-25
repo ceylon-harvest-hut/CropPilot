@@ -36,8 +36,8 @@ class IngestionService:
         try:
             self._source_repository.update_status(source_id, KNOWLEDGE_SOURCE_STATUS_PROCESSING)
 
-            document = self._loaders.resolve(source_uri).load(source_uri)
-            chunks = self._chunker.chunk(document.text, crop_tag=crop_tag)
+            documents = self._loaders.resolve(source_uri).load(source_uri)
+            chunks = self._chunker.chunk(documents, crop_tag=crop_tag)
             chunks = self._embedder.embed(chunks)
             self._vector_store.upsert(chunks, source_uri=source_uri)
 

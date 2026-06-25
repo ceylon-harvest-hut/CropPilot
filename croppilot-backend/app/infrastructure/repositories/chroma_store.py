@@ -27,9 +27,9 @@ class ChromaVectorStore:
             metadatas=[
                 {
                     "source_uri": source_uri,
-                    "crop_tag": chunk.metadata.crop_tag,
-                    "section_name": chunk.metadata.section_name,
-                    "page_number": chunk.metadata.page_number,
+                    "crop_tag": chunk.metadata.get("crop_tag", ""),
+                    "section_name": chunk.metadata.get("section_name", ""),
+                    "page_number": chunk.metadata.get("page_number", 0),
                 }
                 for chunk in chunks
             ],

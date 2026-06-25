@@ -17,10 +17,13 @@ def test_supports_txt_files(loader: TextDocumentLoader) -> None:
     assert loader.supports("pepper.pdf") is False
 
 
-def test_load_returns_loaded_document(loader: TextDocumentLoader) -> None:
+def test_load_returns_list_of_knowledge_documents(loader: TextDocumentLoader) -> None:
     path = str(FIXTURES_DIR / "pepper.txt")
-    doc = loader.load(path)
+    docs = loader.load(path)
 
-    assert doc.source_uri == path
-    assert doc.media_type == "text/plain"
+    assert isinstance(docs, list)
+    assert len(docs) == 1
+    doc = docs[0]
+    assert doc.metadata["source_uri"] == path
+    assert doc.metadata["media_type"] == "text/plain"
     assert doc.text.startswith("Pepper")

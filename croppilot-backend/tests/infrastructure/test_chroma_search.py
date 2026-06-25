@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.data import ChunkEmbedding, ChunkMetadata, KnowledgeChunk
+from app.domains.ingestion.data import ChunkEmbedding, KnowledgeChunk
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"
@@ -16,20 +16,19 @@ def store_with_chunks(tmp_path: Path) -> ChromaVectorStore:
         KnowledgeChunk(
             chunk_id="chunk-pepper-1",
             text_content="Pepper is cultivated in tropical climates.",
-            metadata=ChunkMetadata(section_name="Introduction", page_number=0, crop_tag="Pepper"),
+            metadata={"section_name": "Introduction", "page_number": 0, "crop_tag": "Pepper"},
         ),
         KnowledgeChunk(
             chunk_id="chunk-pepper-2",
             text_content="Black pepper grows on vines and needs high humidity.",
-            metadata=ChunkMetadata(section_name="Cultivation", page_number=1, crop_tag="Pepper"),
+            metadata={"section_name": "Cultivation", "page_number": 1, "crop_tag": "Pepper"},
         ),
         KnowledgeChunk(
             chunk_id="chunk-tomato-1",
             text_content="Tomato is a warm-season vegetable crop.",
-            metadata=ChunkMetadata(section_name="Introduction", page_number=0, crop_tag="Tomato"),
+            metadata={"section_name": "Introduction", "page_number": 0, "crop_tag": "Tomato"},
         ),
     ]
-    # Use a small deterministic embedding so Chroma can compute distances.
     for i, chunk in enumerate(chunks):
         chunk.update_embedding(ChunkEmbedding(vector=[float(i), float(i + 1), float(i + 2)]))
 

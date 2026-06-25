@@ -3,7 +3,8 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.domains.ingestion.data import ChunkEmbedding, ChunkMetadata, KnowledgeChunk
+from app.domains.ingestion.data import KnowledgeChunk
+from app.domains.ingestion.loader import KnowledgeDocument
 from app.domains.lab.dependencies import get_db_session, get_lab_settings
 from app.domains.lab.schemas import (
     ChunkItem,
@@ -11,6 +12,7 @@ from app.domains.lab.schemas import (
     ChunkResponse,
     CommitRequest,
     CommitResponse,
+    DocumentItem,
     LabOptions,
     LoadRequest,
     LoadResponse,
@@ -22,12 +24,12 @@ from app.infrastructure.factories import (
     build_loader_by_name,
     build_vector_store,
 )
-from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 from app.infrastructure.repositories.db import KNOWLEDGE_SOURCE_STATUS_INDEXED
+from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
 router = APIRouter()
 
-AVAILABLE_LOADERS = ["text"]
+AVAILABLE_LOADERS = ["text", "docling"]
 AVAILABLE_CHUNKERS = ["section", "recursive"]
 AVAILABLE_EMBEDDERS = ["fast"]
 
@@ -49,19 +51,23 @@ def load_document(body: LoadRequest) -> LoadResponse:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
 
     try:
-        doc = loader.load(body.source_uri)
+        docs = loader.load(body.source_uri)
     except FileNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"File not found: {body.source_uri}",
         )
 
+    combined_text = "\n\n".join(d.text for d in docs)
+    first_meta = docs[0].metadata if docs else {}
+    media_type = str(first_meta.get("media_type", "application/octet-stream"))
+
     return LoadResponse(
-        text=doc.text,
-        source_uri=doc.source_uri,
-        media_type=doc.media_type,
-        char_count=len(doc.text),
-        line_count=doc.text.count("\n") + 1,
+        documents=[DocumentItem(text=d.text, metadata=d.metadata) for d in docs],
+        source_uri=body.source_uri,
+        media_type=media_type,
+        char_count=len(combined_text),
+        line_count=combined_text.count("\n") + 1,
     )
 
 
@@ -72,13 +78,16 @@ def preview_chunks(body: ChunkRequest) -> ChunkResponse:
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
 
-    chunks = chunker.chunk(body.text, crop_tag=body.crop_name)
+    knowledge_docs = [
+        KnowledgeDocument.from_payload(d.text, d.metadata) for d in body.documents
+    ]
+    chunks = chunker.chunk(knowledge_docs, crop_tag=body.crop_name)
 
     items = [
         ChunkItem(
             index=i,
-            section_name=chunk.metadata.section_name,
-            page_number=chunk.metadata.page_number,
+            section_name=chunk.metadata.get("section_name", ""),
+            page_number=chunk.metadata.get("page_number", 0),
             char_count=len(chunk.text_content),
             text=chunk.text_content,
         )
@@ -111,13 +120,13 @@ def commit_chunks(
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
 
     knowledge_chunks = [
-        KnowledgeChunk(
-            text_content=item.text,
-            metadata=ChunkMetadata(
-                section_name=item.section_name,
-                page_number=item.page_number,
-                crop_tag=body.crop_name,
-            ),
+        KnowledgeChunk.from_payload(
+            text=item.text,
+            metadata={
+                "crop_tag": body.crop_name,
+                "section_name": item.section_name,
+                "page_number": item.page_number,
+            },
         )
         for item in body.chunks
     ]
