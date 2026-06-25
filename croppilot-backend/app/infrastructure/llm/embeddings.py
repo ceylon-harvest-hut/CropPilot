@@ -3,9 +3,10 @@ from __future__ import annotations
 from fastembed import TextEmbedding
 
 from app.domains.ingestion.data import ChunkEmbedding, KnowledgeChunk
+from app.infrastructure.llm.base_embedder import BaseEmbedder
 
 
-class FastEmbedEmbeddingService:
+class FastEmbedEmbeddingService(BaseEmbedder):
     def __init__(self) -> None:
         self._model = TextEmbedding()
 
@@ -18,3 +19,6 @@ class FastEmbedEmbeddingService:
             chunk.update_embedding(ChunkEmbedding(vector=vector.tolist()))
 
         return chunks
+
+    def embed_text(self, text: str) -> list[float]:
+        return list(self._model.embed([text]))[0].tolist()

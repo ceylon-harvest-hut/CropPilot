@@ -17,6 +17,16 @@ class Settings(BaseSettings):
 
     recursive_chunk_size: int = 500
     recursive_chunk_overlap: int = 50
+    retrieval_top_k: int = 3
+
+    # LLM model names
+    gemini_model: str = "models/gemini-2.5-flash"
+    ollama_model: str = "llama3"
+    openai_model: str = "gpt-4o-mini"
+
+    # API keys (loaded from .env)
+    google_api_key: str | None = None
+    openai_api_key: str | None = None
 
 
 @lru_cache

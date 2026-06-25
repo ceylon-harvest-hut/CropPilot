@@ -1,12 +1,16 @@
 from sqlalchemy.orm import Session
 
+from app.domains.inference.repositories import LlmService
+from app.domains.inference.service import InferenceService
 from app.domains.ingestion.chunker import BaseChunker, SectionChunkingStrategy
 from app.domains.ingestion.service import IngestionService
 from app.infrastructure.chunkers.recursive_chunker import RecursiveChunkingStrategy
 from app.infrastructure.config import Settings
+from app.infrastructure.llm.base_embedder import BaseEmbedder
 from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
 from app.infrastructure.loaders.registry import DocumentLoaderRegistry
 from app.infrastructure.loaders.text_loader import TextDocumentLoader
+from app.infrastructure.repositories.chroma_retriever import ChromaRetriever
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
@@ -29,7 +33,7 @@ def build_loader_registry(settings: Settings) -> DocumentLoaderRegistry:
     return DocumentLoaderRegistry(loaders)
 
 
-def build_embedder(settings: Settings) -> FastEmbedEmbeddingService:
+def build_embedder(settings: Settings) -> BaseEmbedder:
     if settings.embedding_backend == "fast":
         return FastEmbedEmbeddingService()
     raise ValueError(f"Unknown embedding backend: {settings.embedding_backend}")
@@ -37,6 +41,39 @@ def build_embedder(settings: Settings) -> FastEmbedEmbeddingService:
 
 def build_vector_store(settings: Settings) -> ChromaVectorStore:
     return ChromaVectorStore(persist_directory=settings.chroma_persist_dir)
+
+
+def build_retriever(settings: Settings) -> ChromaRetriever:
+    return ChromaRetriever(
+        embedder=build_embedder(settings),
+        store=build_vector_store(settings),
+    )
+
+
+def build_llm(settings: Settings) -> LlmService:
+    if settings.llm_backend == "gemini":
+        from app.infrastructure.llm.chat import GeminiLlmService
+
+        return GeminiLlmService(model_name=settings.gemini_model)
+
+    if settings.llm_backend == "ollama":
+        from app.infrastructure.llm.chat import OllamaLlmService
+
+        return OllamaLlmService(model_name=settings.ollama_model)
+
+    if settings.llm_backend == "openai":
+        from app.infrastructure.llm.chat import OpenAILlmService
+
+        return OpenAILlmService(model_name=settings.openai_model)
+
+    raise ValueError(f"Unknown LLM backend: {settings.llm_backend}")
+
+
+def build_inference_service(settings: Settings) -> InferenceService:
+    return InferenceService(
+        retriever=build_retriever(settings),
+        llm=build_llm(settings),
+    )
 
 
 def build_ingestion_service(settings: Settings, session: Session) -> IngestionService:

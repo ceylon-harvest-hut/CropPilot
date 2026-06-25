@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import chromadb
 
+from app.domains.inference.data import RetrievedChunk
 from app.domains.ingestion.data import KnowledgeChunk
 
 
@@ -32,6 +33,36 @@ class ChromaVectorStore:
                 for chunk in chunks
             ],
         )
+
+    def search(
+        self,
+        query_embedding: list[float],
+        crop_tag: str | None,
+        k: int = 3,
+    ) -> list[RetrievedChunk]:
+        where = {"crop_tag": crop_tag} if crop_tag else None
+        results = self._collection.query(
+            query_embeddings=[query_embedding],
+            n_results=k,
+            where=where,
+        )
+
+        chunks: list[RetrievedChunk] = []
+        ids = results.get("ids", [[]])[0]
+        documents = results.get("documents", [[]])[0]
+        metadatas = results.get("metadatas", [[]])[0]
+
+        for chunk_id, document, metadata in zip(ids, documents, metadatas):
+            chunks.append(
+                RetrievedChunk(
+                    chunk_id=chunk_id,
+                    text_content=document,
+                    section_name=metadata.get("section_name", ""),
+                    crop_tag=metadata.get("crop_tag", ""),
+                )
+            )
+
+        return chunks
 
     def count(self) -> int:
         return self._collection.count()

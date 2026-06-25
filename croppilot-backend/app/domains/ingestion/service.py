@@ -3,7 +3,7 @@ from __future__ import annotations
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.data import IngestResult
 from app.domains.ingestion.repositories import (
-    EmbeddingService,
+    ChunkEmbeddingService,
     KnowledgeSourceRepository,
     VectorStoreRepository,
 )
@@ -20,7 +20,7 @@ class IngestionService:
         self,
         loader_registry: DocumentLoaderRegistry,
         chunker: BaseChunker,
-        embedder: EmbeddingService,
+        embedder: ChunkEmbeddingService,
         vector_store: VectorStoreRepository,
         source_repository: KnowledgeSourceRepository,
     ) -> None:

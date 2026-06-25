@@ -5,7 +5,7 @@ from typing import Protocol
 from app.domains.ingestion.data import KnowledgeChunk
 
 
-class EmbeddingService(Protocol):
+class ChunkEmbeddingService(Protocol):
     def embed(self, chunks: list[KnowledgeChunk]) -> list[KnowledgeChunk]: ...
 
 

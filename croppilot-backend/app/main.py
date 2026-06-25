@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app.domains.inference.routes import router as inference_router
 from app.domains.ingestion.routes import router as ingestion_router
 from app.infrastructure.repositories.db import init_db
 
@@ -20,3 +21,4 @@ app = FastAPI(
 )
 
 app.include_router(ingestion_router, prefix="/api/v1", tags=["ingestion"])
+app.include_router(inference_router, prefix="/api/v1", tags=["inference"])
