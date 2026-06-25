@@ -73,6 +73,7 @@ def build_inference_service(settings: Settings) -> InferenceService:
     return InferenceService(
         retriever=build_retriever(settings),
         llm=build_llm(settings),
+        top_k=settings.retrieval_top_k,
     )
 
 

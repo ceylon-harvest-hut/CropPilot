@@ -67,4 +67,4 @@ def test_ask_calls_retriever_with_crop_tag() -> None:
     service = InferenceService(retriever=retriever, llm=llm)
     service.ask("question", crop_tag="Pepper")
 
-    retriever.search.assert_called_once_with("question", crop_tag="Pepper")
+    retriever.search.assert_called_once_with("question", crop_tag="Pepper", k=3)
