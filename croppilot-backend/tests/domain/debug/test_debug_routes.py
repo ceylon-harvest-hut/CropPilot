@@ -21,9 +21,12 @@ def _mock_chunk_catalog(chunks: list[StoredChunk], total: int) -> MagicMock:
 def _mock_source_catalog(
     sources: list[SourceRecord] | None = None,
     crops: list[CropRecord] | None = None,
+    source_total: int | None = None,
 ) -> MagicMock:
     catalog = MagicMock()
-    catalog.list_sources.return_value = sources or []
+    source_list = sources or []
+    total = source_total if source_total is not None else len(source_list)
+    catalog.list_sources.return_value = (source_list, total)
     catalog.list_crops.return_value = crops or []
     return catalog
 
@@ -53,6 +56,8 @@ def test_list_chunks_returns_200(client: TestClient, tmp_path: Path) -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["total"] == 1
+    assert body["limit"] == 20
+    assert body["offset"] == 0
     assert body["chunks"][0]["chunk_id"] == "c1"
     assert body["chunks"][0]["crop_tag"] == "Pepper"
 
@@ -88,8 +93,25 @@ def test_list_sources_returns_200(client: TestClient) -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["total"] == 1
+    assert body["limit"] == 20
+    assert body["offset"] == 0
     assert body["sources"][0]["origin_url"] == "pepper.txt"
 
+    app.dependency_overrides.pop(get_source_catalog, None)
+
+
+def test_list_sources_passes_pagination(client: TestClient) -> None:
+    catalog = _mock_source_catalog()
+    app.dependency_overrides[get_source_catalog] = lambda: catalog
+
+    client.get("/api/v1/debug/sources?crop_name=Pepper&limit=10&offset=5")
+
+    catalog.list_sources.assert_called_once_with(
+        crop_name="Pepper",
+        status=None,
+        limit=10,
+        offset=5,
+    )
     app.dependency_overrides.pop(get_source_catalog, None)
 
 

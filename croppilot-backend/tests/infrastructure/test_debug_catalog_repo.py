@@ -44,31 +44,45 @@ def test_list_crops_fields(seeded_session: Session) -> None:
 
 def test_list_sources_returns_all(seeded_session: Session) -> None:
     repo = SqlDebugCatalogRepository(seeded_session)
-    sources = repo.list_sources(crop_name=None, status=None)
+    sources, total = repo.list_sources(crop_name=None, status=None)
     assert len(sources) == 2
+    assert total == 2
+
+
+def test_list_sources_pagination(seeded_session: Session) -> None:
+    repo = SqlDebugCatalogRepository(seeded_session)
+    page1, total = repo.list_sources(limit=1, offset=0)
+    page2, _ = repo.list_sources(limit=1, offset=1)
+    assert total == 2
+    assert len(page1) == 1
+    assert len(page2) == 1
+    assert page1[0].source_id != page2[0].source_id
 
 
 def test_list_sources_filter_by_crop(seeded_session: Session) -> None:
     repo = SqlDebugCatalogRepository(seeded_session)
-    sources = repo.list_sources(crop_name="Pepper", status=None)
+    sources, total = repo.list_sources(crop_name="Pepper", status=None)
     assert len(sources) == 1
+    assert total == 1
     assert sources[0].origin_url == "pepper.txt"
     assert "Pepper" in sources[0].crop_names
 
 
 def test_list_sources_filter_by_status(seeded_session: Session) -> None:
     repo = SqlDebugCatalogRepository(seeded_session)
-    indexed = repo.list_sources(crop_name=None, status="INDEXED")
-    pending = repo.list_sources(crop_name=None, status="PENDING")
+    indexed, indexed_total = repo.list_sources(crop_name=None, status="INDEXED")
+    pending, pending_total = repo.list_sources(crop_name=None, status="PENDING")
     assert len(indexed) == 1
+    assert indexed_total == 1
     assert indexed[0].origin_url == "pepper.txt"
     assert len(pending) == 1
+    assert pending_total == 1
     assert pending[0].origin_url == "tomato.txt"
 
 
 def test_list_sources_includes_crop_names(seeded_session: Session) -> None:
     repo = SqlDebugCatalogRepository(seeded_session)
-    sources = repo.list_sources(crop_name=None, status=None)
+    sources, _ = repo.list_sources(crop_name=None, status=None)
     source_map = {s.origin_url: s for s in sources}
     assert "Pepper" in source_map["pepper.txt"].crop_names
     assert "Tomato" in source_map["tomato.txt"].crop_names

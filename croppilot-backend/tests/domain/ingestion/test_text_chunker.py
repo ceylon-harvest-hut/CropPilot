@@ -4,7 +4,7 @@ import pytest
 
 from app.domains.ingestion.loader import KnowledgeDocument
 from app.infrastructure.chunkers.section_chunker import SectionChunker
-from app.infrastructure.extractors.text_extractor import TextFileExtractor
+from pathlib import Path as _Path
 
 FIXTURES_DIR = Path(__file__).parent.parent.parent / "fixtures"
 
@@ -13,10 +13,6 @@ FIXTURES_DIR = Path(__file__).parent.parent.parent / "fixtures"
 def chunker() -> SectionChunker:
     return SectionChunker()
 
-
-@pytest.fixture
-def extractor() -> TextFileExtractor:
-    return TextFileExtractor()
 
 
 def _doc(text: str) -> KnowledgeDocument:
@@ -67,8 +63,8 @@ def test_chunk_creates_introduction_for_document_header(chunker: SectionChunker)
     assert chunks[1].metadata["section_name"] == "History"
 
 
-def test_chunk_pepper_fixture(chunker: SectionChunker, extractor: TextFileExtractor) -> None:
-    text = extractor.read(str(FIXTURES_DIR / "pepper.txt"))
+def test_chunk_pepper_fixture(chunker: SectionChunker) -> None:
+    text = (FIXTURES_DIR / "pepper.txt").read_text(encoding="utf-8")
     doc = KnowledgeDocument(
         text=text,
         metadata={"source_uri": str(FIXTURES_DIR / "pepper.txt"), "media_type": "text/plain"},

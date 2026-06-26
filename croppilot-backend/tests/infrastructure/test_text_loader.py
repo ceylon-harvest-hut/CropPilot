@@ -1,27 +1,46 @@
+from __future__ import annotations
+
 from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
-from app.infrastructure.loaders.text_loader import TextDocumentLoader
+from app.domains.ingestion.content import RawContent
+from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.infrastructure.loaders.text_loader import TextLoader
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"
 
 
 @pytest.fixture
-def loader() -> TextDocumentLoader:
-    return TextDocumentLoader()
+def loader() -> TextLoader:
+    return TextLoader()
 
 
-def test_supports_txt_files(loader: TextDocumentLoader) -> None:
-    assert loader.supports("pepper.txt", SOURCE_TYPE_FILE) is True
-    assert loader.supports("pepper.pdf", SOURCE_TYPE_FILE) is False
-    assert loader.supports("pepper.txt", SOURCE_TYPE_WEB_URL) is False
+def _raw(path: str, media_type: str = "text/plain") -> RawContent:
+    p = Path(path)
+    return RawContent(
+        source_uri=path,
+        resolved_uri=path,
+        source_type=SOURCE_TYPE_FILE,
+        media_type=media_type,
+        data=p.read_bytes() if p.exists() else b"",
+        local_path=p if p.exists() else None,
+    )
 
 
-def test_load_returns_list_of_knowledge_documents(loader: TextDocumentLoader) -> None:
+def test_supports_txt_and_markdown(loader: TextLoader) -> None:
+    assert loader.supports(_raw("pepper.txt", "text/plain")) is True
+    assert loader.supports(_raw("notes.md", "text/markdown")) is True
+    assert loader.supports(_raw("notes.markdown", "text/markdown")) is True
+    assert loader.supports(_raw("report.pdf", "application/pdf")) is False
+    assert loader.supports(_raw("page.html", "text/html")) is False
+
+
+def test_load_returns_knowledge_documents(loader: TextLoader) -> None:
     path = str(FIXTURES_DIR / "pepper.txt")
-    docs = loader.load(path, SOURCE_TYPE_FILE)
+    raw = _raw(path)
+
+    docs = loader.load(raw)
 
     assert isinstance(docs, list)
     assert len(docs) == 1

@@ -45,6 +45,7 @@ def test_list_filter_by_crop_tag(store: ChromaVectorStore) -> None:
     chunks, total = store.list_chunks(crop_tag="Pepper")
     assert all(c.crop_tag == "Pepper" for c in chunks)
     assert len(chunks) == 2
+    assert total == 2
 
 
 def test_list_filter_by_source_uri(store: ChromaVectorStore) -> None:

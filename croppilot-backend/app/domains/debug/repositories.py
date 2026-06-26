@@ -20,6 +20,8 @@ class SourceCatalogRepository(Protocol):
         self,
         crop_name: str | None,
         status: str | None,
-    ) -> list[SourceRecord]: ...
+        limit: int,
+        offset: int,
+    ) -> tuple[list[SourceRecord], int]: ...
 
     def list_crops(self) -> list[CropRecord]: ...

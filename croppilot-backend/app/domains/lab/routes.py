@@ -9,6 +9,7 @@ from app.domains.ingestion.persistence import SourceAlreadyIngestedError, persis
 from app.domains.lab.dependencies import get_db_session, get_lab_settings
 from app.domains.lab.schemas import (
     ChunkItem,
+    ChunkerOption,
     ChunkRequest,
     ChunkResponse,
     CommitRequest,
@@ -23,17 +24,17 @@ from app.domains.lab.schemas import (
 from app.infrastructure.config import Settings
 from app.infrastructure.factories import (
     build_chunker_by_name,
+    build_document_pipeline,
     build_embedder_by_name,
     build_vector_store,
-    resolve_loader,
 )
+from app.infrastructure.chunkers.catalog import list_chunker_options
 from app.infrastructure.loaders.catalog import list_loader_options, list_source_types
-from app.infrastructure.loaders.validation import LoaderValidationError
+from app.infrastructure.loaders.validation import LoaderValidationError, validate_source_uri_for_type
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
 router = APIRouter()
 
-AVAILABLE_CHUNKERS = ["section", "recursive"]
 AVAILABLE_EMBEDDERS = ["fast"]
 
 
@@ -55,7 +56,10 @@ def get_options() -> LabOptions:
             LoaderOption(name=opt.name, label=opt.label, source_types=list(opt.source_types))
             for opt in list_loader_options()
         ],
-        chunkers=AVAILABLE_CHUNKERS,
+        chunkers=[
+            ChunkerOption(name=opt.name, label=opt.label)
+            for opt in list_chunker_options()
+        ],
         embedders=AVAILABLE_EMBEDDERS,
     )
 
@@ -87,23 +91,25 @@ def source_exists(
 
 
 @router.post("/load", response_model=LoadResponse, summary="Load a document with an explicit loader")
-def load_document(body: LoadRequest) -> LoadResponse:
+def load_document(body: LoadRequest, settings: Settings = Depends(get_lab_settings)) -> LoadResponse:
     try:
-        loader = resolve_loader(body.loader, body.source_uri, body.source_type)
+        validate_source_uri_for_type(body.source_uri, body.source_type)
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
-    except LoaderValidationError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail=exc.as_detail(),
-        )
+
+    pipeline = build_document_pipeline(settings)
 
     try:
-        docs = loader.load(body.source_uri, body.source_type)
+        docs = pipeline.load_documents(body.source_uri, body.source_type, body.loader)
     except FileNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"File not found: {body.source_uri}",
+        )
+    except LoaderValidationError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=exc.as_detail(),
         )
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))

@@ -103,7 +103,14 @@ class ChromaVectorStore:
             )
         ]
 
-        return chunks, self._collection.count()
+        total = self._count_chunks(where)
+        return chunks, total
+
+    def _count_chunks(self, where: dict | None) -> int:
+        if where is None:
+            return self._collection.count()
+        data = self._collection.get(where=where, include=[])
+        return len(data.get("ids", []))
 
     def count(self) -> int:
         return self._collection.count()

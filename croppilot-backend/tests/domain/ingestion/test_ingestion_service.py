@@ -9,8 +9,8 @@ from app.domains.ingestion.service import IngestionService
 from app.infrastructure.config import Settings
 from app.infrastructure.factories import (
     build_chunker,
+    build_document_pipeline,
     build_embedder,
-    build_loader_registry,
     build_vector_store,
 )
 from app.infrastructure.repositories.db import Base, KNOWLEDGE_SOURCE_STATUS_INDEXED
@@ -36,7 +36,7 @@ def ingestion_service(tmp_path: Path, db_session: Session) -> IngestionService:
         chroma_persist_dir=str(tmp_path / "chroma"),
     )
     return IngestionService(
-        loader_registry=build_loader_registry(settings),
+        pipeline=build_document_pipeline(settings),
         chunker=build_chunker(settings),
         embedder=build_embedder(settings),
         vector_store=build_vector_store(settings),

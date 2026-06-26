@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+from app.domains.ingestion.content import RawContent
 from app.domains.ingestion.loader import DocumentLoader
 from app.domains.ingestion.source_types import validate_source_uri_shape
-from app.infrastructure.loaders.catalog import loaders_for_source_type
 
 
 class LoaderValidationError(Exception):
@@ -15,26 +15,43 @@ class LoaderValidationError(Exception):
         return {"message": self.message, **self.context}
 
 
-def validate_loader_selection(
-    loader: DocumentLoader,
-    source_uri: str,
-    source_type: str,
-) -> None:
+def validate_source_uri_for_type(source_uri: str, source_type: str) -> None:
+    """Validate that the URI shape matches the declared source type.
+
+    Raises ``ValueError`` on mismatch (e.g. file path with ``web_url`` type).
+    """
     validate_source_uri_shape(source_uri, source_type)
 
-    if source_type not in loader.supported_source_types():
-        allowed_loaders = loaders_for_source_type(source_type)
-        raise LoaderValidationError(
-            f"Loader {loader.name!r} does not support source_type {source_type!r}",
-            loader=loader.name,
-            source_type=source_type,
-            allowed_loaders=allowed_loaders,
-        )
 
-    if not loader.supports(source_uri, source_type):
-        raise LoaderValidationError(
-            f"Loader {loader.name!r} cannot load source_uri for source_type {source_type!r}",
-            loader=loader.name,
-            source_type=source_type,
-            source_uri=source_uri,
-        )
+def validate_loader_selection(
+    loader: DocumentLoader,
+    raw: RawContent,
+    all_loaders: list[DocumentLoader] | None = None,
+) -> None:
+    """Raise LoaderValidationError when *loader* cannot handle *raw*."""
+    if loader.supports(raw):
+        return
+
+    allowed_loaders = (
+        [l.name for l in all_loaders if l.supports(raw)]
+        if all_loaders
+        else []
+    )
+
+    supported_types = loader.supported_media_types()
+    supported_exts = loader.supported_extensions()
+
+    details: dict[str, object] = {
+        "loader": loader.name,
+        "media_type": raw.media_type,
+        "allowed_loaders": allowed_loaders,
+    }
+    if supported_types is not None:
+        details["supported_media_types"] = sorted(supported_types)
+    if supported_exts is not None:
+        details["supported_extensions"] = sorted(supported_exts)
+
+    raise LoaderValidationError(
+        f"Loader {loader.name!r} does not support media type {raw.media_type!r}",
+        **details,
+    )

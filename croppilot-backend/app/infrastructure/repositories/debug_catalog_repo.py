@@ -14,7 +14,9 @@ class SqlDebugCatalogRepository:
         self,
         crop_name: str | None = None,
         status: str | None = None,
-    ) -> list[SourceRecord]:
+        limit: int = 20,
+        offset: int = 0,
+    ) -> tuple[list[SourceRecord], int]:
         query = self._session.query(KnowledgeSource)
 
         if status:
@@ -30,7 +32,13 @@ class SqlDebugCatalogRepository:
                 .filter(Crop.name == crop_name)
             )
 
-        sources = query.all()
+        total = query.count()
+        sources = (
+            query.order_by(KnowledgeSource.id)
+            .offset(offset)
+            .limit(limit)
+            .all()
+        )
 
         records = []
         for source in sources:
@@ -44,7 +52,7 @@ class SqlDebugCatalogRepository:
                 )
             )
 
-        return records
+        return records, total
 
     def list_crops(self) -> list[CropRecord]:
         crops = self._session.query(Crop).all()

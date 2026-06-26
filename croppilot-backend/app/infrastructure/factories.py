@@ -3,18 +3,19 @@ from sqlalchemy.orm import Session
 from app.domains.inference.repositories import LlmService
 from app.domains.inference.service import InferenceService
 from app.domains.ingestion.chunker import BaseChunker
+from app.domains.ingestion.loader import DocumentLoader
+from app.domains.ingestion.pipeline import DocumentPipeline
 from app.domains.ingestion.service import IngestionService
+from app.infrastructure.chunkers.dea_gov_lk_chunker import DeaGovLkChunker
 from app.infrastructure.chunkers.recursive_chunker import RecursiveChunker
 from app.infrastructure.chunkers.section_chunker import SectionChunker
 from app.infrastructure.config import Settings
+from app.infrastructure.extractors.registry import ExtractorRegistry, build_all_extractors
 from app.infrastructure.llm.base_embedder import BaseEmbedder
 from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
-from app.domains.ingestion.loader import DocumentLoader
-from app.infrastructure.loaders.docling_loader import DoclingDocumentLoader
+from app.infrastructure.loaders.docling_loader import DoclingLoader
 from app.infrastructure.loaders.registry import DocumentLoaderRegistry, build_all_loaders
-from app.infrastructure.loaders.text_loader import TextDocumentLoader
-from app.infrastructure.loaders.validation import validate_loader_selection
-from app.infrastructure.loaders.web_url_loader import WebUrlLoader
+from app.infrastructure.loaders.text_loader import TextLoader
 from app.infrastructure.repositories.chroma_retriever import ChromaRetriever
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
 from app.infrastructure.repositories.debug_catalog_repo import SqlDebugCatalogRepository
@@ -34,6 +35,17 @@ def build_chunker(settings: Settings) -> BaseChunker:
 
 def build_loader_registry(settings: Settings) -> DocumentLoaderRegistry:
     return DocumentLoaderRegistry(build_all_loaders())
+
+
+def build_extractor_registry(settings: Settings) -> ExtractorRegistry:
+    return ExtractorRegistry(build_all_extractors())
+
+
+def build_document_pipeline(settings: Settings) -> DocumentPipeline:
+    return DocumentPipeline(
+        extractors=build_extractor_registry(settings),
+        loaders=build_loader_registry(settings),
+    )
 
 
 def build_embedder(settings: Settings) -> BaseEmbedder:
@@ -99,18 +111,14 @@ def build_loader_by_name(name: str) -> DocumentLoader:
     return loader
 
 
-def resolve_loader(loader_name: str, source_uri: str, source_type: str) -> DocumentLoader:
-    loader = build_loader_by_name(loader_name)
-    validate_loader_selection(loader, source_uri, source_type)
-    return loader
-
-
 def build_chunker_by_name(name: str, chunk_size: int = 500, chunk_overlap: int = 50) -> BaseChunker:
     if name == "section":
         return SectionChunker()
     if name == "recursive":
         return RecursiveChunker(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    raise ValueError(f"Unknown chunker: {name!r}. Available: section, recursive")
+    if name == "dea_gov_lk":
+        return DeaGovLkChunker()
+    raise ValueError(f"Unknown chunker: {name!r}. Available: section, recursive, dea_gov_lk")
 
 
 def build_embedder_by_name(name: str) -> BaseEmbedder:
@@ -129,7 +137,7 @@ def build_source_catalog(session: Session) -> SqlDebugCatalogRepository:
 
 def build_ingestion_service(settings: Settings, session: Session) -> IngestionService:
     return IngestionService(
-        loader_registry=build_loader_registry(settings),
+        pipeline=build_document_pipeline(settings),
         chunker=build_chunker(settings),
         embedder=build_embedder(settings),
         vector_store=build_vector_store(settings),

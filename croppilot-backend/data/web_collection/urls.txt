@@ -1,0 +1,18 @@
+# One URL per line. Lines starting with # are ignored.
+# Example:
+# https://dea.gov.lk/pepper/
+
+https://dea.gov.lk/areca-nut/
+https://dea.gov.lk/betel/
+https://dea.gov.lk/cardamom/
+https://dea.gov.lk/citronella/
+https://dea.gov.lk/clove/
+https://dea.gov.lk/cocoa/
+https://dea.gov.lk/coffee/
+https://dea.gov.lk/ginger/
+https://dea.gov.lk/goraka/
+https://dea.gov.lk/lemon-grass/
+https://dea.gov.lk/nutmeg/
+https://dea.gov.lk/pepper/
+https://dea.gov.lk/turmeric/
+https://dea.gov.lk/vanilla/

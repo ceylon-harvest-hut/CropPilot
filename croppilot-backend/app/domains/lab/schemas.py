@@ -9,10 +9,15 @@ class LoaderOption(BaseModel):
     source_types: list[str]
 
 
+class ChunkerOption(BaseModel):
+    name: str
+    label: str
+
+
 class LabOptions(BaseModel):
     source_types: list[str]
     loaders: list[LoaderOption]
-    chunkers: list[str]
+    chunkers: list[ChunkerOption]
     embedders: list[str]
 
 

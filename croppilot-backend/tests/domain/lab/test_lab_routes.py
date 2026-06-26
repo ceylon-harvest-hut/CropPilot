@@ -68,9 +68,15 @@ def test_options_returns_all_components(client: TestClient) -> None:
     loader_names = [loader["name"] for loader in body["loaders"]]
     assert "text" in loader_names
     assert "docling" in loader_names
-    assert "web" in loader_names
-    assert "section" in body["chunkers"]
-    assert "recursive" in body["chunkers"]
+    assert "html_plain" in loader_names
+    assert "dea_gov_lk" in loader_names
+    assert "web" not in loader_names
+    assert "web_md" not in loader_names
+    chunker_names = [chunker["name"] for chunker in body["chunkers"]]
+    assert "section" in chunker_names
+    assert "recursive" in chunker_names
+    assert "dea_gov_lk" in chunker_names
+    assert "manual" in chunker_names
     assert "fast" in body["embedders"]
 
 
@@ -100,20 +106,20 @@ def test_load_unknown_loader_returns_422(client: TestClient) -> None:
     assert response.status_code == 422
 
 
-def test_load_loader_source_type_mismatch_returns_422(client: TestClient) -> None:
+def test_load_loader_media_type_mismatch_returns_422(client: TestClient) -> None:
+    """html_plain loader does not support text/plain from a .txt file."""
     response = client.post(
         "/api/v1/lab/load",
         json={
-            "source_uri": "https://example.com/pepper",
-            "source_type": "web_url",
-            "loader": "text",
+            "source_uri": PEPPER_FILE,
+            "source_type": "file",
+            "loader": "html_plain",
         },
     )
     assert response.status_code == 422
     detail = response.json()["detail"]
-    assert detail["loader"] == "text"
-    assert detail["source_type"] == "web_url"
-    assert "web" in detail["allowed_loaders"]
+    assert detail["loader"] == "html_plain"
+    assert "text/plain" in detail["media_type"]
 
 
 def test_load_file_path_with_web_source_type_returns_422(client: TestClient) -> None:
@@ -122,7 +128,7 @@ def test_load_file_path_with_web_source_type_returns_422(client: TestClient) -> 
         json={
             "source_uri": PEPPER_FILE,
             "source_type": "web_url",
-            "loader": "web",
+            "loader": "html_plain",
         },
     )
     assert response.status_code == 422

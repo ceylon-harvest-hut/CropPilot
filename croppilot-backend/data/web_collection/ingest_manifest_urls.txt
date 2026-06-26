@@ -1,0 +1,17 @@
+# Batch ingest manifest from data/web_collection/urls.txt
+# Format: url,crop_name[,source_type]
+
+https://dea.gov.lk/areca-nut/,Areca Nut,web_url
+https://dea.gov.lk/betel/,Betel,web_url
+https://dea.gov.lk/cardamom/,Cardamom,web_url
+https://dea.gov.lk/citronella/,Citronella,web_url
+https://dea.gov.lk/clove/,Clove,web_url
+https://dea.gov.lk/cocoa/,Cocoa,web_url
+https://dea.gov.lk/coffee/,Coffee,web_url
+https://dea.gov.lk/ginger/,Ginger,web_url
+https://dea.gov.lk/goraka/,Goraka,web_url
+https://dea.gov.lk/lemon-grass/,Lemon Grass,web_url
+https://dea.gov.lk/nutmeg/,Nutmeg,web_url
+https://dea.gov.lk/pepper/,Pepper,web_url
+https://dea.gov.lk/turmeric/,Turmeric,web_url
+https://dea.gov.lk/vanilla/,Vanilla,web_url

@@ -12,6 +12,8 @@ class ChunkItemResponse(BaseModel):
 
 class ChunkListResponse(BaseModel):
     total: int
+    limit: int
+    offset: int
     chunks: list[ChunkItemResponse]
 
 
@@ -24,6 +26,8 @@ class SourceItemResponse(BaseModel):
 
 class SourceListResponse(BaseModel):
     total: int
+    limit: int
+    offset: int
     sources: list[SourceItemResponse]
 
 

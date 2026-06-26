@@ -1,0 +1,18 @@
+# Batch ingest manifest for DEA gov.lk HTML snapshots.
+# Format: path_or_uri,crop_name[,source_type]
+# Paths are relative to this file's directory.
+
+html/dea-gov-lk-areca-nut.html,Areca Nut,file
+html/dea-gov-lk-betel.html,Betel,file
+html/dea-gov-lk-cardamom.html,Cardamom,file
+html/dea-gov-lk-citronella.html,Citronella,file
+html/dea-gov-lk-clove.html,Clove,file
+html/dea-gov-lk-cocoa.html,Cocoa,file
+html/dea-gov-lk-coffee.html,Coffee,file
+html/dea-gov-lk-ginger.html,Ginger,file
+html/dea-gov-lk-goraka.html,Goraka,file
+html/dea-gov-lk-lemon-grass.html,Lemon Grass,file
+html/dea-gov-lk-nutmeg.html,Nutmeg,file
+html/dea-gov-lk-pepper.html,Pepper,file
+html/dea-gov-lk-turmeric.html,Turmeric,file
+html/dea-gov-lk-vanilla.html,Vanilla,file

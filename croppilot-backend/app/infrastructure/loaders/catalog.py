@@ -13,13 +13,26 @@ class LoaderOption:
 
 
 _LOADER_OPTIONS: tuple[LoaderOption, ...] = (
-    LoaderOption(name="text", label="Plain text file", source_types=("file",)),
+    LoaderOption(
+        name="text",
+        label="Plain text / Markdown",
+        source_types=("file", "web_url"),
+    ),
     LoaderOption(
         name="docling",
-        label="Docling (PDF, HTML, DOCX, TXT)",
-        source_types=("file",),
+        label="Docling (PDF, HTML, DOCX, …)",
+        source_types=("file", "web_url"),
     ),
-    LoaderOption(name="web", label="Web page", source_types=("web_url",)),
+    LoaderOption(
+        name="html_plain",
+        label="HTML (plain text)",
+        source_types=("file", "web_url"),
+    ),
+    LoaderOption(
+        name="dea_gov_lk",
+        label="DEA gov.lk crop page",
+        source_types=("file", "web_url"),
+    ),
 )
 
 

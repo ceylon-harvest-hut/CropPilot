@@ -41,6 +41,8 @@ def list_chunks(
     )
     return ChunkListResponse(
         total=total,
+        limit=limit,
+        offset=offset,
         chunks=[ChunkItemResponse(**vars(c)) for c in chunks],
     )
 
@@ -54,11 +56,18 @@ def list_chunks(
 def list_sources(
     crop_name: str | None = Query(default=None),
     status_filter: str | None = Query(default=None, alias="status"),
+    limit: int = Query(default=20, ge=1, le=200),
+    offset: int = Query(default=0, ge=0),
     catalog: SourceCatalogRepository = Depends(get_source_catalog),
 ) -> SourceListResponse:
-    sources = catalog.list_sources(crop_name=crop_name, status=status_filter)
+    sources, total = catalog.list_sources(
+        crop_name=crop_name,
+        status=status_filter,
+        limit=limit,
+        offset=offset,
+    )
     items = [SourceItemResponse(**vars(s)) for s in sources]
-    return SourceListResponse(total=len(items), sources=items)
+    return SourceListResponse(total=total, limit=limit, offset=offset, sources=items)
 
 
 @router.get(
