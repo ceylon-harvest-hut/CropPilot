@@ -11,6 +11,16 @@ export class ApiError extends Error {
   }
 }
 
+export function formatApiErrorDetail(detail: ApiErrorDetail["detail"]): string {
+  if (typeof detail === "string") {
+    return detail;
+  }
+  if (detail && typeof detail === "object" && !Array.isArray(detail) && "message" in detail) {
+    return String((detail as { message: string }).message);
+  }
+  return "Request failed";
+}
+
 export async function apiPost<TResponse, TBody>(
   path: string,
   body: TBody,
@@ -23,10 +33,9 @@ export async function apiPost<TResponse, TBody>(
 
   if (!response.ok) {
     const errorBody = (await response.json().catch(() => null)) as ApiErrorDetail | null;
-    const message =
-      typeof errorBody?.detail === "string"
-        ? errorBody.detail
-        : `Request failed with status ${response.status}`;
+    const message = errorBody?.detail
+      ? formatApiErrorDetail(errorBody.detail)
+      : `Request failed with status ${response.status}`;
     throw new ApiError(response.status, message);
   }
 

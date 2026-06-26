@@ -28,18 +28,31 @@ export interface AskResponse {
 }
 
 export interface ApiErrorDetail {
-  detail: string | { loc: string[]; msg: string; type: string }[];
+  detail:
+    | string
+    | { loc: string[]; msg: string; type: string }[]
+    | { message: string; [key: string]: unknown };
 }
 
 /** Mirrors app/domains/lab/schemas.py */
+export type SourceType = "file" | "web_url";
+
+export interface LoaderOption {
+  name: string;
+  label: string;
+  source_types: SourceType[];
+}
+
 export interface LabOptions {
-  loaders: string[];
+  source_types: SourceType[];
+  loaders: LoaderOption[];
   chunkers: string[];
   embedders: string[];
 }
 
 export interface LoadRequest {
   source_uri: string;
+  source_type: SourceType;
   loader: string;
 }
 
@@ -51,6 +64,8 @@ export interface DocumentItem {
 export interface LoadResponse {
   documents: DocumentItem[];
   source_uri: string;
+  source_type: string;
+  loader: string;
   media_type: string;
   char_count: number;
   line_count: number;
@@ -82,12 +97,23 @@ export interface CommitRequest {
   crop_name: string;
   chunks: ChunkItem[];
   embedder: string;
+  replace_existing?: boolean;
 }
 
 export interface CommitResponse {
   source_id: number;
   chunk_count: number;
   status: string;
+  replaced: boolean;
+  previous_chunk_count: number;
+}
+
+export interface SourceExistsResponse {
+  exists: boolean;
+  source_id?: number | null;
+  chunk_count?: number | null;
+  status?: string | null;
+  crop_names: string[];
 }
 
 /** Mirrors app/domains/debug/schemas.py */
