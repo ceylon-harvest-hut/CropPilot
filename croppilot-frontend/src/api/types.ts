@@ -43,10 +43,15 @@ export interface LoaderOption {
   source_types: SourceType[];
 }
 
+export interface ChunkerOption {
+  name: string;
+  label: string;
+}
+
 export interface LabOptions {
   source_types: SourceType[];
   loaders: LoaderOption[];
-  chunkers: string[];
+  chunkers: ChunkerOption[];
   embedders: string[];
 }
 
@@ -128,6 +133,8 @@ export interface StoredChunk {
 
 export interface ChunkListResponse {
   total: number;
+  limit: number;
+  offset: number;
   chunks: StoredChunk[];
 }
 
@@ -140,6 +147,8 @@ export interface SourceItem {
 
 export interface SourceListResponse {
   total: number;
+  limit: number;
+  offset: number;
   sources: SourceItem[];
 }
 

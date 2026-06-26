@@ -37,12 +37,16 @@ export function listChunks(filters: ChunkFilters = {}): Promise<ChunkListRespons
 export interface SourceFilters {
   crop_name?: string;
   status?: string;
+  limit?: number;
+  offset?: number;
 }
 
 export function listSources(filters: SourceFilters = {}): Promise<SourceListResponse> {
   const params = new URLSearchParams();
   if (filters.crop_name) params.set("crop_name", filters.crop_name);
   if (filters.status) params.set("status", filters.status);
+  if (filters.limit !== undefined) params.set("limit", String(filters.limit));
+  if (filters.offset !== undefined) params.set("offset", String(filters.offset));
   const qs = params.toString();
   return apiGet<SourceListResponse>(`/debug/sources${qs ? `?${qs}` : ""}`);
 }
