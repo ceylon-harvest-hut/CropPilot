@@ -11,8 +11,10 @@ from app.infrastructure.llm.base_embedder import BaseEmbedder
 from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
 from app.domains.ingestion.loader import DocumentLoader
 from app.infrastructure.loaders.docling_loader import DoclingDocumentLoader
-from app.infrastructure.loaders.registry import DocumentLoaderRegistry
+from app.infrastructure.loaders.registry import DocumentLoaderRegistry, build_all_loaders
 from app.infrastructure.loaders.text_loader import TextDocumentLoader
+from app.infrastructure.loaders.validation import validate_loader_selection
+from app.infrastructure.loaders.web_url_loader import WebUrlLoader
 from app.infrastructure.repositories.chroma_retriever import ChromaRetriever
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
 from app.infrastructure.repositories.debug_catalog_repo import SqlDebugCatalogRepository
@@ -31,8 +33,7 @@ def build_chunker(settings: Settings) -> BaseChunker:
 
 
 def build_loader_registry(settings: Settings) -> DocumentLoaderRegistry:
-    loaders: list[DocumentLoader] = [TextDocumentLoader(), DoclingDocumentLoader()]
-    return DocumentLoaderRegistry(loaders)
+    return DocumentLoaderRegistry(build_all_loaders())
 
 
 def build_embedder(settings: Settings) -> BaseEmbedder:
@@ -90,11 +91,18 @@ def build_inference_service(settings: Settings) -> InferenceService:
 
 
 def build_loader_by_name(name: str) -> DocumentLoader:
-    if name == "text":
-        return TextDocumentLoader()
-    if name == "docling":
-        return DoclingDocumentLoader()
-    raise ValueError(f"Unknown loader: {name!r}. Available: text, docling")
+    loaders = {loader.name: loader for loader in build_all_loaders()}
+    loader = loaders.get(name)
+    if loader is None:
+        known = ", ".join(sorted(loaders))
+        raise ValueError(f"Unknown loader: {name!r}. Available: {known}")
+    return loader
+
+
+def resolve_loader(loader_name: str, source_uri: str, source_type: str) -> DocumentLoader:
+    loader = build_loader_by_name(loader_name)
+    validate_loader_selection(loader, source_uri, source_type)
+    return loader
 
 
 def build_chunker_by_name(name: str, chunk_size: int = 500, chunk_overlap: int = 50) -> BaseChunker:
@@ -126,4 +134,5 @@ def build_ingestion_service(settings: Settings, session: Session) -> IngestionSe
         embedder=build_embedder(settings),
         vector_store=build_vector_store(settings),
         source_repository=SqlKnowledgeSourceRepository(session),
+        default_loader=settings.default_loader,
     )

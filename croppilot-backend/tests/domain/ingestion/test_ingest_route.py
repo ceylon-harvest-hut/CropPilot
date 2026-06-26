@@ -62,3 +62,35 @@ def test_ingest_endpoint(client: TestClient) -> None:
     assert body["status"] == "INDEXED"
     assert body["chunk_count"] >= 10
     assert body["source_id"] > 0
+
+
+def test_ingest_duplicate_returns_409(client: TestClient) -> None:
+    payload = {
+        "source_uri": str(FIXTURES_DIR / "pepper.txt"),
+        "crop_name": "Pepper",
+    }
+    first = client.post("/api/v1/ingest", json=payload)
+    assert first.status_code == 202
+
+    second = client.post("/api/v1/ingest", json=payload)
+    assert second.status_code == 409
+
+
+def test_ingest_replace_existing_succeeds(client: TestClient) -> None:
+    payload = {
+        "source_uri": str(FIXTURES_DIR / "pepper.txt"),
+        "crop_name": "Pepper",
+    }
+    first = client.post("/api/v1/ingest", json=payload)
+    assert first.status_code == 202
+    first_source_id = first.json()["source_id"]
+    first_chunk_count = first.json()["chunk_count"]
+
+    replaced = client.post(
+        "/api/v1/ingest",
+        json={**payload, "replace_existing": True},
+    )
+    assert replaced.status_code == 202
+    body = replaced.json()
+    assert body["source_id"] == first_source_id
+    assert body["chunk_count"] == first_chunk_count

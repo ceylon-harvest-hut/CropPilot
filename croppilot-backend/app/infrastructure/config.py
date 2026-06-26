@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     embedding_backend: Literal["fast", "hf", "openai", "gemini"] = "fast"
     llm_backend: Literal["ollama", "openai", "gemini"] = "gemini"
-    default_loader: Literal["text", "docling"] = "text"
+    default_loader: Literal["text", "docling", "web"] = "text"
     default_chunker: Literal["section", "recursive"] = "section"
 
     recursive_chunk_size: int = 500

@@ -7,7 +7,7 @@ from typing import Any
 class KnowledgeDocument:
     """Domain object representing a loaded document part.
 
-    Required metadata keys: source_uri, media_type.
+    Required metadata keys: source_uri, source_type, loader, media_type.
     Optional: page (Docling page number).
     """
 
@@ -22,8 +22,13 @@ class KnowledgeDocument:
 
 
 class DocumentLoader(ABC):
-    @abstractmethod
-    def supports(self, source_uri: str) -> bool: ...
+    name: str
 
     @abstractmethod
-    def load(self, source_uri: str) -> list[KnowledgeDocument]: ...
+    def supported_source_types(self) -> frozenset[str]: ...
+
+    @abstractmethod
+    def supports(self, source_uri: str, source_type: str) -> bool: ...
+
+    @abstractmethod
+    def load(self, source_uri: str, source_type: str) -> list[KnowledgeDocument]: ...

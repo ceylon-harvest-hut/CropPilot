@@ -63,8 +63,12 @@ def test_options_returns_all_components(client: TestClient) -> None:
     response = client.get("/api/v1/lab/options")
     assert response.status_code == 200
     body = response.json()
-    assert "text" in body["loaders"]
-    assert "docling" in body["loaders"]
+    assert "file" in body["source_types"]
+    assert "web_url" in body["source_types"]
+    loader_names = [loader["name"] for loader in body["loaders"]]
+    assert "text" in loader_names
+    assert "docling" in loader_names
+    assert "web" in loader_names
     assert "section" in body["chunkers"]
     assert "recursive" in body["chunkers"]
     assert "fast" in body["embedders"]
@@ -75,7 +79,7 @@ def test_options_returns_all_components(client: TestClient) -> None:
 def test_load_text_file(client: TestClient) -> None:
     response = client.post(
         "/api/v1/lab/load",
-        json={"source_uri": PEPPER_FILE, "loader": "text"},
+        json={"source_uri": PEPPER_FILE, "source_type": "file", "loader": "text"},
     )
     assert response.status_code == 200
     body = response.json()
@@ -91,7 +95,35 @@ def test_load_text_file(client: TestClient) -> None:
 def test_load_unknown_loader_returns_422(client: TestClient) -> None:
     response = client.post(
         "/api/v1/lab/load",
-        json={"source_uri": PEPPER_FILE, "loader": "pdf"},
+        json={"source_uri": PEPPER_FILE, "loader": "pdf", "source_type": "file"},
+    )
+    assert response.status_code == 422
+
+
+def test_load_loader_source_type_mismatch_returns_422(client: TestClient) -> None:
+    response = client.post(
+        "/api/v1/lab/load",
+        json={
+            "source_uri": "https://example.com/pepper",
+            "source_type": "web_url",
+            "loader": "text",
+        },
+    )
+    assert response.status_code == 422
+    detail = response.json()["detail"]
+    assert detail["loader"] == "text"
+    assert detail["source_type"] == "web_url"
+    assert "web" in detail["allowed_loaders"]
+
+
+def test_load_file_path_with_web_source_type_returns_422(client: TestClient) -> None:
+    response = client.post(
+        "/api/v1/lab/load",
+        json={
+            "source_uri": PEPPER_FILE,
+            "source_type": "web_url",
+            "loader": "web",
+        },
     )
     assert response.status_code == 422
 
@@ -99,7 +131,7 @@ def test_load_unknown_loader_returns_422(client: TestClient) -> None:
 def test_load_missing_file_returns_404(client: TestClient) -> None:
     response = client.post(
         "/api/v1/lab/load",
-        json={"source_uri": "/nonexistent/path/file.txt", "loader": "text"},
+        json={"source_uri": "/nonexistent/path/file.txt", "loader": "text", "source_type": "file"},
     )
     assert response.status_code == 404
 
@@ -199,7 +231,7 @@ def test_full_lab_flow(client: TestClient) -> None:
     """End-to-end: load → chunk → commit."""
     load_resp = client.post(
         "/api/v1/lab/load",
-        json={"source_uri": PEPPER_FILE, "loader": "text"},
+        json={"source_uri": PEPPER_FILE, "source_type": "file", "loader": "text"},
     )
     assert load_resp.status_code == 200
     documents = load_resp.json()["documents"]
@@ -224,3 +256,75 @@ def test_full_lab_flow(client: TestClient) -> None:
     )
     assert commit_resp.status_code == 201
     assert commit_resp.json()["chunk_count"] == len(chunks)
+
+
+def _commit_chunks(client: TestClient, chunks: list[dict], *, replace_existing: bool = False) -> dict:
+    response = client.post(
+        "/api/v1/lab/commit",
+        json={
+            "source_uri": PEPPER_FILE,
+            "crop_name": "Pepper",
+            "chunks": chunks,
+            "embedder": "fast",
+            "replace_existing": replace_existing,
+        },
+    )
+    return response
+
+
+def test_source_exists_before_and_after_commit(client: TestClient) -> None:
+    missing = client.get("/api/v1/lab/sources/exists", params={"source_uri": PEPPER_FILE})
+    assert missing.status_code == 200
+    assert missing.json()["exists"] is False
+
+    chunks = client.post(
+        "/api/v1/lab/chunk",
+        json={"documents": SAMPLE_DOCUMENTS, "crop_name": "Pepper", "chunker": "section"},
+    ).json()["chunks"]
+    _commit_chunks(client, chunks)
+
+    found = client.get("/api/v1/lab/sources/exists", params={"source_uri": PEPPER_FILE})
+    assert found.status_code == 200
+    body = found.json()
+    assert body["exists"] is True
+    assert body["source_id"] > 0
+    assert body["chunk_count"] == len(chunks)
+    assert body["status"] == "INDEXED"
+    assert "Pepper" in body["crop_names"]
+
+
+def test_commit_duplicate_without_replace_returns_409(client: TestClient) -> None:
+    chunks = client.post(
+        "/api/v1/lab/chunk",
+        json={"documents": SAMPLE_DOCUMENTS, "crop_name": "Pepper", "chunker": "section"},
+    ).json()["chunks"]
+    first = _commit_chunks(client, chunks)
+    assert first.status_code == 201
+
+    second = _commit_chunks(client, chunks)
+    assert second.status_code == 409
+    detail = second.json()["detail"]
+    assert detail["source_id"] > 0
+    assert detail["chunk_count"] == len(chunks)
+
+
+def test_commit_replace_existing_succeeds(client: TestClient) -> None:
+    chunks = client.post(
+        "/api/v1/lab/chunk",
+        json={"documents": SAMPLE_DOCUMENTS, "crop_name": "Pepper", "chunker": "section"},
+    ).json()["chunks"]
+    first = _commit_chunks(client, chunks)
+    assert first.status_code == 201
+    first_source_id = first.json()["source_id"]
+
+    smaller_chunks = chunks[:1]
+    replaced = _commit_chunks(client, smaller_chunks, replace_existing=True)
+    assert replaced.status_code == 201
+    body = replaced.json()
+    assert body["replaced"] is True
+    assert body["previous_chunk_count"] == len(chunks)
+    assert body["chunk_count"] == 1
+    assert body["source_id"] == first_source_id
+
+    found = client.get("/api/v1/lab/sources/exists", params={"source_uri": PEPPER_FILE})
+    assert found.json()["chunk_count"] == 1

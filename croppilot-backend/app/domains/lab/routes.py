@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from app.domains.ingestion.data import KnowledgeChunk
 from app.domains.ingestion.loader import KnowledgeDocument
+from app.domains.ingestion.persistence import SourceAlreadyIngestedError, persist_knowledge_chunks
 from app.domains.lab.dependencies import get_db_session, get_lab_settings
 from app.domains.lab.schemas import (
     ChunkItem,
@@ -16,47 +17,96 @@ from app.domains.lab.schemas import (
     LabOptions,
     LoadRequest,
     LoadResponse,
+    LoaderOption,
+    SourceExistsResponse,
 )
 from app.infrastructure.config import Settings
 from app.infrastructure.factories import (
     build_chunker_by_name,
     build_embedder_by_name,
-    build_loader_by_name,
     build_vector_store,
+    resolve_loader,
 )
-from app.infrastructure.repositories.db import KNOWLEDGE_SOURCE_STATUS_INDEXED
+from app.infrastructure.loaders.catalog import list_loader_options, list_source_types
+from app.infrastructure.loaders.validation import LoaderValidationError
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
 router = APIRouter()
 
-AVAILABLE_LOADERS = ["text", "docling"]
 AVAILABLE_CHUNKERS = ["section", "recursive"]
 AVAILABLE_EMBEDDERS = ["fast"]
+
+
+def _conflict_detail(exc: SourceAlreadyIngestedError) -> dict:
+    return {
+        "message": "Source already ingested. Set replace_existing=true to replace vectors.",
+        "source_id": exc.source_id,
+        "chunk_count": exc.chunk_count,
+        "status": exc.status,
+        "crop_names": exc.crop_names,
+    }
 
 
 @router.get("/options", response_model=LabOptions, summary="List available pipeline components")
 def get_options() -> LabOptions:
     return LabOptions(
-        loaders=AVAILABLE_LOADERS,
+        source_types=list_source_types(),
+        loaders=[
+            LoaderOption(name=opt.name, label=opt.label, source_types=list(opt.source_types))
+            for opt in list_loader_options()
+        ],
         chunkers=AVAILABLE_CHUNKERS,
         embedders=AVAILABLE_EMBEDDERS,
+    )
+
+
+@router.get(
+    "/sources/exists",
+    response_model=SourceExistsResponse,
+    summary="Check whether a source URI has already been ingested",
+)
+def source_exists(
+    source_uri: str = Query(..., min_length=1),
+    db: Session = Depends(get_db_session),
+    settings: Settings = Depends(get_lab_settings),
+) -> SourceExistsResponse:
+    source_repo = SqlKnowledgeSourceRepository(db)
+    existing = source_repo.find_by_origin_url(source_uri)
+    if existing is None:
+        return SourceExistsResponse(exists=False)
+
+    vector_store = build_vector_store(settings)
+    chunk_count = vector_store.count_by_source_uri(source_uri)
+    return SourceExistsResponse(
+        exists=True,
+        source_id=existing.source_id,
+        chunk_count=chunk_count,
+        status=existing.status,
+        crop_names=existing.crop_names,
     )
 
 
 @router.post("/load", response_model=LoadResponse, summary="Load a document with an explicit loader")
 def load_document(body: LoadRequest) -> LoadResponse:
     try:
-        loader = build_loader_by_name(body.loader)
+        loader = resolve_loader(body.loader, body.source_uri, body.source_type)
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
+    except LoaderValidationError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=exc.as_detail(),
+        )
 
     try:
-        docs = loader.load(body.source_uri)
+        docs = loader.load(body.source_uri, body.source_type)
     except FileNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"File not found: {body.source_uri}",
         )
+    except ValueError as exc:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
 
     combined_text = "\n\n".join(d.text for d in docs)
     first_meta = docs[0].metadata if docs else {}
@@ -65,6 +115,8 @@ def load_document(body: LoadRequest) -> LoadResponse:
     return LoadResponse(
         documents=[DocumentItem(text=d.text, metadata=d.metadata) for d in docs],
         source_uri=body.source_uri,
+        source_type=body.source_type,
+        loader=body.loader,
         media_type=media_type,
         char_count=len(combined_text),
         line_count=combined_text.count("\n") + 1,
@@ -133,15 +185,28 @@ def commit_chunks(
 
     knowledge_chunks = embedder.embed(knowledge_chunks)
 
-    vector_store = build_vector_store(settings)
-    vector_store.upsert(knowledge_chunks, source_uri=body.source_uri)
-
     source_repo = SqlKnowledgeSourceRepository(db)
-    source_id = source_repo.create_pending(body.source_uri, body.crop_name)
-    source_repo.update_status(source_id, KNOWLEDGE_SOURCE_STATUS_INDEXED)
+    vector_store = build_vector_store(settings)
+
+    try:
+        result = persist_knowledge_chunks(
+            source_uri=body.source_uri,
+            crop_name=body.crop_name,
+            chunks=knowledge_chunks,
+            vector_store=vector_store,
+            source_repository=source_repo,
+            replace_existing=body.replace_existing,
+        )
+    except SourceAlreadyIngestedError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=_conflict_detail(exc),
+        )
 
     return CommitResponse(
-        source_id=source_id,
-        chunk_count=len(knowledge_chunks),
-        status=KNOWLEDGE_SOURCE_STATUS_INDEXED,
+        source_id=result.source_id,
+        chunk_count=result.chunk_count,
+        status=result.status,
+        replaced=result.replaced,
+        previous_chunk_count=result.previous_chunk_count,
     )

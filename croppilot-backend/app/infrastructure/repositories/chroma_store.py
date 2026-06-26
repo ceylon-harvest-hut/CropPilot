@@ -107,3 +107,14 @@ class ChromaVectorStore:
 
     def count(self) -> int:
         return self._collection.count()
+
+    def count_by_source_uri(self, source_uri: str) -> int:
+        data = self._collection.get(where={"source_uri": source_uri}, include=[])
+        return len(data.get("ids", []))
+
+    def delete_by_source_uri(self, source_uri: str) -> int:
+        data = self._collection.get(where={"source_uri": source_uri}, include=[])
+        ids = data.get("ids", [])
+        if ids:
+            self._collection.delete(ids=ids)
+        return len(ids)

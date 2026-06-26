@@ -1,16 +1,21 @@
 import pytest
 
 from app.domains.ingestion.loader import KnowledgeDocument
+from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
 from app.infrastructure.chunkers.recursive_chunker import RecursiveChunker
 from app.infrastructure.chunkers.section_chunker import SectionChunker
+from app.infrastructure.config import Settings
 from app.infrastructure.factories import (
     build_chunker_by_name,
     build_embedder_by_name,
     build_loader_by_name,
     build_loader_registry,
+    resolve_loader,
 )
 from app.infrastructure.loaders.docling_loader import DoclingDocumentLoader
 from app.infrastructure.loaders.text_loader import TextDocumentLoader
+from app.infrastructure.loaders.validation import LoaderValidationError
+from app.infrastructure.loaders.web_url_loader import WebUrlLoader
 from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
 
 
@@ -21,21 +26,29 @@ def _doc(text: str) -> KnowledgeDocument:
 def test_build_loader_text() -> None:
     loader = build_loader_by_name("text")
     assert isinstance(loader, TextDocumentLoader)
-    assert loader.supports("file.txt")
+    assert loader.supports("file.txt", SOURCE_TYPE_FILE)
 
 
 def test_build_loader_docling() -> None:
     loader = build_loader_by_name("docling")
     assert isinstance(loader, DoclingDocumentLoader)
-    assert loader.supports("file.pdf")
+    assert loader.supports("file.pdf", SOURCE_TYPE_FILE)
 
 
-def test_build_loader_registry_resolves_by_extension() -> None:
-    from app.infrastructure.config import Settings
+def test_build_loader_web() -> None:
+    loader = build_loader_by_name("web")
+    assert isinstance(loader, WebUrlLoader)
 
+
+def test_build_loader_registry_resolves_with_source_type() -> None:
     registry = build_loader_registry(Settings())
-    assert isinstance(registry.resolve("notes.txt"), TextDocumentLoader)
-    assert isinstance(registry.resolve("report.pdf"), DoclingDocumentLoader)
+    text_loader = registry.resolve("text", "notes.txt", SOURCE_TYPE_FILE)
+    assert isinstance(text_loader, TextDocumentLoader)
+
+
+def test_resolve_loader_rejects_mismatched_source_type() -> None:
+    with pytest.raises(LoaderValidationError):
+        resolve_loader("text", "https://example.com", "web_url")
 
 
 def test_build_loader_unknown_raises() -> None:

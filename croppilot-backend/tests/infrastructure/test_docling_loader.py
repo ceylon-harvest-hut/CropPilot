@@ -5,6 +5,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from app.domains.ingestion.loader import KnowledgeDocument
+from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.loaders.docling_loader import DoclingDocumentLoader
 
 
@@ -14,11 +15,12 @@ def loader() -> DoclingDocumentLoader:
 
 
 def test_supports_docling_formats(loader: DoclingDocumentLoader) -> None:
-    assert loader.supports("report.pdf") is True
-    assert loader.supports("page.html") is True
-    assert loader.supports("page.htm") is True
-    assert loader.supports("notes.docx") is True
-    assert loader.supports("pepper.txt") is False
+    assert loader.supports("report.pdf", SOURCE_TYPE_FILE) is True
+    assert loader.supports("page.html", SOURCE_TYPE_FILE) is True
+    assert loader.supports("page.htm", SOURCE_TYPE_FILE) is True
+    assert loader.supports("notes.docx", SOURCE_TYPE_FILE) is True
+    assert loader.supports("pepper.txt", SOURCE_TYPE_FILE) is True
+    assert loader.supports("report.pdf", SOURCE_TYPE_WEB_URL) is False
 
 
 def test_load_returns_list_of_knowledge_documents(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -29,7 +31,7 @@ def test_load_returns_list_of_knowledge_documents(monkeypatch: pytest.MonkeyPatc
     doc2.page_content = "## Section Two\n\nContent two."
     doc2.metadata = {"page": 1}
     doc3 = MagicMock()
-    doc3.page_content = "   "  # blank — should be skipped
+    doc3.page_content = "   "
     doc3.metadata = {}
 
     mock_loader_instance = MagicMock()
@@ -46,10 +48,10 @@ def test_load_returns_list_of_knowledge_documents(monkeypatch: pytest.MonkeyPatc
     monkeypatch.setitem(sys.modules, "langchain_docling", mock_docling_pkg)
     monkeypatch.setitem(sys.modules, "langchain_docling.loader", mock_export_type)
 
-    result = DoclingDocumentLoader().load("/path/to/report.pdf")
+    result = DoclingDocumentLoader().load("/path/to/report.pdf", SOURCE_TYPE_FILE)
 
     assert isinstance(result, list)
-    assert len(result) == 2  # blank doc3 is skipped
+    assert len(result) == 2
     assert all(isinstance(d, KnowledgeDocument) for d in result)
     assert result[0].text == "# Section One\n\nContent one."
     assert result[0].metadata["source_uri"] == "/path/to/report.pdf"
@@ -73,7 +75,7 @@ def test_load_html_media_type(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setitem(sys.modules, "langchain_docling", mock_docling_pkg)
     monkeypatch.setitem(sys.modules, "langchain_docling.loader", mock_export_type)
 
-    result = DoclingDocumentLoader().load("/path/to/pepper.html")
+    result = DoclingDocumentLoader().load("/path/to/pepper.html", SOURCE_TYPE_FILE)
 
     assert len(result) == 1
     assert result[0].text == "Hello"
