@@ -19,4 +19,9 @@ class RetrieverRepository(Protocol):
 
 
 class LlmService(Protocol):
-    def generate(self, question: str, context: str) -> str: ...
+    def generate(
+        self,
+        question: str,
+        context: str,
+        template: str = "context_only",
+    ) -> str: ...

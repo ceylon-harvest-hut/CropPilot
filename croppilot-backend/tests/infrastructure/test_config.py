@@ -3,7 +3,7 @@ from app.infrastructure.config import Settings, get_settings
 
 def test_settings_defaults():
     settings = Settings()
-    assert settings.embedding_backend == "fast"
+    assert settings.embedding_backend == "e5_multilingual"
     assert settings.default_chunker == "section"
 
 

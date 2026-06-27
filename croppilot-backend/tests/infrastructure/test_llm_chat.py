@@ -26,7 +26,7 @@ def test_gemini_generate_returns_string() -> None:
                 model_name="models/gemini-2.5-flash",
                 api_key="test-key",
             )
-            service._chain = mock_chain_result
+            service._chains = {"context_only": mock_chain_result}
 
             result = service.generate("Where is pepper grown?", "Pepper grows in tropics.")
         finally:
@@ -41,6 +41,42 @@ def test_gemini_generate_returns_string() -> None:
     )
 
 
+def test_gemini_generate_uses_named_template() -> None:
+    fake_module = _make_mock_module("ChatGoogleGenerativeAI")
+
+    context_chain = MagicMock()
+    context_chain.invoke.return_value = "Strict answer."
+    hybrid_chain = MagicMock()
+    hybrid_chain.invoke.return_value = "Hybrid answer."
+
+    fake_module.ChatGoogleGenerativeAI.return_value = MagicMock()
+
+    original = sys.modules.get("langchain_google_genai")
+    sys.modules["langchain_google_genai"] = fake_module
+    try:
+        from app.infrastructure.llm.chat import GeminiLlmService
+
+        service = GeminiLlmService(
+            model_name="models/gemini-2.5-flash",
+            api_key="test-key",
+        )
+        service._chains = {
+            "context_only": context_chain,
+            "hybrid": hybrid_chain,
+        }
+
+        result = service.generate("Q?", "ctx", template="hybrid")
+    finally:
+        if original is None:
+            sys.modules.pop("langchain_google_genai", None)
+        else:
+            sys.modules["langchain_google_genai"] = original
+
+    assert result == "Hybrid answer."
+    hybrid_chain.invoke.assert_called_once()
+    context_chain.invoke.assert_not_called()
+
+
 def test_ollama_generate_returns_string(monkeypatch) -> None:
     fake_module = _make_mock_module("ChatOllama")
     monkeypatch.setitem(sys.modules, "langchain_ollama", fake_module)
@@ -51,7 +87,7 @@ def test_ollama_generate_returns_string(monkeypatch) -> None:
 
     mock_chain = MagicMock()
     mock_chain.invoke.return_value = "Pepper needs high humidity."
-    service._chain = mock_chain
+    service._chains = {"context_only": mock_chain}
 
     result = service.generate("What does pepper need?", "Pepper needs humidity.")
 
@@ -69,7 +105,7 @@ def test_openai_generate_returns_string(monkeypatch) -> None:
 
     mock_chain = MagicMock()
     mock_chain.invoke.return_value = "Pepper has many varieties."
-    service._chain = mock_chain
+    service._chains = {"context_only": mock_chain}
 
     result = service.generate("What varieties does pepper have?", "Pepper has many.")
 

@@ -84,7 +84,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--chunk-size",
         type=int,
         default=500,
-        help="Recursive chunker size (default: 500)",
+        help="Recursive / dea_hybrid max chunk size (default: 500; dea_hybrid uses 800 when left at default)",
     )
     parser.add_argument(
         "--chunk-overlap",

@@ -17,8 +17,13 @@ from app.infrastructure.factories import (
 )
 from app.infrastructure.loaders.docling_loader import DoclingLoader
 from app.infrastructure.loaders.html_plain_loader import HtmlPlainLoader
+from app.infrastructure.loaders.dea_gov_lk_si_loader import DeaGovLkSiLoader
+from app.infrastructure.loaders.doa_hordi_loader import DoaHordiLoader
 from app.infrastructure.loaders.text_loader import TextLoader
-from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
+from app.infrastructure.chunkers.dea_gov_lk_si_chunker import DeaGovLkSiChunker
+from app.infrastructure.chunkers.doa_hordi_chunker import DoaHordiChunker
+from app.infrastructure.embedders.fastembed_bge import FastEmbedBGEEmbedder
+from app.infrastructure.embedders.fastembed_e5 import FastEmbedE5Embedder
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"
 
@@ -73,6 +78,26 @@ def test_build_loader_html_plain() -> None:
     )
 
 
+def test_build_loader_dea_gov_lk_si() -> None:
+    loader = build_loader_by_name("dea_gov_lk_si")
+    assert isinstance(loader, DeaGovLkSiLoader)
+
+
+def test_build_chunker_dea_gov_lk_si() -> None:
+    chunker = build_chunker_by_name("dea_gov_lk_si")
+    assert isinstance(chunker, DeaGovLkSiChunker)
+
+
+def test_build_loader_doa_hordi() -> None:
+    loader = build_loader_by_name("doa_hordi")
+    assert isinstance(loader, DoaHordiLoader)
+
+
+def test_build_chunker_doa_hordi() -> None:
+    chunker = build_chunker_by_name("doa_hordi")
+    assert isinstance(chunker, DoaHordiChunker)
+
+
 def test_build_loader_unknown_raises() -> None:
     with pytest.raises(ValueError, match="Unknown loader"):
         build_loader_by_name("pdf")
@@ -101,14 +126,52 @@ def test_build_chunker_recursive() -> None:
     assert len(chunks) >= 1
 
 
+def test_build_chunker_dea_hybrid() -> None:
+    from app.infrastructure.chunkers.dea_hybrid_chunker import DeaHybridChunker
+
+    chunker = build_chunker_by_name("dea_hybrid", chunk_size=800, chunk_overlap=50)
+    assert isinstance(chunker, DeaHybridChunker)
+    long_text = "Detail sentence. " * 80
+    doc = _doc(long_text)
+    doc.metadata["section_name"] = "History"
+    chunks = chunker.chunk([doc], crop_tag="Pepper")
+    assert len(chunks) > 1
+
+
 def test_build_chunker_unknown_raises() -> None:
     with pytest.raises(ValueError, match="Unknown chunker"):
         build_chunker_by_name("sliding_window")
 
 
-def test_build_embedder_fast() -> None:
-    embedder = build_embedder_by_name("fast")
-    assert isinstance(embedder, FastEmbedEmbeddingService)
+def test_build_embedder_fast_alias() -> None:
+    """'fast' is kept as a backward-compat alias for bge_small."""
+    from pathlib import Path
+    from unittest.mock import patch
+
+    with patch("app.infrastructure.embedders.fastembed_bge.validate_model_cache"), \
+         patch("app.infrastructure.embedders.fastembed_bge.TextEmbedding"):
+        embedder = build_embedder_by_name("fast", cache_dir=Path("/fake/cache"))
+    assert isinstance(embedder, FastEmbedBGEEmbedder)
+
+
+def test_build_embedder_bge_small() -> None:
+    from pathlib import Path
+    from unittest.mock import patch
+
+    with patch("app.infrastructure.embedders.fastembed_bge.validate_model_cache"), \
+         patch("app.infrastructure.embedders.fastembed_bge.TextEmbedding"):
+        embedder = build_embedder_by_name("bge_small", cache_dir=Path("/fake/cache"))
+    assert isinstance(embedder, FastEmbedBGEEmbedder)
+
+
+def test_build_embedder_e5_multilingual() -> None:
+    from pathlib import Path
+    from unittest.mock import patch
+
+    with patch("app.infrastructure.embedders.fastembed_e5.validate_model_cache"), \
+         patch("app.infrastructure.embedders.fastembed_e5.TextEmbedding"):
+        embedder = build_embedder_by_name("e5_multilingual", cache_dir=Path("/fake/cache"))
+    assert isinstance(embedder, FastEmbedE5Embedder)
 
 
 def test_build_embedder_unknown_raises() -> None:

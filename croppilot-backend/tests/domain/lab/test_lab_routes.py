@@ -37,7 +37,7 @@ def client(tmp_path: Path) -> TestClient:
 
     settings = Settings(
         default_chunker="section",
-        embedding_backend="fast",
+        embedding_backend="bge_small",
         chroma_persist_dir=str(tmp_path / "chroma"),
     )
 
@@ -70,14 +70,20 @@ def test_options_returns_all_components(client: TestClient) -> None:
     assert "docling" in loader_names
     assert "html_plain" in loader_names
     assert "dea_gov_lk" in loader_names
+    assert "dea_gov_lk_si" in loader_names
+    assert "doa_hordi" in loader_names
     assert "web" not in loader_names
     assert "web_md" not in loader_names
     chunker_names = [chunker["name"] for chunker in body["chunkers"]]
     assert "section" in chunker_names
     assert "recursive" in chunker_names
     assert "dea_gov_lk" in chunker_names
+    assert "dea_gov_lk_si" in chunker_names
+    assert "doa_hordi" in chunker_names
+    assert "dea_hybrid" in chunker_names
     assert "manual" in chunker_names
-    assert "fast" in body["embedders"]
+    assert "bge_small" in body["embedders"]
+    assert "e5_multilingual" in body["embedders"]
 
 
 # ---------- load ----------
@@ -197,6 +203,7 @@ def test_chunk_is_stateless_no_db_writes(client: TestClient) -> None:
 
 # ---------- commit ----------
 
+@pytest.mark.slow
 def test_commit_saves_to_db(client: TestClient, tmp_path: Path) -> None:
     chunks_response = client.post(
         "/api/v1/lab/chunk",
@@ -233,6 +240,7 @@ def test_commit_empty_chunks_returns_422(client: TestClient) -> None:
     assert response.status_code == 422
 
 
+@pytest.mark.slow
 def test_full_lab_flow(client: TestClient) -> None:
     """End-to-end: load → chunk → commit."""
     load_resp = client.post(
@@ -278,6 +286,7 @@ def _commit_chunks(client: TestClient, chunks: list[dict], *, replace_existing: 
     return response
 
 
+@pytest.mark.slow
 def test_source_exists_before_and_after_commit(client: TestClient) -> None:
     missing = client.get("/api/v1/lab/sources/exists", params={"source_uri": PEPPER_FILE})
     assert missing.status_code == 200
@@ -299,6 +308,7 @@ def test_source_exists_before_and_after_commit(client: TestClient) -> None:
     assert "Pepper" in body["crop_names"]
 
 
+@pytest.mark.slow
 def test_commit_duplicate_without_replace_returns_409(client: TestClient) -> None:
     chunks = client.post(
         "/api/v1/lab/chunk",
@@ -314,6 +324,7 @@ def test_commit_duplicate_without_replace_returns_409(client: TestClient) -> Non
     assert detail["chunk_count"] == len(chunks)
 
 
+@pytest.mark.slow
 def test_commit_replace_existing_succeeds(client: TestClient) -> None:
     chunks = client.post(
         "/api/v1/lab/chunk",

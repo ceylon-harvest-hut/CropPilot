@@ -54,3 +54,4 @@ def test_search_result_fields(store_with_chunks: ChromaVectorStore) -> None:
     assert chunk.text_content
     assert chunk.section_name
     assert chunk.crop_tag
+    assert chunk.source_uri == "tests/fixtures/pepper.txt"

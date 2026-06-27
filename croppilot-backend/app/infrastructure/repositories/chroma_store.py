@@ -60,6 +60,8 @@ class ChromaVectorStore:
                     text_content=document,
                     section_name=metadata.get("section_name", ""),
                     crop_tag=metadata.get("crop_tag", ""),
+                    source_uri=metadata.get("source_uri", ""),
+                    page_number=int(metadata.get("page_number", 0)),
                 )
             )
 

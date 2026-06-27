@@ -29,13 +29,12 @@ from app.infrastructure.factories import (
     build_vector_store,
 )
 from app.infrastructure.chunkers.catalog import list_chunker_options
+from app.infrastructure.embedders.catalog import list_embedder_names
 from app.infrastructure.loaders.catalog import list_loader_options, list_source_types
 from app.infrastructure.loaders.validation import LoaderValidationError, validate_source_uri_for_type
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
 router = APIRouter()
-
-AVAILABLE_EMBEDDERS = ["fast"]
 
 
 def _conflict_detail(exc: SourceAlreadyIngestedError) -> dict:
@@ -60,7 +59,7 @@ def get_options() -> LabOptions:
             ChunkerOption(name=opt.name, label=opt.label)
             for opt in list_chunker_options()
         ],
-        embedders=AVAILABLE_EMBEDDERS,
+        embedders=list_embedder_names(),
     )
 
 

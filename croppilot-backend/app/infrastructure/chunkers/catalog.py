@@ -13,6 +13,9 @@ _CHUNKER_OPTIONS: tuple[ChunkerOption, ...] = (
     ChunkerOption(name="section", label="Section headers"),
     ChunkerOption(name="recursive", label="Recursive (size / overlap)"),
     ChunkerOption(name="dea_gov_lk", label="DEA gov.lk crop page"),
+    ChunkerOption(name="dea_gov_lk_si", label="DEA gov.lk crop page (Sinhala)"),
+    ChunkerOption(name="doa_hordi", label="DOA HORDI crop page"),
+    ChunkerOption(name="dea_hybrid", label="DEA hybrid (section + recursive)"),
     ChunkerOption(name="manual", label="Manual selection"),
 )
 

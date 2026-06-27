@@ -10,6 +10,8 @@ from app.infrastructure.config import Settings, get_settings
 from app.infrastructure.repositories.db import Base, get_db
 from app.main import app
 
+pytestmark = pytest.mark.slow
+
 FIXTURES_DIR = Path(__file__).parent.parent.parent / "fixtures"
 
 
@@ -25,7 +27,7 @@ def client(tmp_path: Path) -> TestClient:
 
     settings = Settings(
         default_chunker="section",
-        embedding_backend="fast",
+        embedding_backend="bge_small",
         chroma_persist_dir=str(tmp_path / "chroma"),
     )
 

@@ -4,18 +4,13 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from app.domains.ingestion.data import KnowledgeChunk
+from app.domains.vector.repositories import VectorWriteRepository as VectorStoreRepository
+
+__all__ = ["ChunkEmbeddingService", "VectorStoreRepository", "ExistingSourceInfo", "KnowledgeSourceRepository"]
 
 
 class ChunkEmbeddingService(Protocol):
     def embed(self, chunks: list[KnowledgeChunk]) -> list[KnowledgeChunk]: ...
-
-
-class VectorStoreRepository(Protocol):
-    def upsert(self, chunks: list[KnowledgeChunk], source_uri: str) -> None: ...
-
-    def count_by_source_uri(self, source_uri: str) -> int: ...
-
-    def delete_by_source_uri(self, source_uri: str) -> int: ...
 
 
 @dataclass

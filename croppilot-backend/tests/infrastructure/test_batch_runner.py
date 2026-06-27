@@ -155,6 +155,7 @@ def test_ingest_manifest_entry_passes_extract_options(source_repository) -> None
     )
 
 
+@pytest.mark.slow
 @pytest.mark.skipif(not PEPPER_HTML.exists(), reason="pepper.html fixture not present")
 def test_ingest_manifest_entry_dea_html_integration(tmp_path: Path, source_repository) -> None:
     from app.infrastructure.config import Settings

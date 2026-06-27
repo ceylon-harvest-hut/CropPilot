@@ -11,6 +11,8 @@ class RetrievedChunk:
     text_content: str
     section_name: str
     crop_tag: str
+    source_uri: str = ""
+    page_number: int = 0
 
 
 @dataclass
@@ -18,4 +20,4 @@ class AnswerResult:
     """Domain result of a completed RAG inference run."""
 
     text: str
-    sources: list[RetrievedChunk]
+    references: list

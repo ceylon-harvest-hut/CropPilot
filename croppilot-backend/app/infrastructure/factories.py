@@ -1,24 +1,37 @@
+from pathlib import Path
+
 from sqlalchemy.orm import Session
 
-from app.domains.inference.repositories import LlmService
+from app.domains.debug.repositories import ChunkCatalogRepository
+from app.domains.inference.repositories import LlmService, RetrieverRepository
 from app.domains.inference.service import InferenceService
+from app.domains.vector.repositories import KnowledgeVectorRepository
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.loader import DocumentLoader
 from app.domains.ingestion.pipeline import DocumentPipeline
 from app.domains.ingestion.service import IngestionService
 from app.infrastructure.chunkers.dea_gov_lk_chunker import DeaGovLkChunker
+from app.infrastructure.chunkers.dea_gov_lk_si_chunker import DeaGovLkSiChunker
+from app.infrastructure.chunkers.doa_hordi_chunker import DoaHordiChunker
+from app.infrastructure.chunkers.dea_hybrid_chunker import (
+    DEFAULT_HYBRID_MAX_CHUNK_SIZE,
+    DeaHybridChunker,
+)
 from app.infrastructure.chunkers.recursive_chunker import RecursiveChunker
 from app.infrastructure.chunkers.section_chunker import SectionChunker
 from app.infrastructure.config import Settings
 from app.infrastructure.extractors.registry import ExtractorRegistry, build_all_extractors
-from app.infrastructure.llm.base_embedder import BaseEmbedder
-from app.infrastructure.llm.embeddings import FastEmbedEmbeddingService
+from app.infrastructure.embedders.base import BaseEmbedder
+from app.infrastructure.embedders.catalog import list_embedder_names
+from app.infrastructure.embedders.fastembed_bge import FastEmbedBGEEmbedder
+from app.infrastructure.embedders.fastembed_e5 import FastEmbedE5Embedder
+from app.infrastructure.embedders.cache import resolve_cache_dir
 from app.infrastructure.loaders.docling_loader import DoclingLoader
 from app.infrastructure.loaders.registry import DocumentLoaderRegistry, build_all_loaders
 from app.infrastructure.loaders.text_loader import TextLoader
-from app.infrastructure.repositories.chroma_retriever import ChromaRetriever
 from app.infrastructure.repositories.chroma_store import ChromaVectorStore
 from app.infrastructure.repositories.debug_catalog_repo import SqlDebugCatalogRepository
+from app.infrastructure.repositories.embedding_retriever import EmbeddingRetriever
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
 
@@ -49,17 +62,31 @@ def build_document_pipeline(settings: Settings) -> DocumentPipeline:
 
 
 def build_embedder(settings: Settings) -> BaseEmbedder:
-    if settings.embedding_backend == "fast":
-        return FastEmbedEmbeddingService()
-    raise ValueError(f"Unknown embedding backend: {settings.embedding_backend}")
+    cache_dir = resolve_cache_dir(settings.fastembed_cache_dir)
+    offline = settings.hf_hub_offline
+    allow_download = settings.allow_model_download
+    if settings.embedding_backend == "bge_small":
+        return FastEmbedBGEEmbedder(
+            cache_dir=cache_dir, offline=offline, allow_download=allow_download
+        )
+    if settings.embedding_backend == "e5_multilingual":
+        return FastEmbedE5Embedder(
+            cache_dir=cache_dir, offline=offline, allow_download=allow_download
+        )
+    raise ValueError(
+        f"Unknown embedding backend: {settings.embedding_backend!r}. "
+        f"Available: {', '.join(list_embedder_names())}"
+    )
 
 
-def build_vector_store(settings: Settings) -> ChromaVectorStore:
-    return ChromaVectorStore(persist_directory=settings.chroma_persist_dir)
+def build_vector_store(settings: Settings) -> KnowledgeVectorRepository:
+    if settings.vector_backend == "chroma":
+        return ChromaVectorStore(persist_directory=settings.chroma_persist_dir)
+    raise ValueError(f"Unknown vector backend: {settings.vector_backend!r}")
 
 
-def build_retriever(settings: Settings) -> ChromaRetriever:
-    return ChromaRetriever(
+def build_retriever(settings: Settings) -> RetrieverRepository:
+    return EmbeddingRetriever(
         embedder=build_embedder(settings),
         store=build_vector_store(settings),
     )
@@ -118,16 +145,29 @@ def build_chunker_by_name(name: str, chunk_size: int = 500, chunk_overlap: int =
         return RecursiveChunker(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     if name == "dea_gov_lk":
         return DeaGovLkChunker()
-    raise ValueError(f"Unknown chunker: {name!r}. Available: section, recursive, dea_gov_lk")
+    if name == "dea_gov_lk_si":
+        return DeaGovLkSiChunker()
+    if name == "doa_hordi":
+        return DoaHordiChunker()
+    if name == "dea_hybrid":
+        max_size = chunk_size if chunk_size != 500 else DEFAULT_HYBRID_MAX_CHUNK_SIZE
+        return DeaHybridChunker(max_chunk_size=max_size, chunk_overlap=chunk_overlap)
+    raise ValueError(
+        f"Unknown chunker: {name!r}. Available: section, recursive, dea_gov_lk, dea_gov_lk_si, doa_hordi, dea_hybrid"
+    )
 
 
-def build_embedder_by_name(name: str) -> BaseEmbedder:
-    if name == "fast":
-        return FastEmbedEmbeddingService()
-    raise ValueError(f"Unknown embedder: {name!r}. Available: fast")
+def build_embedder_by_name(name: str, cache_dir: Path | None = None) -> BaseEmbedder:
+    if name in ("fast", "bge_small"):  # "fast" kept as backward-compat alias for bge_small
+        return FastEmbedBGEEmbedder(cache_dir=cache_dir)
+    if name == "e5_multilingual":
+        return FastEmbedE5Embedder(cache_dir=cache_dir)
+    raise ValueError(
+        f"Unknown embedder: {name!r}. Available: {', '.join(list_embedder_names())}"
+    )
 
 
-def build_chunk_catalog(settings: Settings) -> ChromaVectorStore:
+def build_chunk_catalog(settings: Settings) -> ChunkCatalogRepository:
     return build_vector_store(settings)
 
 

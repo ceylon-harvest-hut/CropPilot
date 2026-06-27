@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.domains.debug.routes import router as debug_router
 from app.domains.inference.routes import router as inference_router
+from app.domains.inference.dependencies import get_inference_service
 from app.domains.ingestion.routes import router as ingestion_router
 from app.domains.lab.routes import router as lab_router
 from app.infrastructure.config import get_settings
@@ -13,7 +14,12 @@ from app.infrastructure.repositories.db import init_db
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
+    settings = get_settings()
     init_db()
+    # Validate model cache and load the ONNX model once at startup.
+    # If the cache is missing or corrupt this raises ModelCacheError with
+    # an actionable message before the app accepts any traffic.
+    get_inference_service(settings)
     yield
 
 

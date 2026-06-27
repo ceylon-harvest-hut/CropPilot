@@ -3,8 +3,9 @@ from unittest.mock import MagicMock
 import pytest
 from fastapi.testclient import TestClient
 
-from app.domains.inference.data import AnswerResult, RetrievedChunk
+from app.domains.inference.data import AnswerResult
 from app.domains.inference.dependencies import get_inference_service
+from app.domains.inference.references import ReferenceDocument
 from app.domains.inference.service import InferenceService
 from app.main import app
 
@@ -13,13 +14,14 @@ from app.main import app
 def client() -> TestClient:
     mock_service = MagicMock(spec=InferenceService)
     mock_service.ask.return_value = AnswerResult(
-        text="Pepper is a tropical crop.",
-        sources=[
-            RetrievedChunk(
-                chunk_id="chunk-1",
-                text_content="Pepper thrives in tropical climates with high humidity.",
-                section_name="Introduction",
-                crop_tag="Pepper",
+        text="Pepper is a tropical crop widely cultivated in Sri Lanka.",
+        references=[
+            ReferenceDocument(
+                source_uri="https://dea.gov.lk/pepper/",
+                crop_name="Pepper",
+                title="Pepper",
+                excerpt="Pepper varieties include…",
+                source_type="web_url",
             )
         ],
     )
@@ -30,6 +32,18 @@ def client() -> TestClient:
     app.dependency_overrides.clear()
 
 
+def test_ask_templates_endpoint_returns_options() -> None:
+    with TestClient(app) as test_client:
+        response = test_client.get("/api/v1/ask/templates")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["default_template"] == "context_only"
+    names = [item["name"] for item in body["templates"]]
+    assert "context_only" in names
+    assert "hybrid" in names
+
+
 def test_ask_endpoint_returns_200(client: TestClient) -> None:
     response = client.post(
         "/api/v1/ask",
@@ -38,11 +52,31 @@ def test_ask_endpoint_returns_200(client: TestClient) -> None:
 
     assert response.status_code == 200
     body = response.json()
-    assert body["answer"] == "Pepper is a tropical crop."
-    assert len(body["sources"]) == 1
-    assert body["sources"][0]["chunk_id"] == "chunk-1"
-    assert body["sources"][0]["section_name"] == "Introduction"
-    assert "Pepper thrives" in body["sources"][0]["text_preview"]
+    assert "Pepper is a tropical crop" in body["answer"]
+    assert body["template"] == "context_only"
+    assert len(body["references"]) == 1
+    ref = body["references"][0]
+    assert ref["source_uri"] == "https://dea.gov.lk/pepper/"
+    assert ref["title"] == "Pepper"
+    assert ref["source_type"] == "web_url"
+    assert "sections" not in ref
+    assert "Pepper varieties" in ref["excerpt"]
+
+
+def test_ask_endpoint_accepts_hybrid_template(client: TestClient) -> None:
+    mock_service = app.dependency_overrides[get_inference_service]()
+    response = client.post(
+        "/api/v1/ask",
+        json={"question": "What is pepper?", "template": "hybrid"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["template"] == "hybrid"
+    mock_service.ask.assert_called_once_with(
+        "What is pepper?",
+        crop_tag=None,
+        template="hybrid",
+    )
 
 
 def test_ask_endpoint_without_crop_name(client: TestClient) -> None:
@@ -53,12 +87,22 @@ def test_ask_endpoint_without_crop_name(client: TestClient) -> None:
 
     assert response.status_code == 200
     assert "answer" in response.json()
+    assert "references" in response.json()
 
 
 def test_ask_endpoint_rejects_missing_question(client: TestClient) -> None:
     response = client.post(
         "/api/v1/ask",
         json={"crop_name": "Pepper"},
+    )
+
+    assert response.status_code == 422
+
+
+def test_ask_endpoint_rejects_unknown_template(client: TestClient) -> None:
+    response = client.post(
+        "/api/v1/ask",
+        json={"question": "What is pepper?", "template": "unknown"},
     )
 
     assert response.status_code == 422

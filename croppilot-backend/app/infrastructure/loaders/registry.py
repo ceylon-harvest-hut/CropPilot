@@ -3,6 +3,8 @@ from __future__ import annotations
 from app.domains.ingestion.content import RawContent
 from app.domains.ingestion.loader import DocumentLoader
 from app.infrastructure.loaders.dea_gov_lk_loader import DeaGovLkLoader
+from app.infrastructure.loaders.dea_gov_lk_si_loader import DeaGovLkSiLoader
+from app.infrastructure.loaders.doa_hordi_loader import DoaHordiLoader
 from app.infrastructure.loaders.docling_loader import DoclingLoader
 from app.infrastructure.loaders.html_plain_loader import HtmlPlainLoader
 from app.infrastructure.loaders.text_loader import TextLoader
@@ -15,6 +17,8 @@ def build_all_loaders() -> list[DocumentLoader]:
         DoclingLoader(),
         HtmlPlainLoader(),
         DeaGovLkLoader(),
+        DeaGovLkSiLoader(),
+        DoaHordiLoader(),
     ]
 
 

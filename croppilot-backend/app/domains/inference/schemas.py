@@ -1,17 +1,38 @@
-from pydantic import BaseModel
+from typing import Literal
+
+from pydantic import BaseModel, Field
+
+AskTemplateName = Literal["context_only", "hybrid"]
 
 
 class AskRequest(BaseModel):
     question: str
     crop_name: str | None = None
+    template: AskTemplateName | None = None
 
 
-class SourceChunkResponse(BaseModel):
-    chunk_id: str
-    section_name: str
-    text_preview: str
+class PromptTemplateOptionResponse(BaseModel):
+    name: AskTemplateName
+    label: str
+    description: str
+
+
+class AskTemplatesResponse(BaseModel):
+    templates: list[PromptTemplateOptionResponse]
+    default_template: AskTemplateName
+
+
+class ReferenceDocumentResponse(BaseModel):
+    source_uri: str
+    crop_name: str
+    title: str
+    excerpt: str
+    source_type: Literal["file", "web_url"]
 
 
 class AskResponse(BaseModel):
     answer: str
-    sources: list[SourceChunkResponse]
+    references: list[ReferenceDocumentResponse]
+    template: AskTemplateName = Field(
+        description="Prompt template used to generate the answer.",
+    )

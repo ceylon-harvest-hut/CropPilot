@@ -16,6 +16,8 @@ from app.infrastructure.factories import (
 from app.infrastructure.repositories.db import Base, KNOWLEDGE_SOURCE_STATUS_INDEXED
 from app.infrastructure.repositories.knowledge_source_repo import SqlKnowledgeSourceRepository
 
+pytestmark = pytest.mark.slow
+
 FIXTURES_DIR = Path(__file__).parent.parent.parent / "fixtures"
 
 
@@ -32,7 +34,7 @@ def db_session() -> Session:
 def ingestion_service(tmp_path: Path, db_session: Session) -> IngestionService:
     settings = Settings(
         default_chunker="section",
-        embedding_backend="fast",
+        embedding_backend="bge_small",
         chroma_persist_dir=str(tmp_path / "chroma"),
     )
     return IngestionService(

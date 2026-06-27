@@ -33,6 +33,16 @@ _LOADER_OPTIONS: tuple[LoaderOption, ...] = (
         label="DEA gov.lk crop page",
         source_types=("file", "web_url"),
     ),
+    LoaderOption(
+        name="dea_gov_lk_si",
+        label="DEA gov.lk crop page (Sinhala)",
+        source_types=("file", "web_url"),
+    ),
+    LoaderOption(
+        name="doa_hordi",
+        label="DOA HORDI crop page",
+        source_types=("file", "web_url"),
+    ),
 )
 
 

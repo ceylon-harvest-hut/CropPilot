@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+import pytest
+
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.service import IngestionService
 from app.infrastructure.config import Settings
@@ -22,6 +24,7 @@ def test_build_chunker_recursive() -> None:
     assert isinstance(chunker, BaseChunker)
 
 
+@pytest.mark.slow
 def test_build_ingestion_service() -> None:
     engine = create_engine("sqlite:///:memory:")
     Base.metadata.create_all(engine)
