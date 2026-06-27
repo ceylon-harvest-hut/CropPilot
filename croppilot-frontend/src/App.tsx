@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiError } from "./api/client";
 import { listChunks, listCrops, listSources } from "./api/debug";
-import { askQuestion } from "./api/inference";
+import { askQuestion, listAskTemplates } from "./api/inference";
 import { ingestDocument } from "./api/ingestion";
 import type {
   AskResponse,
+  AskTemplateName,
   ChunkListResponse,
   CropListResponse,
   IngestResponse,
+  PromptTemplateOption,
   SourceListResponse,
   StoredChunk,
 } from "./api/types";
@@ -78,7 +80,34 @@ function App() {
   // Ask state
   const [question, setQuestion] = useState("What are pepper varieties?");
   const [askCrop, setAskCrop] = useState("Pepper");
+  const [askTemplate, setAskTemplate] = useState<AskTemplateName>("context_only");
+  const [askTemplates, setAskTemplates] = useState<PromptTemplateOption[]>([]);
   const [askResult, setAskResult] = useState<AskResponse | null>(null);
+
+  useEffect(() => {
+    if (activeTab !== "ask") {
+      return;
+    }
+    listAskTemplates()
+      .then((data) => {
+        setAskTemplates(data.templates);
+        setAskTemplate(data.default_template);
+      })
+      .catch(() => {
+        setAskTemplates([
+          {
+            name: "context_only",
+            label: "Source documents only",
+            description: "Answer strictly from retrieved source documents.",
+          },
+          {
+            name: "hybrid",
+            label: "Documents + general knowledge",
+            description: "Combine source documents with general agronomic knowledge.",
+          },
+        ]);
+      });
+  }, [activeTab]);
 
   // Debug state
   const [debugCropFilter, setDebugCropFilter] = useState("");
@@ -108,7 +137,11 @@ function App() {
     setError(null);
     setLoading("ask");
     try {
-      const result = await askQuestion({ question, crop_name: askCrop || null });
+      const result = await askQuestion({
+        question,
+        crop_name: askCrop || null,
+        template: askTemplate,
+      });
       setAskResult(result);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Ask failed");
@@ -250,6 +283,24 @@ function App() {
         <section className="panel app-content-panel">
           <h2>Ask a Question</h2>
           <label>
+            Answer mode
+            <select
+              value={askTemplate}
+              onChange={(e) => setAskTemplate(e.target.value as AskTemplateName)}
+            >
+              {askTemplates.map((option) => (
+                <option key={option.name} value={option.name}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            {askTemplates.find((option) => option.name === askTemplate)?.description && (
+              <span className="field-hint">
+                {askTemplates.find((option) => option.name === askTemplate)?.description}
+              </span>
+            )}
+          </label>
+          <label>
             Crop name (optional filter)
             <input
               type="text"
@@ -270,17 +321,35 @@ function App() {
             {loading === "ask" ? "Asking…" : "Ask"}
           </button>
           {askResult && (
-            <div className="result">
-              <p className="answer">{askResult.answer}</p>
-              {askResult.sources.length > 0 && (
-                <ul className="sources">
-                  {askResult.sources.map((source) => (
-                    <li key={source.chunk_id}>
-                      <strong>{source.section_name}</strong>
-                      <p>{source.text_preview}</p>
-                    </li>
-                  ))}
-                </ul>
+            <div className="result ask-result">
+              <div className="ask-answer-block">
+                <h3 className="ask-result-heading">Answer</h3>
+                <p className="answer">{askResult.answer}</p>
+              </div>
+              {askResult.references.length > 0 && (
+                <div className="ask-references-block">
+                  <h3 className="ask-result-heading">References</h3>
+                  <ul className="ask-references">
+                    {askResult.references.map((ref) => (
+                      <li key={ref.source_uri} className="ask-reference-item">
+                        <strong className="ask-reference-title">{ref.title}</strong>
+                        {ref.source_type === "web_url" ? (
+                          <a
+                            className="ask-reference-uri"
+                            href={ref.source_uri}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {ref.source_uri}
+                          </a>
+                        ) : (
+                          <p className="ask-reference-uri monospace">{ref.source_uri}</p>
+                        )}
+                        <p className="ask-reference-excerpt">{ref.excerpt}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
           )}

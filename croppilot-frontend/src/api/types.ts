@@ -11,20 +11,37 @@ export interface IngestResponse {
 }
 
 /** Mirrors app/domains/inference/schemas.py */
+export type AskTemplateName = "context_only" | "hybrid";
+
 export interface AskRequest {
   question: string;
   crop_name?: string | null;
+  template?: AskTemplateName | null;
 }
 
-export interface SourceChunkResponse {
-  chunk_id: string;
-  section_name: string;
-  text_preview: string;
+export interface PromptTemplateOption {
+  name: AskTemplateName;
+  label: string;
+  description: string;
+}
+
+export interface AskTemplatesResponse {
+  templates: PromptTemplateOption[];
+  default_template: AskTemplateName;
+}
+
+export interface ReferenceDocumentResponse {
+  source_uri: string;
+  crop_name: string;
+  title: string;
+  excerpt: string;
+  source_type: SourceType;
 }
 
 export interface AskResponse {
   answer: string;
-  sources: SourceChunkResponse[];
+  references: ReferenceDocumentResponse[];
+  template: AskTemplateName;
 }
 
 export interface ApiErrorDetail {
