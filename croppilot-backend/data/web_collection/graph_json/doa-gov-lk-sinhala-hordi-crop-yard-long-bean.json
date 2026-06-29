@@ -1,29 +1,29 @@
 {
-  "crop_name": "මෑ",
+  "crop_name": "Yard Long Bean",
   "scientific_name": null,
   "growing_areas": [
     "Low Country Wet Zone",
-    "Low Country Intermediate Zone",
-    "Low Country Dry Zone"
+    "Intermediate Zone",
+    "Dry Zone"
   ],
   "growing_seasons": [
-    "After monsoon rains (Wet Zone)",
-    "Yala (rain-fed, Dry Zone)",
-    "Yala (irrigated, Dry Zone)",
-    "Maha (Dry Zone)"
+    "After Monsoon Rains (Wet Zone)",
+    "Yala (Rainfed - March/April)",
+    "Yala (Irrigated - April/May)",
+    "Maha (End Of November)"
   ],
   "varieties": [
     "Gannoruwa Hawari",
-    "Gannoruwa A9 Mae",
-    "Hawari Mae",
+    "Gannoruwa A9 Bean",
+    "Hawari Bean",
     "Sena",
-    "Polon Mae",
-    "Bushita (local)",
-    "BS1",
+    "Polon Bean",
+    "Bushita (Local)",
+    "Bs1",
     "Bush Polon"
   ],
   "soil_types": [
-    "Sandy loam"
+    "Sandy Loam"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -53,7 +53,7 @@
       "quantity_kg_per_ha": 130.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -67,7 +67,7 @@
       "quantity_kg_per_ha": 55.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 4.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -77,17 +77,21 @@
   "pests": [],
   "diseases": [
     {
-      "name": "Root Rot / Stem Rot",
-      "causal_agent": "Fusarium spp., Pythium spp., Sclerotium spp",
-      "impact": "The base of the plant turns brown and rots externally. If infected by Sclerotium fungus, white fungal networks are seen at the base of the plant. Plants in the field wilt in patches.",
+      "name": "Root Rot/Foot Rot",
+      "causal_agent": "Fusarium Spp., Pythium Spp., Sclerotium Spp.",
+      "impact": "The base of the plant turns brown and rots externally. If infected by Sclerotium fungus, white fungal networks are seen at the base of the plant. Plants wilt here and there in the field.",
       "solution": "Improve drainage, apply fungicide to the base, practice crop rotation, remove and destroy infected plant parts from the field."
     },
     {
       "name": "Ashy Stem Blight",
-      "causal_agent": "macrophomina phaseolina",
-      "impact": "Initial symptoms are grayish-brown sunken dry spots at the base of the stem. This can extend to the apex of the plant. Plants wilt and then die. Leaves of diseased plants first wilt and then die.",
-      "solution": "Apply Tebruconazole 250g/lEW fungicide around 4 weeks after planting."
+      "causal_agent": "Macrophomina Phaseolina",
+      "impact": "Initial symptoms are grayish-brown sunken dry spots at the base of the stem. This can spread to the apex of the plant. Plants wilt and then die. Leaves of diseased plants first wilt and then die.",
+      "solution": "Apply Tebruconazole 250g/lEW fungicide about 4 weeks after planting."
     }
   ],
-  "expected_harvest_kg_per_ha": 17700.0
+  "expected_harvest_kg_per_ha": 17700.0,
+  "days_to_maturity": null,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 18.25,
+  "seed_metric_type": "weight"
 }

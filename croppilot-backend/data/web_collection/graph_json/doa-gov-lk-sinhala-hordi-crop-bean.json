@@ -1,17 +1,17 @@
 {
-  "crop_name": "බෝංචි",
-  "scientific_name": "Phaseolus spp.",
+  "crop_name": "Beans",
+  "scientific_name": "Phaseolus spp",
   "growing_areas": [
-    "Badulla",
-    "Nuwara Eliya",
-    "Matale",
-    "Kandy",
+    "Badulla District",
+    "Nuwara Eliya District",
+    "Matale District",
+    "Kandy District",
     "Upcountry Intermediate Zone",
     "Upcountry Wet Zone"
   ],
   "growing_seasons": [
-    "Maha (November-December)",
-    "Yala (March-April)"
+    "Maha (November To December In Badulla District)",
+    "Yala (March To April In Badulla District)"
   ],
   "varieties": [
     "Balangoda Nil",
@@ -20,19 +20,19 @@
     "Kekulu Beans",
     "Gannoruwa Kola",
     "Keppetipola Nil",
-    "HORDI Kola",
-    "Kentucky Wonder Green (KWG)",
+    "Hordi Kola",
+    "Kentucky Wonder Green (Kwg)",
     "Lanka Butter",
-    "HORDI Beans -03 (HORDI Pokuru)",
+    "Hordi Beans -03 (Hordi Pokuru)",
     "Cherokee Wax",
     "Sanjaya",
     "Wade",
     "Top Crop"
   ],
   "soil_types": [
-    "Well-drained loamy soil",
-    "Sandy loam soil",
-    "Red Yellow Podzolic soil"
+    "Loamy Soil",
+    "Sandy Loamy Soil",
+    "Red Yellow Podzolic"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -45,160 +45,129 @@
   "pit_length_cm": null,
   "pit_width_cm": null,
   "row_distance_cm": 50.0,
-  "plant_distance_cm": 40.0,
+  "plant_distance_cm": 27.5,
   "fertilizer_schedule": [
     {
-      "fertilizer": "Urea (Pole Beans Basal)",
+      "fertilizer": "Urea",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 110.0
+      "quantity_kg_per_ha": 97.5
     },
     {
-      "fertilizer": "Triple Super Phosphate (Pole Beans Basal)",
+      "fertilizer": "Triple Super Phosphate",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 270.0
+      "quantity_kg_per_ha": 217.5
     },
     {
-      "fertilizer": "Muriate of Potash (Pole Beans Basal)",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 75.0
+      "quantity_kg_per_ha": 70.0
     },
     {
-      "fertilizer": "Urea (Pole Beans Top Dressing)",
+      "fertilizer": "Urea",
       "apply_start_weeks_after_planting": 3.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 110.0
+      "quantity_kg_per_ha": 97.5
     },
     {
-      "fertilizer": "Muriate of Potash (Pole Beans Top Dressing)",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 3.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 75.0
-    },
-    {
-      "fertilizer": "Urea (Bush Beans Basal)",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 85.0
-    },
-    {
-      "fertilizer": "Triple Super Phosphate (Bush Beans Basal)",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 165.0
-    },
-    {
-      "fertilizer": "Muriate of Potash (Bush Beans Basal)",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 65.0
-    },
-    {
-      "fertilizer": "Urea (Bush Beans Top Dressing)",
-      "apply_start_weeks_after_planting": 3.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 85.0
-    },
-    {
-      "fertilizer": "Muriate of Potash (Bush Beans Top Dressing)",
-      "apply_start_weeks_after_planting": 3.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 65.0
+      "quantity_kg_per_ha": 70.0
     }
   ],
   "pests": [
     {
-      "name": "Bean fly",
+      "name": "Bean Fly",
       "impact": "Harms the crop from planting to harvest.",
-      "solution": "Use recommended pesticides."
+      "solution": "Control using recommended pesticides."
     },
     {
       "name": "Mite",
       "impact": "Harms the crop from planting to harvest.",
-      "solution": "Use recommended pesticides."
+      "solution": "Control using recommended pesticides."
     },
     {
       "name": "Thrips",
-      "impact": "Harms the crop from planting to harvest.",
-      "solution": "Use recommended pesticides."
+      "impact": "Harms the crop from planting to harvest and acts as a vector for Cowpea Yellow Mosaic Virus (HYMV).",
+      "solution": "Control using recommended pesticides."
     },
     {
       "name": "Whitefly",
-      "impact": "Harms the crop from planting to harvest.",
-      "solution": "Use recommended pesticides."
+      "impact": "Harms the crop from planting to harvest and acts as a vector for Bean Golden Mosaic Virus (BGMV).",
+      "solution": "Control using recommended pesticides."
     },
     {
-      "name": "Aphids",
-      "impact": "Harms the crop from planting to harvest.",
-      "solution": "Use recommended pesticides."
+      "name": "Aphid",
+      "impact": "Harms the crop from planting to harvest and acts as a vector for Bean Common Mosaic Virus (BCMV) and Bean Yellow Mosaic Virus (BYMV).",
+      "solution": "Control using recommended pesticides."
     },
     {
-      "name": "Pod borer",
-      "impact": "Harms the crop from planting to harvest.",
-      "solution": "Use recommended pesticides."
+      "name": "Pod Borer",
+      "impact": "Damages pods and harms the crop from planting to harvest.",
+      "solution": "Control using recommended pesticides."
     }
   ],
   "diseases": [
     {
       "name": "Anthracnose",
-      "causal_agent": "Colletotrichum lindemuthianum",
+      "causal_agent": "Coletotrichum Lindemuthianum",
       "impact": "Affects leaves, vines, and pods.",
-      "solution": "Use recommended fungicides."
+      "solution": "Control using recommended fungicides."
     },
     {
-      "name": "Rust",
-      "causal_agent": "Uromyces appendiculatus",
+      "name": "Rust Disease",
+      "causal_agent": "Uromyces Appendiculatus",
       "impact": "Affects leaves and pods.",
-      "solution": "Use recommended fungicides."
+      "solution": "Control using recommended fungicides."
     },
     {
       "name": "Angular Leaf Spot",
-      "causal_agent": "Phaeoisariopsis griseola",
+      "causal_agent": "Phaeoisariopsis Griseola",
       "impact": "Affects leaves and pods.",
-      "solution": "Use recommended fungicides."
+      "solution": "Control using recommended fungicides."
     },
     {
       "name": "Root Rot",
-      "causal_agent": "Fusarium oxysporum, Fusarium solani",
+      "causal_agent": "Fusarium Oxysporum, Fusarium Solani",
       "impact": "Affects roots and stem base.",
-      "solution": "Use recommended fungicides."
+      "solution": "Control using recommended fungicides."
     },
     {
-      "name": "Bean Common Mosaic Virus (BCMV)",
-      "causal_agent": "BCMV",
-      "impact": "Infected leaves show mottling or turn yellow/golden.",
-      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control aphid vectors."
+      "name": "Bean Common Mosaic Virus",
+      "causal_agent": "Virus",
+      "impact": "Infected leaves become mottled or turn yellow/golden.",
+      "solution": "Immediately uproot and destroy diseased vines. Control vector aphids using recommended insecticides."
     },
     {
-      "name": "Bean Yellow Mosaic Virus (BYMV)",
-      "causal_agent": "BYMV",
-      "impact": "Infected leaves show mottling or turn yellow/golden.",
-      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control aphid vectors."
+      "name": "Bean Yellow Mosaic Virus",
+      "causal_agent": "Virus",
+      "impact": "Infected leaves become mottled or turn yellow/golden.",
+      "solution": "Immediately uproot and destroy diseased vines. Control vector aphids using recommended insecticides."
     },
     {
-      "name": "Bean Golden Mosaic Virus (BGMV)",
-      "causal_agent": "BGMV",
-      "impact": "Infected leaves show mottling or turn yellow/golden.",
-      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control whitefly vectors."
+      "name": "Bean Golden Mosaic Virus",
+      "causal_agent": "Virus",
+      "impact": "Infected leaves become mottled or turn yellow/golden.",
+      "solution": "Immediately uproot and destroy diseased vines. Control vector whiteflies using recommended insecticides."
     },
     {
-      "name": "Cowpea Yellow Mosaic Virus (HYMV)",
-      "causal_agent": "HYMV",
-      "impact": "Infected leaves show mottling or turn yellow/golden.",
-      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control thrips vectors."
+      "name": "Cowpea Yellow Mosaic Virus",
+      "causal_agent": "Virus",
+      "impact": "Infected leaves become mottled or turn yellow/golden.",
+      "solution": "Immediately uproot and destroy diseased vines. Control vector thrips using recommended insecticides."
     }
   ],
-  "expected_harvest_kg_per_ha": 14000.0
+  "expected_harvest_kg_per_ha": 17100.0,
+  "days_to_maturity": 53,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 62.5,
+  "seed_metric_type": "weight"
 }

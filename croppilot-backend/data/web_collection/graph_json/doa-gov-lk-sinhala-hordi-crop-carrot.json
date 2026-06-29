@@ -1,9 +1,9 @@
 {
-  "crop_name": "කැරට්",
+  "crop_name": "Carrot",
   "scientific_name": null,
   "growing_areas": [
-    "All agro-ecological zones",
-    "Upcountry cold regions"
+    "All Agro-Ecological Zones",
+    "Upcountry Cold Regions"
   ],
   "growing_seasons": [],
   "varieties": [
@@ -11,8 +11,8 @@
     "Lanka Carrot"
   ],
   "soil_types": [
-    "Soil with high organic matter",
-    "Well-drained soil"
+    "Soils With High Organic Matter",
+    "Good Drainage"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -28,6 +28,13 @@
   "plant_distance_cm": 5.0,
   "fertilizer_schedule": [
     {
+      "fertilizer": "Organic Fertilizer",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 10000.0
+    },
+    {
       "fertilizer": "Triple Super Phosphate",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
@@ -42,7 +49,7 @@
       "quantity_kg_per_ha": 55.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 3.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -56,7 +63,7 @@
       "quantity_kg_per_ha": 82.5
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 6.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -70,7 +77,7 @@
       "quantity_kg_per_ha": 82.5
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 8.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -84,7 +91,7 @@
       "quantity_kg_per_ha": 110.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 9.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -94,38 +101,42 @@
   "pests": [
     {
       "name": "Leaf Miner",
-      "impact": "Adult females puncture leaves for feeding and egg-laying, causing white spots and leaf drying due to water evaporation. Larvae feed inside leaves, creating thin white tunnels, reducing photosynthesis. Wounds allow secondary fungal or other pathogen infections. More damage occurs in dry weather conditions.",
-      "solution": "Constant field inspection before and after planting. Biological control using natural enemies (Diglyphas isaea, Hemiptersenus semiabiclavus, Opius Spp) by breeding them in wooden cages or on white polythene with discarded leaves, then releasing them into the field. Use yellow sticky traps. Use a butterfly net in the morning when leaf miners are active. Install a 5-foot high net around the field before planting. Deep plowing to destroy weeds and pupae. Remove old infected leaves and bury damaged leaves. Do not select infected seedlings from nurseries. For chemical control, use recommended insecticides: Neem extract (640g/16L) for early stages. If infestation is high, apply Azadiractin 1% EC (16ml/16L) or Abamectin 18g/L EC (9.6ml/16L)."
+      "impact": "Adult females puncture leaves for feeding and egg-laying, causing white spots and leaf drying due to water evaporation. Larvae feed inside leaves, creating thin white tunnels, reducing photosynthesis. Wounds allow secondary infections.",
+      "solution": "Regular field inspection. Natural biological control by Hymenoptera species (Diglyphas isaea, Hemiptersenus semiabiclavus, Opius Spp) can be promoted by placing discarded leaves from harvested crops in wooden cages or on white polythene sheets to breed parasitoids, then releasing them. Yellow polythene traps with grease. Using butterfly nets in the morning when leaf miners are active. Erecting a 5-foot high net around the field before cultivation. Deep plowing to destroy weeds and pupae. Removing old infected leaves and burying damaged leaves. Avoiding infected seedlings from nurseries. Chemical control: Neem extract (640g/16L) for early stages. If infestation is severe: Azadiractin 1% EC (16ml/16L), Abamectin 18g/L EC (9.6ml/16L)."
     },
     {
       "name": "Cutworm",
-      "impact": "Larvae are active at night, cutting young plants at the base. Damage is more prevalent in dry weather conditions. High larval populations in the soil during root development can damage roots, leading to loss of market value.",
-      "solution": "Deep plowing exposes larvae and pupae to predatory birds. Good weed control and field sanitation. Regular field inspection to hand-pick hidden larvae when populations are low. If damage is high, apply recommended insecticides immediately after planting: Profenophos 500g/LEC (32ml/16L) or Etofenprox 100g/LEC (24ml/16L)."
+      "impact": "Larvae are active at night, cutting young plants at the base. Damage is more prevalent in dry weather. High larval populations during root development can damage roots, reducing market value.",
+      "solution": "Deep plowing exposes larvae and pupae to predatory birds. Good weed control and field sanitation. Regular field inspection to hand-pick hidden larvae when populations are low. If damage is severe, apply recommended insecticides immediately after planting: Profenophos 500g/LEC (32ML/16L), Etofenprox 100g/LEC (24ML/16L)."
     },
     {
-      "name": "Root-knot Nematodes",
-      "impact": "No symptoms at low nematode populations. At high populations, plants show yellowing, stunting, wilting, and uneven growth. Examination of roots reveals galls. Also, root forking, distorted roots, and hairy roots on the taproot can be observed.",
-      "solution": "Maintain uninfected fields. Clean tools used in infected fields before using them in uninfected fields. Prevent entry of animals and water from nearby infected fields. For infected fields: deep plowing and exposing soil to sunlight for several days. Implement crop rotation. Apply chicken manure two weeks before planting, in addition to other organic fertilizers."
+      "name": "Root-Knot Nematode",
+      "impact": "Symptoms not visible at low populations. High populations cause yellowing, stunting, wilting, and uneven growth. Examination of roots shows galls. Root forking, deformed roots, and hairy roots can also be seen.",
+      "solution": "Maintain uninfected fields. Clean tools used in infected fields before using in uninfected ones. Prevent entry of animals and water from infected fields. For infected fields: Deep plowing and exposing soil to sunlight for several days. Crop rotation. Applying chicken manure two weeks before planting in addition to other organic fertilizers."
     },
     {
-      "name": "Snails and Slugs",
-      "impact": "Eat young shoots during germination, potentially destroying the entire crop. Damage is more common during rainy seasons.",
-      "solution": "Improve field sanitation and weed control. Remove potential hiding places in the field during the day. Inspect fields at night and hand-pick. Place baits in the field. Apply recommended molluscicides: Metaldehyde 3% RB (10-40 kg/ha), Metaldehyde 4% RB (10-40 kg/ha), or Metaldehyde 5% GR (10-40 kg/ha)."
+      "name": "Snails And Slugs",
+      "impact": "Eat young shoots during germination, potentially destroying the entire crop. Damage is common during rainy seasons.",
+      "solution": "Improve field sanitation and weed control. Remove hiding places during the day. Inspect fields at night and hand-pick. Place baits. Apply recommended molluscicides: Metaldehyde 3% RB (25.0 kg/ha), Metaldehyde 4% RB (25.0 kg/ha), Metaldehyde 5% GR (25.0 kg/ha)."
     }
   ],
   "diseases": [
     {
       "name": "Blight",
       "causal_agent": null,
-      "impact": "Not explicitly described, but generally refers to rapid and extensive browning, wilting, and death of plant tissues.",
-      "solution": "Use healthy planting material. Keep the field clean. Use recommended fungicides such as Mancozeb and Maneb."
+      "impact": "General damage to the crop.",
+      "solution": "Use healthy planting material. Keep the field clean. Use recommended fungicides (Mancozeb, Maneb)."
     },
     {
       "name": "Soft Rot",
       "causal_agent": null,
-      "impact": "Not explicitly described, but generally refers to a bacterial disease causing soft, watery decay of plant tissues.",
+      "impact": "General damage to the crop.",
       "solution": "Keep the field clean. Improve field drainage."
     }
   ],
-  "expected_harvest_kg_per_ha": 35000.0
+  "expected_harvest_kg_per_ha": 35000.0,
+  "days_to_maturity": null,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 4.0,
+  "seed_metric_type": "weight"
 }

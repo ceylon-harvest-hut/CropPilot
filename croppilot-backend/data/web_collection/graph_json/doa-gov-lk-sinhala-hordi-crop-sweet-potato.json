@@ -1,28 +1,28 @@
 {
-  "crop_name": "බතල",
+  "crop_name": "Sweet Potato",
   "scientific_name": null,
   "growing_areas": [
-    "All areas except extremely dry regions and cold regions (temperature below 20 degrees Celsius)"
+    "All Areas Except Extremely Dry And Cold Regions"
   ],
   "growing_seasons": [
-    "Year-round"
+    "Year-Round"
   ],
   "varieties": [
-    "Wariyapola Red",
-    "CARI-9",
-    "CARI 273",
-    "CARI 426",
-    "Wariyapola White",
+    "Wariyapola Rathu",
+    "Cari-9",
+    "Cari 273",
+    "Cari 426",
+    "Wariyapola Sudu",
     "Shanthi",
     "Chithra",
-    "Gannoruwa White",
+    "Gannoruwa Sudu",
     "Ama",
     "Dhawa",
     "Hordi Mali",
     "Ranabima"
   ],
   "soil_types": [
-    "Light loamy soil"
+    "Light Loamy Soil"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -52,7 +52,7 @@
       "quantity_kg_per_ha": 120.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 2.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -66,7 +66,7 @@
       "quantity_kg_per_ha": 60.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 6.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -76,17 +76,21 @@
   "pests": [
     {
       "name": "Sweet Potato Weevil",
-      "impact": "Most harmful pest affecting the crop.",
+      "impact": "Most harmful pest",
       "solution": ""
     }
   ],
   "diseases": [
     {
       "name": "Root Rot",
-      "causal_agent": "Fusarium spp.",
-      "impact": "Yellowing of leaves, followed by wilting of vines and root rot.",
-      "solution": "Remove diseased plants with soil from the field."
+      "causal_agent": "Fusarium Spp.",
+      "impact": "Leaves yellowing, then vines drying and roots rotting",
+      "solution": "Remove diseased plants with soil from the field"
     }
   ],
-  "expected_harvest_kg_per_ha": 20000.0
+  "expected_harvest_kg_per_ha": 20000.0,
+  "days_to_maturity": 105,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 60000.0,
+  "seed_metric_type": "vines"
 }

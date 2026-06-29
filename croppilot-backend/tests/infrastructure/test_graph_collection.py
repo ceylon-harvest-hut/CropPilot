@@ -12,6 +12,7 @@ from app.domains.graph.data import ExtractedCropKnowledge, GraphIngestResult
 from app.domains.graph.schemas import Pest
 from app.infrastructure.graph.graph_collection import (
     GRAPH_MANIFEST_FILENAME,
+    clear_graph_artifacts,
     entry_id_from_source_uri,
     graph_manifest_path,
     load_graph_manifest,
@@ -138,3 +139,28 @@ def test_extracted_crop_knowledge_serializes_nested_models() -> None:
     payload = extracted_crop_knowledge_to_dict(extracted)
     assert payload["crop_name"] == "Pepper"
     assert payload["pests"][0]["name"] == "Aphid"
+
+
+def test_clear_graph_artifacts_removes_files_and_manifest(tmp_path: Path) -> None:
+    artifacts = resolve_graph_artifacts(tmp_path, "https://doa.gov.lk/cabbage/")
+    artifacts.html_output_path.parent.mkdir(parents=True, exist_ok=True)
+    artifacts.json_output_path.parent.mkdir(parents=True, exist_ok=True)
+    artifacts.html_output_path.write_text("<html></html>", encoding="utf-8")
+    artifacts.json_output_path.write_text("{}", encoding="utf-8")
+    record_graph_manifest_success(
+        tmp_path,
+        source_uri="https://doa.gov.lk/cabbage/",
+        crop_name="ගෝවා",
+        loader="doa_hordi",
+        html_path=artifacts.html_output_path,
+        json_path=artifacts.json_output_path,
+        source_id=1,
+        graph_status=KNOWLEDGE_SOURCE_STATUS_GRAPH_INDEXED,
+    )
+
+    clear_graph_artifacts(tmp_path)
+
+    assert not artifacts.html_output_path.exists()
+    assert not artifacts.json_output_path.exists()
+    manifest = load_graph_manifest(graph_manifest_path(tmp_path))
+    assert manifest["entries"] == []

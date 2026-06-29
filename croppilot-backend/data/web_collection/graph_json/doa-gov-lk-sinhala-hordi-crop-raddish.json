@@ -1,18 +1,18 @@
 {
-  "crop_name": "රාබු",
+  "crop_name": "Radish",
   "scientific_name": null,
   "growing_areas": [
-    "All agro-climatic zones of Sri Lanka"
+    "All Agro-Climatic Zones Of Sri Lanka"
   ],
   "growing_seasons": [
-    "Year-round"
+    "Year-Round"
   ],
   "varieties": [
     "Japanese Ball Radish",
     "Beeralu Radish"
   ],
   "soil_types": [
-    "Well-drained soil"
+    "Well-Drained Soil"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -24,7 +24,7 @@
   "ph_max": 7.5,
   "pit_length_cm": null,
   "pit_width_cm": null,
-  "row_distance_cm": 25.0,
+  "row_distance_cm": 27.5,
   "plant_distance_cm": 10.0,
   "fertilizer_schedule": [
     {
@@ -42,7 +42,7 @@
       "quantity_kg_per_ha": 200.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -56,7 +56,7 @@
       "quantity_kg_per_ha": 125.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 3.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -65,28 +65,32 @@
   ],
   "pests": [
     {
-      "name": "Leaf-eating caterpillar",
-      "impact": "Young larvae are light green, later dark green. When damage is severe, they eat all parts except the veins.",
+      "name": "Leaf Eating Caterpillar",
+      "impact": "Young larvae are light green, later turn dark green. When damage is severe, they eat all parts except the veins.",
       "solution": "If damage is severe, apply recommended insecticide."
     },
     {
-      "name": "Leaf miner",
-      "impact": "Forms irregular tunnel-like structures on leaves. These are gray/white, with black fecal matter visible inside.",
+      "name": "Leaf Miner",
+      "impact": "Forms irregular tunnel-like structures on leaves. These are gray/white, and black fecal matter of the larva can be seen inside as stripes.",
       "solution": ""
     },
     {
       "name": "Sawfly",
-      "impact": "The larval stage is harmful. Fully grown larvae are 4-6 cm long, black or brown. They hide in the soil during the day and cause damage at night. They eat young plants at soil level and irregularly eat the leaves of mature plants.",
-      "solution": "Till and rake the soil. Hand-pick larvae hidden in the soil. Tilling the soil exposes larvae to birds for destruction. Apply a suitable insecticide to the plant and soil on the day of planting. Add more organic fertilizer to the soil. Practice field sanitation."
+      "impact": "Larval stage is harmful. Fully grown larvae are 4-6 cm long, black or brown. Hides in soil during the day and causes damage at night. Eats young plants at soil level. Eats leaves of grown plants irregularly.",
+      "solution": "Till and rake soil. Hand-pick larvae hidden in soil. Tilling exposes larvae to birds. Apply suitable insecticide to plant and soil on planting day. Add more organic fertilizer to soil. Practice field sanitation."
     }
   ],
   "diseases": [
     {
-      "name": "Clubroot",
+      "name": "Clubroot Disease",
       "causal_agent": null,
-      "impact": "Causes severe damage when cultivated in low pH (acidic) soils. The roots of plants swell and become tuber-like.",
-      "solution": "The pathogen persists in the soil for a long time and cannot be destroyed by strong chemicals. Control is difficult. Test the soil before cultivation and raise the pH with lime if necessary. Uproot and burn infected plants. Practice crop rotation with non-Brassicaceae crops for about four years to reduce the disease."
+      "impact": "Causes severe damage when cultivated in low pH (acidic) soils. Roots of plants swell and become tuber-like.",
+      "solution": "Pathogen persists in soil for a long time and cannot be destroyed by strong chemical spores. Difficult to control. Test soil before cultivation and raise pH with lime if necessary. Uproot and burn infected plants. Reduce disease by practicing crop rotation with non-Brassicaceae crops for about four years."
     }
   ],
-  "expected_harvest_kg_per_ha": 45000.0
+  "expected_harvest_kg_per_ha": 35000.0,
+  "days_to_maturity": null,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 5.0,
+  "seed_metric_type": "weight"
 }

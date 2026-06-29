@@ -1,25 +1,25 @@
 {
-  "crop_name": "පිපිඤ්ඤා",
+  "crop_name": "Cucumber",
   "scientific_name": null,
   "growing_areas": [
     "Wet Zone",
     "Dry Zone"
   ],
   "growing_seasons": [
-    "Year-round",
-    "Maha season"
+    "Year-Round",
+    "Maha"
   ],
   "varieties": [
-    "Hoardy Green",
-    "Hoardy White",
+    "Hordy Green",
+    "Hordy White",
     "Kalpitiya White",
     "Champion",
     "Gannoruwa White",
-    "LY 58"
+    "Ly 58"
   ],
   "soil_types": [
-    "Various soil types",
-    "Well-drained soil rich in organic matter"
+    "Well-Drained Soil",
+    "Soil Rich In Organic Matter"
   ],
   "altitude_min_m": 0.0,
   "altitude_max_m": 1000.0,
@@ -49,7 +49,7 @@
       "quantity_kg_per_ha": 200.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -63,7 +63,7 @@
       "quantity_kg_per_ha": 75.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 4.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -77,7 +77,7 @@
       "quantity_kg_per_ha": 75.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 5.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -86,97 +86,101 @@
   ],
   "pests": [
     {
-      "name": "Aulacophora beetle",
-      "impact": "Elongated beetle about 5mm long, like a firefly. Species with orange, brown, and black colors exist. Especially damages young plants by eating holes in leaves. Rarely causes economic damage to well-grown plants. Larval stage lives in the soil and damages plant roots.",
-      "solution": "Destroy old crop residues, start new crops periodically, cover crops up to about 2 meters at the start of cultivation, protect natural enemies, physically destroy beetles from the onset of damage, use recommended insecticides only if essential. Recommended insecticides: Chlorantraniliprole 185g/1SC (32ml/16L water every 10 days for small plants), Spinosad 25g/1SP (16ml/16L water every 10 days for small plants), Thiocyclam 50% SP (25g/10L water every 14 days for large vines)."
+      "name": "Aulacophora Beetle",
+      "impact": "Eats holes in leaves of young plants, causing significant damage. Larval stage lives in soil and damages roots of young plants.",
+      "solution": "Destroy old crop residues, start new crops periodically, cover crops with about 200 cm at the start of cultivation, protect natural enemies, physically destroy beetles from the start of damage. If essential, use recommended insecticides: Chlorantraniliprole 185g/1SC (32ml/16L water every 10 days for young plants), Spinosad 25g/1SP (16ml/16L water every 10 days for young plants), or Thiocyclam 50% SP (25g/10L water every 14 days for large vines)."
     },
     {
-      "name": "Epilachna beetle",
-      "impact": "About 4mm long, hemispherical, brown with black spots. Larva is yellow with spines. Both adult and larva scrape leaves. Eggs are pale yellow, elongated, laid in clusters of 20-40 on leaves.",
-      "solution": "Immediately identify and destroy adults, larvae, and pupae upon noticing damage. Uproot and destroy old crop residues immediately after harvest. Cover new crops up to about 0.5 meters high."
+      "name": "Epilachna Beetle",
+      "impact": "Beetle and larva scrape and eat leaves.",
+      "solution": "Identify correctly upon seeing damage and collect and destroy beetles, larvae, and pupae. Uproot and destroy old crop residues immediately after harvest. Cover new crop up to about 50 cm high."
     },
     {
-      "name": "Fruit fly",
-      "impact": "Brown fly about 8mm long with two black spots on wings. Pierces the skin of young cucurbit fruits and lays 6-12 elongated, cream-white eggs. Legless white maggots emerge and feed on the fruit pulp, causing it to rot. Fruits become irregularly shaped. Mature larvae pupate in the soil and emerge as adults. Life cycle is about one month, with about 10 generations per year. Causes significant yield loss due to rapid flight and reproduction. Spreads further through transport of damaged fruits and maintaining infested crops.",
-      "solution": "Destroy all infested fruits, uproot and destroy old crops after harvest, cover new crops up to 2 meters high, deep plowing, install cue-lure pheromone traps long-term to destroy male flies, cover young fruits with polythene or paper, apply recommended insecticide-mixed protein bait at the start of flowering, spray the underside of leaves at 3-4 meter intervals every 7 days in the morning, or hang bait-coated traps."
+      "name": "Fruit Fly",
+      "impact": "Punctures the skin of young cucurbit fruits and lays 6-12 elongated, creamy white eggs. The legless white maggots that emerge feed on the fruit pulp, causing it to rot. Fruits become irregularly shaped.",
+      "solution": "Always destroy fruits containing maggots. Uproot and destroy old crops after harvest. Cover new crops up to about 200 cm high. Deep plow soil. Install Cue-lure pheromone traps long-term in the field to destroy male flies. Cover young fruits with polythene or paper. When flowering begins, spray recommended insecticide-mixed protein bait on the underside of leaves at 300-400 cm intervals every 7 days in the morning, or hang as a bait trap."
     },
     {
-      "name": "Mites",
-      "impact": "Tiny, almost invisible, orange/red spherical creatures. Scrape leaf surface and feed on sap. Damage increases in hot and dry conditions. Sap feeding reduces leaf greenness and makes them brittle.",
-      "solution": "Destroy old crop residues before new cultivation, spray water on crops in the evening, apply recommended miticides."
+      "name": "Mite",
+      "impact": "Scrapes leaf surface and feeds on sap. Sap feeding reduces leaf greenness and makes them brittle.",
+      "solution": "Destroy old crop residues before new cultivation. Spray water on crops in the evening. Spray recommended miticides."
     },
     {
       "name": "Whitefly",
-      "impact": "About 1mm long, white, flying insect. Nymphs are flat, green/brown scale-like. Pierces plant leaves and sucks sap. A vector for viral diseases.",
-      "solution": "Uproot and destroy old crop residues before starting new cultivation, cover crops, use recommended fertilizers, spray water in the evening, and use recommended insecticides."
+      "impact": "Pierces plant leaves and sucks sap. Vector for viral diseases.",
+      "solution": "Uproot and destroy old crop residues before starting new cultivation. Cover the crop. Use fertilizers as recommended. Spray water in the evening. Use insecticides as recommended."
     },
     {
-      "name": "Aphids",
-      "impact": "1-2mm long, yellow/green/brown/black. Soft, elongated/spherical bodies, live in colonies on young plant parts. Pierce plant tissues and suck sap, excrete a sugary, viscous solution from glands at the rear. Vectors for viral diseases.",
-      "solution": "Destroy old crop residues, cover crops, use recommended fertilizers, wipe off by hand or brush at early stages of damage, spray water in the evening, and apply recommended insecticides. Natural enemies like ladybugs, hoverfly larvae, and parasitic wasps help control aphids under natural conditions."
+      "name": "Aphid",
+      "impact": "Pierces plant tissues and sucks sap, excreting a sugary, viscous solution. Vectors for viral diseases.",
+      "solution": "Destroy old crop residues. Cover the crop. Use fertilizers as recommended. Wipe off by hand or with a brush at the early stage of damage. Spray water in the evening. Spray insecticides as recommended. Protect natural enemies like ladybugs, hoverfly larvae, and parasitic wasps."
     }
   ],
   "diseases": [
     {
       "name": "Powdery Mildew",
-      "causal_agent": "Podosphaera xanthii",
-      "impact": "First appears as pale yellow spots on mature leaves. Spots enlarge as white, powdery mycelium grows on the leaf surface. Severely affected leaves turn brown, shrivel, and defoliate.",
-      "solution": "Use recommended fungicides at early stages of disease development. Remove infected crop residues after harvest."
+      "causal_agent": "Podosphaera Xanthii",
+      "impact": "First appears as pale yellow spots on mature leaves. Spots enlarge as white powdery mycelium grows on the leaf surface. Severely affected leaves turn brown, shrivel, and defoliate.",
+      "solution": "Use recommended fungicides at the early stage of disease development. Remove infected crop residues after harvest."
     },
     {
       "name": "Downy Mildew",
-      "causal_agent": "Pseudoperonospora cubensis",
+      "causal_agent": "Pseudoperonospora Cubensis",
       "impact": "Angular yellow spots delimited by leaf veins on the upper surface of leaves. Leaves become chlorotic and eventually necrotic, and host plant cells die.",
-      "solution": "Use recommended fungicides at early stages of disease development. Remove infected plant parts after harvest."
+      "solution": "Use recommended fungicides at the early stage of disease development. Remove infected plant parts after harvest."
     },
     {
       "name": "Foot Rot / Basal Rot",
-      "causal_agent": "Sclerotium spp., Fusarium spp.",
-      "impact": "In early stages, plants show temporary wilting symptoms. Leaves turn yellow, wilt, and droop. Eventually, the plant dies. Vascular bundles at the base turn yellow or brown. White fungal mycelia are visible at the base of the plant.",
-      "solution": "Destroy infected plants with soil. Improve drainage. Use recommended fungicides at early stages of disease development."
+      "causal_agent": "Sclerotium Spp., Fusarium Spp.",
+      "impact": "Initially, plants show symptoms of temporary wilting. Leaves show yellowing, wilting, and drooping. Eventually, the entire plant dies. Vascular bundles in the basal region turn yellow or brown. White fungal mycelia can be seen at the base of the plant.",
+      "solution": "Destroy infected plants along with soil. Improve drainage. Use recommended fungicides at the early stage of disease development."
     },
     {
       "name": "Gummy Stem Blight",
-      "causal_agent": "Didymella bryoniae",
-      "impact": "Lesions typically start in water-soaked areas on leaves and fruits. Early stages may show chlorotic spots, which then turn light brown and become irregularly shaped. Dark, cracked, sunken spots appear on fruits. Plants collapse at sunken, cankered areas on the stem. Stem lesions often elongate like streaks, and cracks may exude gum. Dark brown to black pycnidia can be seen on fruits, stems, or leaves.",
-      "solution": "Deep plow crop residues immediately after harvest to reduce fungal survival. Use recommended fungicides at early stages of disease development."
+      "causal_agent": "Didymella Bryoniae",
+      "impact": "Typically starts with water-soaked lesions on leaves and fruits. Initially, chlorotic spots may be present, then turn light brown and become irregularly shaped. Dark, cracked, sunken spots appear on fruits. Plant collapse at sunken, bark-furrowed canker sites. Stem lesions often elongate into streaks, and cracks may exude gum. Dark brown to black pycnidia can be seen on fruits, stems, or leaves.",
+      "solution": "Deep plow crop residues immediately after harvest to minimize fungal survival. Use recommended fungicides at the early stage of disease development."
     },
     {
       "name": "Bacterial Wilt",
-      "causal_agent": "Ralstonia solanacearum",
-      "impact": "Sudden wilting of leaves. Eventually, the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning). Permanent wilting.",
-      "solution": "Destroy infected plants with soil. Crop rotation with resistant varieties (okra, maize). Intercropping with Cruciferae crops. Avoid moving equipment from infected fields to uninfected fields."
+      "causal_agent": "Ralstonia Solanacearum",
+      "impact": "Sudden wilting of leaves is observed. Eventually, the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning). Permanent wilting.",
+      "solution": "Destroy infected plants along with soil. Crop rotation with resistant varieties (Okra, Maize). Intercropping with Cruciferae family crops. Avoid moving equipment from infected fields to uninfected fields."
     },
     {
-      "name": "Leaf Curl Virus (LCV)",
-      "causal_agent": "Transmitted by Whitefly (Bemicia tabaci)",
+      "name": "Leaf Curl Virus (Lcv)",
+      "causal_agent": "Transmitted By Bemisia Tabaci",
       "impact": "Upward curling of leaves, shortening of internodes, and distortion. Stunting of plants and fruit distortion.",
-      "solution": "Remove infected plants and control vectors (whiteflies) using recommended insecticides."
+      "solution": "Control Whitefly vectors by uprooting and destroying old crop residues before starting new cultivation, covering the crop, using fertilizers as recommended, spraying water in the evening, and using insecticides as recommended. Remove infected plants."
     },
     {
-      "name": "Papaya Ringspot Virus (PRSV)",
-      "causal_agent": "Transmitted by Aphids",
-      "impact": "Mottled spots on leaves. Leaf distortions. Fruit distortion and reduced fruit size. In severe infections, oily spots appear on the fruit surface.",
-      "solution": "Control vectors (aphids) and remove infected plants."
+      "name": "Papaya Ringspot Virus (Prsv)",
+      "causal_agent": "Transmitted By Aphids",
+      "impact": "Mottled spots on leaves. Leaf distortions. Fruit distortion and reduced fruit size. In severe infections, oily spots appear on fruit surface.",
+      "solution": "Control Aphid vectors by destroying old crop residues, covering the crop, using fertilizers as recommended, wiping off by hand or with a brush at the early stage of damage, spraying water in the evening, and spraying insecticides as recommended. Protect natural enemies. Remove infected plants."
     },
     {
-      "name": "Cucumber Mosaic Virus (CMV)",
-      "causal_agent": "Transmitted by seed and sap",
-      "impact": "Green mottling and leaf distortion. Green spots on fruits, which turn bright yellow and rot. Fruit distortion.",
-      "solution": "Remove infected plants and use virus-free seeds."
+      "name": "Cucumber Mosaic Virus (Cmv)",
+      "causal_agent": "Transmitted By Seeds And Sap",
+      "impact": "Green mottling and leaf distortion. Green spots on fruits, turning bright yellow and decaying. Fruit distortion.",
+      "solution": "Remove infected plants and use clean seeds."
     },
     {
-      "name": "Zucchini Yellow Mosaic Virus (ZYMV)",
+      "name": "Zucchini Yellow Mosaic Virus (Zymv)",
       "causal_agent": null,
-      "impact": "Stunting, yellowing, chlorosis (occasionally), mottled distorted leaves (blistering). Fruit discoloration and distortion.",
+      "impact": "Stunting, yellowing, chlorosis (occasional), mottled distorted leaves (blisters). Fruit discoloration and distortion.",
       "solution": "Remove infected plants and control vectors."
     },
     {
-      "name": "Phytoplasma disease / Little Leaf disease",
-      "causal_agent": "Transmitted by infected seeds and leafhoppers",
+      "name": "Phytoplasma Disease Of Cucurbit Crops",
+      "causal_agent": "Transmitted Through Infected Seeds And Leafhoppers",
       "impact": "Small, thickened, and yellowish-green leaves. Shortening of internodes and stunting of plants. Chrysanthemum-like appearance. Greening of flowers.",
-      "solution": "Remove infected plants and control vectors (leafhoppers) using recommended insecticides."
+      "solution": "Remove infected plants and control leafhopper vectors using a recommended insecticide."
     }
   ],
-  "expected_harvest_kg_per_ha": 22500.0
+  "expected_harvest_kg_per_ha": 22500.0,
+  "days_to_maturity": null,
+  "nursery_period_days": 0,
+  "seed_amount_per_ha": 1.0,
+  "seed_metric_type": "weight"
 }

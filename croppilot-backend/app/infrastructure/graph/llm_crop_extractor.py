@@ -38,6 +38,11 @@ def to_extracted_crop_knowledge(
         pests=list(data.pests),
         diseases=list(data.diseases),
         expected_harvest_kg_per_ha=data.expected_harvest_kg_per_ha,
+        # --- Wire up the maturity and seed tracking attributes ---
+        days_to_maturity=data.days_to_maturity,
+        nursery_period_days=data.nursery_period_days,
+        seed_amount_per_ha=data.seed_amount_per_ha,
+        seed_metric_type=data.seed_metric_type,
     )
 
 

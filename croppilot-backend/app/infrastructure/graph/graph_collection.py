@@ -230,3 +230,15 @@ def record_graph_manifest_error(
             json_path=json_path,
         ),
     )
+
+
+def clear_graph_artifacts(collection_dir: Path) -> None:
+    """Remove saved graph HTML/JSON files and reset manifest_graph.json."""
+    collection_dir = collection_dir.resolve()
+    ensure_graph_collection_dirs(collection_dir)
+    for subdir in (GRAPH_HTML_DIR, GRAPH_JSON_DIR):
+        artifact_dir = collection_dir / subdir
+        for path in artifact_dir.glob("*"):
+            if path.is_file():
+                path.unlink()
+    save_graph_manifest(graph_manifest_path(collection_dir), collection_dir, [])

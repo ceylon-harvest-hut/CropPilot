@@ -1,9 +1,9 @@
 {
-  "crop_name": "බීට් රූට්",
+  "crop_name": "Beetroot",
   "scientific_name": null,
   "growing_areas": [
-    "All agro-ecological zones",
-    "Upcountry cold zone"
+    "All Agro-Ecological Zones",
+    "Upcountry Cold Zone"
   ],
   "growing_seasons": [],
   "varieties": [
@@ -11,7 +11,7 @@
     "Detroit Dark Red"
   ],
   "soil_types": [
-    "Well-drained soil with high organic matter"
+    "Well-Drained Soil With High Organic Matter"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -41,7 +41,7 @@
       "quantity_kg_per_ha": 270.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -55,7 +55,7 @@
       "quantity_kg_per_ha": 165.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 3.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -65,28 +65,32 @@
   "pests": [
     {
       "name": "Leaf Miner",
-      "impact": "Adult female flies puncture leaves for feeding and egg-laying, causing white spots and wilting due to water evaporation. Larvae feed on internal leaf parts, creating thin white tunnels, which hinders photosynthesis. Wounded leaves are susceptible to secondary fungal or other pathogen infections.",
-      "solution": "Regular field inspection before and after planting to identify damage early. Utilize natural enemies from the Hymenoptera order (Diglyphas isaea, Hemiptersenus semiabiclavus, Opius Spp) by breeding them in low-cost wooden cages or on white polythene sheets. Use yellow sticky traps to control adult flies. Use a butterfly net in the morning when leaf miners are active to reduce adult population. Install a 5-foot high net around the field before planting. Deep plowing to destroy weeds and pupae. Remove old infected leaves and dispose of damaged leaves by burying them. Avoid selecting infected seedlings from nurseries. For chemical control, use recommended insecticides: Neem extract (640g/16L) for early damage, Azadiractin 1% EC (16ml/16L), or Abamectin 18g/L EC (9.6ml/16L) if pest population is high."
+      "impact": "Adult females puncture leaves for feeding and egg-laying, causing white spots. This leads to leaf drying due to water evaporation. Larvae feed inside the leaves, creating thin white tunnels, which hinders photosynthesis. Wounded leaves are susceptible to secondary infections by fungi or other pathogens.",
+      "solution": "Regular field inspection before and after crop establishment. Utilize natural enemies such as Diglyphas isaea, Hemiptersenus semiabiclavus, and Opius Spp by breeding them in the field using low-cost wooden cages or white polythene. Use yellow sticky traps with grease to control adult flies. Use butterfly nets in the morning when leaf miners are active to reduce adult populations. Install a net approximately 5 feet high around the field before cultivation. Deep plowing to destroy weeds and pupae. Remove old infected leaves and plants from the field. Avoid selecting infected plants from the nursery. For chemical control, use recommended insecticides: Neem extract (640g/16L), Azadiractin 1% EC (16ml/16L), or Abamectin 18g/L EC (9.6ml/16L) if infestation is severe."
     },
     {
       "name": "Cutworm",
-      "impact": "Larvae are most active at night, cutting young plant stems at the base. In mature plants, leaf consumption is observed. Damage is more prevalent in dry weather. High larval populations in the soil during tuber development can lead to tuber damage, reducing market value.",
-      "solution": "Deep plowing exposes larvae and pupae to predatory birds. Good weed control and field sanitation in and around the field. Regular field inspection and hand-picking of hidden larvae when populations are low. If damage is severe, apply recommended insecticides immediately after planting: Profenophos 500g/LEC (32ML/16L) or Etofenprox 100g/LEC (24ML/16L)."
+      "impact": "Larvae are most active at night, cutting young plant stems at the base. In mature plants, leaf damage can be observed. Damage is more prevalent in dry weather conditions. High populations of larvae in the soil during tuber development can damage tubers, reducing market value.",
+      "solution": "Deep plowing exposes larvae and pupae to predatory birds. Maintain good weed control and field sanitation in and around the field. Regularly inspect the field and hand-pick larvae hidden in the soil during low infestation levels. If damage is severe, apply recommended insecticides immediately after planting: Profenophos 500g/LEC (32ML/16L) or Etofenprox 100g/LEC (24ML/16L)."
     }
   ],
   "diseases": [
     {
       "name": "Cercospora Leaf Spot",
       "causal_agent": null,
-      "impact": "Spots on leaves.",
-      "solution": "Use clean, pathogen-free seeds. Use sprinkler irrigation. Practice crop rotation. Maintain field cleanliness and keep it free of weeds. Ensure correct planting spacing. Use recommended fungicides such as Mancozeb, Maneb, Carbendazim, Chlorothalonil."
+      "impact": "",
+      "solution": "Use clean, disease-free seeds. Use sprinkler irrigation. Practice crop rotation. Maintain field cleanliness and keep the field free of weeds. Ensure correct planting spacing. Use recommended fungicides such as Mancozeb, Maneb, Carbendazim, and Chlorothalonil."
     },
     {
       "name": "Ring Spot Disease",
       "causal_agent": null,
-      "impact": "Ring-shaped spots.",
-      "solution": "Treat seeds with hot water. Use recommended fungicides such as Mancozeb, Maneb, Carbendazim, Chlorothalonil."
+      "impact": "",
+      "solution": "Treat seeds with hot water. Use recommended fungicides such as Mancozeb, Maneb, Carbendazim, and Chlorothalonil."
     }
   ],
-  "expected_harvest_kg_per_ha": 16000.0
+  "expected_harvest_kg_per_ha": 16000.0,
+  "days_to_maturity": 83,
+  "nursery_period_days": 35,
+  "seed_amount_per_ha": 5.5,
+  "seed_metric_type": "weight"
 }

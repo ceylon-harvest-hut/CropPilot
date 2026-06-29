@@ -20,6 +20,7 @@ from app.infrastructure.extractors.http_extractor import DEFAULT_TIMEOUT_SECONDS
 from app.infrastructure.factories import build_graph_ingestion_service  # noqa: E402
 from app.infrastructure.graph.graph_collection import (  # noqa: E402
     GRAPH_MANIFEST_FILENAME,
+    clear_graph_artifacts,
     ensure_graph_collection_dirs,
 )
 from app.infrastructure.ingestion.batch_graph_runner import ingest_graph_manifest_entry  # noqa: E402
@@ -96,6 +97,21 @@ def build_parser() -> argparse.ArgumentParser:
         default=DEFAULT_COLLECTION_DIR,
         help=f"Root for graph_html/, graph_json/, manifest_graph.json (default: {DEFAULT_COLLECTION_DIR})",
     )
+    parser.add_argument(
+        "--fresh",
+        action="store_true",
+        help="Wipe Neo4j and reset GRAPH_INDEXED SQLite sources before ingesting",
+    )
+    parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="Confirm destructive --fresh (required with --fresh)",
+    )
+    parser.add_argument(
+        "--clear-artifacts",
+        action="store_true",
+        help="With --fresh, also delete graph_html/, graph_json/, and reset manifest_graph.json",
+    )
     return parser
 
 
@@ -114,6 +130,18 @@ def main() -> int:
         print("Use only one of --replace or --skip-existing.", file=sys.stderr)
         return 1
 
+    if args.fresh and args.skip_existing:
+        print("Use only one of --fresh or --skip-existing.", file=sys.stderr)
+        return 1
+
+    if args.fresh and not args.yes:
+        print("Refusing --fresh without --yes (this deletes all Neo4j graph data).", file=sys.stderr)
+        return 1
+
+    if args.clear_artifacts and not args.fresh:
+        print("--clear-artifacts requires --fresh.", file=sys.stderr)
+        return 1
+
     try:
         entries = resolve_entries(args)
     except (FileNotFoundError, NotADirectoryError, ValueError) as exc:
@@ -130,6 +158,14 @@ def main() -> int:
     service = build_graph_ingestion_service(settings, session)
     extract_options = ExtractOptions(timeout_seconds=args.timeout)
     source_repository = SqlKnowledgeSourceRepository(session)
+
+    if args.fresh:
+        deleted_nodes = service.clear_graph_database()
+        reset_count = source_repository.reset_graph_indexed_sources()
+        print(f"Fresh start: cleared {deleted_nodes} Neo4j nodes, reset {reset_count} SQLite sources")
+        if args.clear_artifacts:
+            clear_graph_artifacts(args.collection_dir)
+            print(f"Cleared artifacts under {args.collection_dir}")
 
     if args.save_artifacts:
         ensure_graph_collection_dirs(args.collection_dir)

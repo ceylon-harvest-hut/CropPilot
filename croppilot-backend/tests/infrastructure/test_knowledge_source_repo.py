@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session, sessionmaker
 from app.domains.ingestion.models import Crop, CropKnowledgeSource, KnowledgeSource
 from app.infrastructure.repositories.db import (
     Base,
+    KNOWLEDGE_SOURCE_STATUS_GRAPH_INDEXED,
     KNOWLEDGE_SOURCE_STATUS_INDEXED,
     KNOWLEDGE_SOURCE_STATUS_PENDING,
     KNOWLEDGE_SOURCE_STATUS_PROCESSING,
@@ -115,3 +116,21 @@ def test_prepare_for_reingest_adds_crop_link_for_new_crop(
     assert reused_id == source_id
     assert db_session.query(Crop).count() == 2
     assert db_session.query(CropKnowledgeSource).count() == 2
+
+
+def test_reset_graph_indexed_sources_only_affects_graph_indexed(
+    repository: SqlKnowledgeSourceRepository,
+    db_session: Session,
+) -> None:
+    graph_id = repository.create_pending("https://example.com/a", "Crop A")
+    vector_id = repository.create_pending("https://example.com/b", "Crop B")
+    pending_id = repository.create_pending("https://example.com/c", "Crop C")
+    repository.update_status(graph_id, KNOWLEDGE_SOURCE_STATUS_GRAPH_INDEXED)
+    repository.update_status(vector_id, KNOWLEDGE_SOURCE_STATUS_INDEXED)
+
+    reset_count = repository.reset_graph_indexed_sources()
+
+    assert reset_count == 1
+    assert db_session.get(KnowledgeSource, graph_id).status == KNOWLEDGE_SOURCE_STATUS_PENDING
+    assert db_session.get(KnowledgeSource, vector_id).status == KNOWLEDGE_SOURCE_STATUS_INDEXED
+    assert db_session.get(KnowledgeSource, pending_id).status == KNOWLEDGE_SOURCE_STATUS_PENDING

@@ -1,20 +1,19 @@
 {
-  "crop_name": "දඹල",
+  "crop_name": "Winged Bean",
   "scientific_name": null,
   "growing_areas": [],
   "growing_seasons": [
-    "Maha",
-    "Year-round"
+    "Year-Round"
   ],
   "varieties": [
-    "SLS 44",
+    "Sls 44",
     "Krishna"
   ],
   "soil_types": [
-    "Well-drained sandy loam",
-    "Well-drained clay loam",
-    "Sandy soils",
-    "Heavy clay soils"
+    "Sandy Loam",
+    "Clay Loam",
+    "Sandy Soil",
+    "Heavy Clay Soil"
   ],
   "altitude_min_m": 0.0,
   "altitude_max_m": 2000.0,
@@ -30,13 +29,6 @@
   "plant_distance_cm": 60.0,
   "fertilizer_schedule": [
     {
-      "fertilizer": "Well-decomposed organic matter",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 10000.0
-    },
-    {
       "fertilizer": "Urea",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
@@ -51,7 +43,7 @@
       "quantity_kg_per_ha": 215.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -76,10 +68,14 @@
   "diseases": [
     {
       "name": "Bacterial Wilt",
-      "causal_agent": "Ralstonia solanacearum",
-      "impact": "Sudden wilting even with optimal soil moisture. A milky exudate can be observed from the cut stem near the root when placed in water.",
-      "solution": "Remove infected plants along with surrounding soil. Improve drainage to reduce spread. There is no chemical treatment for this disease. Improve field sanitation."
+      "causal_agent": "Ralstonia Solanacearum",
+      "impact": "Sudden wilting can be observed even when the field has optimal moisture. When the stem is cut near the root and placed in a glass of water, a milky exudate can be seen coming out of the stem.",
+      "solution": "Remove infected plants along with the soil. Improving drainage can reduce spread. There is no chemical treatment for this disease. Field sanitation practices should be enhanced."
     }
   ],
-  "expected_harvest_kg_per_ha": 22250.0
+  "expected_harvest_kg_per_ha": 22250.0,
+  "days_to_maturity": 73,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 22.0,
+  "seed_metric_type": "weight"
 }

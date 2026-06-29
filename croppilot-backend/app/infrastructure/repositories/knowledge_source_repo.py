@@ -4,7 +4,10 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.domains.ingestion.models import Crop, CropKnowledgeSource, KnowledgeSource
 from app.domains.ingestion.repositories import ExistingSourceInfo
-from app.infrastructure.repositories.db import KNOWLEDGE_SOURCE_STATUS_PENDING
+from app.infrastructure.repositories.db import (
+    KNOWLEDGE_SOURCE_STATUS_GRAPH_INDEXED,
+    KNOWLEDGE_SOURCE_STATUS_PENDING,
+)
 
 
 class SqlKnowledgeSourceRepository:
@@ -71,6 +74,18 @@ class SqlKnowledgeSourceRepository:
 
         source.status = status
         self._session.commit()
+
+    def reset_graph_indexed_sources(self) -> int:
+        sources = (
+            self._session.query(KnowledgeSource)
+            .filter_by(status=KNOWLEDGE_SOURCE_STATUS_GRAPH_INDEXED)
+            .all()
+        )
+        for source in sources:
+            source.status = KNOWLEDGE_SOURCE_STATUS_PENDING
+        if sources:
+            self._session.commit()
+        return len(sources)
 
     def _get_or_create_crop(self, crop_name: str) -> Crop:
         crop = self._session.query(Crop).filter_by(name=crop_name).one_or_none()

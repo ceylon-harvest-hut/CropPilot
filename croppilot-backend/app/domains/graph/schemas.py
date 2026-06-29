@@ -1,6 +1,16 @@
-from typing import List, Optional
+from typing import List, Optional, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+def normalize_string(v: str) -> str:
+    if isinstance(v, str):
+        return v.strip().title()
+    return v
+
+def normalize_string_list(v: List[str]) -> List[str]:
+    if isinstance(v, list):
+        return [normalize_string(item) for item in v if isinstance(item, str)]
+    return v
 
 
 class FertilizerStep(BaseModel):
@@ -16,6 +26,11 @@ class FertilizerStep(BaseModel):
         description="Quantity required per hectare. If given in acres, convert to hectares (1 ha = 2.47 acres)"
     )
 
+    @field_validator("fertilizer")
+    @classmethod
+    def clean_fertilizer(cls, v: str) -> str:
+        return normalize_string(v)
+
 
 class Pest(BaseModel):
     name: str = Field(description="Common name of the pest, insect, or vector")
@@ -25,6 +40,11 @@ class Pest(BaseModel):
     solution: str = Field(
         description="Agronomic, physical, or chemical control methods and insecticide recommendations"
     )
+
+    @field_validator("name")
+    @classmethod
+    def clean_name(cls, v: str) -> str:
+        return normalize_string(v)
 
 
 class Disease(BaseModel):
@@ -37,6 +57,13 @@ class Disease(BaseModel):
     solution: str = Field(
         description="Field management practices, soil sterilization, sanitation, or chemical fungicide recommendations"
     )
+
+    @field_validator("name", "causal_agent")
+    @classmethod
+    def clean_disease_fields(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return None
+        return normalize_string(v)
 
 
 class CropDataExtraction(BaseModel):
@@ -84,3 +111,34 @@ class CropDataExtraction(BaseModel):
     expected_harvest_kg_per_ha: Optional[float] = Field(
         None, description="Expected average yield in kg per hectare"
     )
+    # Standardize to int for clean math, filtering, and API rendering
+    days_to_maturity: Optional[int] = Field(
+        None, 
+        description="The typical number of days from field establishment (transplanting or direct sowing) to harvest.",
+    )
+    
+    # Optional but highly useful for crops started in nursery beds
+    nursery_period_days: Optional[int] = Field(
+        None,
+        description="Number of days the seedling spends in the nursery before transplanting.",
+    )
+
+    # --- Seed & Material Requirements ---
+    seed_amount_per_ha: Optional[float] = Field(
+        None,
+        description="The normalized mathematical average weight or count of planting material required per hectare.",
+    )
+    seed_metric_type: Optional[Literal["weight", "count", "vines", "suckers"]] = Field(
+        None,
+        description="The agronomic classification of the propagation unit (e.g., weight for seeds, vines for sweet potato, suckers for banana)."
+    )
+
+    @field_validator("name")
+    @classmethod
+    def clean_crop_name(cls, v: str) -> str:
+        return normalize_string(v)
+
+    @field_validator("growing_areas", "growing_seasons", "varieties", "soil_types")
+    @classmethod
+    def clean_lists(cls, v: List[str]) -> List[str]:
+        return normalize_string_list(v)

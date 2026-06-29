@@ -1,5 +1,5 @@
 {
-  "crop_name": "වට්ටක්කා",
+  "crop_name": "Pumpkin",
   "scientific_name": null,
   "growing_areas": [
     "Dry Zone",
@@ -12,12 +12,10 @@
   "varieties": [
     "Pathma",
     "A.N.K. Ruhunu",
-    "Local varieties",
+    "Local Varieties",
     "Butternut"
   ],
-  "soil_types": [
-    "Well-drained soil with organic matter"
-  ],
+  "soil_types": [],
   "altitude_min_m": 0.0,
   "altitude_max_m": 500.0,
   "temp_min_c": null,
@@ -46,7 +44,7 @@
       "quantity_kg_per_ha": 380.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -60,116 +58,95 @@
       "quantity_kg_per_ha": 45.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 4.0,
       "repeat_count": 2,
       "repeat_interval_weeks": 4.0,
       "quantity_kg_per_ha": 25.0
-    },
-    {
-      "fertilizer": "Urea",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 75.0
-    },
-    {
-      "fertilizer": "Triple Super Phosphate",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 200.0
-    },
-    {
-      "fertilizer": "Muriate of Potash",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 60.0
-    },
-    {
-      "fertilizer": "Urea",
-      "apply_start_weeks_after_planting": 4.0,
-      "repeat_count": 2,
-      "repeat_interval_weeks": 4.0,
-      "quantity_kg_per_ha": 75.0
-    },
-    {
-      "fertilizer": "Muriate of Potash",
-      "apply_start_weeks_after_planting": 4.0,
-      "repeat_count": 2,
-      "repeat_interval_weeks": 4.0,
-      "quantity_kg_per_ha": 60.0
     }
   ],
   "pests": [
     {
-      "name": "Leafhoppers",
-      "impact": "Transmits Phytoplasma disease.",
-      "solution": "Control with recommended insecticides."
+      "name": "Whitefly",
+      "impact": "Transmits Leaf Curl Virus (LCV), causing upward curling of leaves, shortened internodes, distortion, stunted plants, and deformed fruits.",
+      "solution": "Control vectors using recommended insecticides."
+    },
+    {
+      "name": "Aphid",
+      "impact": "Transmits Papaya Ringspot Virus (PRSV), causing mottled spots on leaves, leaf distortion, fruit deformation, small fruit size, and oily spots on fruit surface in severe infections.",
+      "solution": "Control vectors using recommended insecticides."
+    },
+    {
+      "name": "Leafhopper",
+      "impact": "Transmits Phytoplasma disease, causing small, thick, yellowish-green leaves, shortened internodes, stunted plants, chrysanthemum-like appearance, and greening of flowers.",
+      "solution": "Control vectors using recommended insecticides."
     }
   ],
   "diseases": [
     {
       "name": "Powdery Mildew",
-      "causal_agent": "Podosphaera xanthii",
-      "impact": "Initially appears as light yellow spots on mature leaves. These spots enlarge as white, fluffy mycelium grows on the leaf surface. Severely affected leaves turn brown, shrivel, and drop.",
-      "solution": "Use recommended fungicides at the early stage of disease development. Remove infected crop residues after harvest."
+      "causal_agent": "Podosphaera Xanthii",
+      "impact": "Initially appears as light yellow spots on mature leaves. These spots enlarge with the growth of white powdery mycelium on the leaf surface. Severely affected leaves turn brown, shrivel, and drop.",
+      "solution": "Apply recommended fungicides at the early stage of disease development. Remove infected crop residues after harvest."
     },
     {
       "name": "Downy Mildew",
-      "causal_agent": "Pseudoperonospora cubensis",
-      "impact": "Angular yellow spots delimited by leaf veins on the upper surface of leaves. Leaves become chlorotic and eventually necrotic, leading to host plant cell death.",
-      "solution": "Use recommended fungicides at the early stage of disease development. Remove infected plant parts after harvest."
+      "causal_agent": "Pseudoperonospora Cubensis",
+      "impact": "Angular yellow spots confined by leaf veins appear on the upper surface of leaves. Leaves become chlorotic, eventually necrotic, and host plant cells die.",
+      "solution": "Apply recommended fungicides at the early stage of disease development. Remove infected plant parts after harvest."
     },
     {
-      "name": "Foot Rot / Basal Rot",
-      "causal_agent": "Sclerotium spp., Fusarium spp.",
-      "impact": "In early stages, plants show temporary wilting symptoms. Leaves exhibit yellowing, wilting, and drooping. Eventually, the plant dies. Vascular bundles in the basal region turn yellow or brown. A white fungal network is visible at the base of the plant.",
-      "solution": "Destroy infected plants along with the soil. Improve drainage. Use recommended fungicides at the early stage of disease development."
+      "name": "Stem Rot",
+      "causal_agent": "Sclerotium Spp., Fusarium Spp.",
+      "impact": "In the early stages, plants show temporary wilting symptoms. Leaves exhibit yellowing, wilting, and drooping. Eventually, the plant dies. Vascular bundles in the basal region turn yellow or brown. White fungal mycelium can be observed at the base of the plant.",
+      "solution": "Destroy infected plants along with the soil. Improve drainage. Apply recommended fungicides at the early stage of disease development."
     },
     {
       "name": "Gummy Stem Blight",
-      "causal_agent": "Didymella bryoniae",
-      "impact": "Lesions typically begin as water-soaked areas on leaves and fruits. Early stages may show chlorotic holes, which then turn light brown and become irregularly shaped. Dark, cracked, sunken spots appear on fruits. Plants may collapse at sunken, bark-cankered areas on the stem. Stem lesions often elongate like streaks, and gum exudation may occur from cracks. Dark brown to black pycnidia can be seen on fruits, stems, or leaves.",
-      "solution": "Deep plow crop residues immediately after harvest to reduce fungal survival. Use recommended fungicides at the early stage of disease development."
+      "causal_agent": "Didymella Bryoniae",
+      "impact": "Lesions typically begin in water-soaked areas on leaves and fruits. Early stages may show chlorotic holes, which then turn light brown and become irregularly shaped. Dark, cracked, sunken spots appear on fruits. Plants may collapse at sunken, bark-cankered areas. Stem lesions often elongate like streaks, and gum exudation may occur from cracks. Dark brown to black pycnidia can be seen on fruits, stems, or leaves.",
+      "solution": "Deep plow crop residues immediately after harvest to reduce fungal survival. Apply recommended fungicides at the early stage of disease development."
     },
     {
       "name": "Bacterial Wilt",
-      "causal_agent": "Ralstonia solanacearum",
-      "impact": "Sudden wilting of leaves is observed. Eventually, the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning) occurs, leading to permanent wilting.",
-      "solution": "Destroy infected plants along with the soil. Practice crop rotation with resistant varieties (okra, corn). Implement mixed cropping with Cruciferae family crops. Avoid transferring equipment from infected fields to uninfected fields."
+      "causal_agent": "Ralstonia Solanacearum",
+      "impact": "Sudden wilting of leaves is observed. Eventually, the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning) occurs. Leads to permanent wilting.",
+      "solution": "Destroy infected plants along with the soil. Practice crop rotation with resistant varieties (e.g., Okra, Maize). Implement mixed cropping with Cruciferae family crops. Avoid transferring equipment from infected fields to uninfected fields."
     },
     {
-      "name": "Leaf Curl Virus (LCV)",
+      "name": "Leaf Curl Virus",
       "causal_agent": null,
-      "impact": "Upward curling of leaves, shortened internodes, and deformation. Stunted plants and deformed fruits.",
-      "solution": "Control of the whitefly vector (Bemicia tabaci) is essential."
+      "impact": "Upward curling of leaves, shortened internodes, and distortion. Results in stunted plants and deformed fruits.",
+      "solution": "Control vectors (Whitefly) using recommended insecticides."
     },
     {
-      "name": "Papaya Ringspot Virus (PRSV)",
+      "name": "Papaya Ringspot Virus",
       "causal_agent": null,
-      "impact": "Variegated spotted lesions on leaves. Leaf deformation. Fruit deformation and reduction in fruit size. In severe infections, oily spots appear on the fruit surface.",
-      "solution": "Control of aphid vectors is essential."
+      "impact": "Mottled spots on leaves, leaf distortion, fruit deformation, and reduced fruit size. In severe infections, oily spots appear on the fruit surface.",
+      "solution": "Control vectors (Aphids) using recommended insecticides."
     },
     {
-      "name": "Cucumber Mosaic Virus (CMV)",
+      "name": "Cucumber Mosaic Virus",
       "causal_agent": null,
-      "impact": "Green spots and leaf deformation. Green spots on fruits, which turn bright yellow and decay. Fruit deformation.",
-      "solution": "Not explicitly mentioned."
+      "impact": "Green mottling and distortion of leaves. Fruits develop green spots, become bright yellow, and decay. Fruit deformation is common.",
+      "solution": ""
     },
     {
-      "name": "Zucchini Yellow Mosaic Virus (ZYMV)",
+      "name": "Zucchini Yellow Mosaic Virus",
       "causal_agent": null,
-      "impact": "Stunted plants, yellowing, chlorosis (occasionally), variegated and deformed leaves (blisters). Fruit discoloration and deformation.",
-      "solution": "Not explicitly mentioned."
+      "impact": "Stunted plants, yellowing, occasional chlorosis, mottled and distorted leaves (blisters). Leads to fruit discoloration and deformation.",
+      "solution": ""
     },
     {
-      "name": "Phytoplasma Disease / Little Leaf Disease",
-      "causal_agent": "Phytoplasma",
-      "impact": "Small, thick, and yellow-green leaves. Shortened internodes and stunted plants. Chrysanthemum-like appearance. Greening of flowers.",
-      "solution": "Remove infected plants. Control vectors (leafhoppers) using recommended insecticides."
+      "name": "Phytoplasma Disease",
+      "causal_agent": null,
+      "impact": "Small, thick, and yellowish-green leaves. Shortened internodes and stunted plant growth. Chrysanthemum-like appearance. Greening of flowers.",
+      "solution": "Remove infected plants. Control vectors (Leafhoppers) using recommended insecticides."
     }
   ],
-  "expected_harvest_kg_per_ha": 17500.0
+  "expected_harvest_kg_per_ha": 17500.0,
+  "days_to_maturity": null,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 1.0,
+  "seed_metric_type": "weight"
 }

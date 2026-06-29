@@ -1,8 +1,8 @@
 {
-  "crop_name": "බණ්ඩක්කා",
+  "crop_name": "Okra",
   "scientific_name": null,
   "growing_areas": [
-    "Any climatic zone except the Upcountry Wet Zone",
+    "Any Climatic Zone Except Upcountry Wet Zone",
     "Hambantota District",
     "Kurunegala District",
     "Ratnapura District",
@@ -14,18 +14,17 @@
     "Monaragala District"
   ],
   "growing_seasons": [
-    "Year-round",
-    "Yala (early April to early May)",
-    "Maha (early September to early October)"
+    "Yala (Early April To Early May)",
+    "Maha (Early September To Early October)"
   ],
   "varieties": [
-    "MI5",
-    "MI7",
-    "OKH1",
+    "Mi5",
+    "Mi7",
+    "Okh1",
     "Haritha"
   ],
   "soil_types": [
-    "Well-drained soil"
+    "Well-Drained Soil That Is Neither Acidic Nor Alkaline"
   ],
   "altitude_min_m": null,
   "altitude_max_m": null,
@@ -33,8 +32,8 @@
   "temp_max_c": null,
   "rainfall_min_mm": null,
   "rainfall_max_mm": null,
-  "ph_min": 6.0,
-  "ph_max": 7.0,
+  "ph_min": null,
+  "ph_max": null,
   "pit_length_cm": null,
   "pit_width_cm": null,
   "row_distance_cm": 90.0,
@@ -55,7 +54,7 @@
       "quantity_kg_per_ha": 195.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -69,7 +68,7 @@
       "quantity_kg_per_ha": 50.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 2.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -83,7 +82,7 @@
       "quantity_kg_per_ha": 100.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 5.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -97,7 +96,7 @@
       "quantity_kg_per_ha": 100.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 8.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -107,23 +106,27 @@
   "pests": [
     {
       "name": "Whitefly",
-      "impact": "Vector for Okra Yellow Vein Mosaic Virus.",
-      "solution": "Vector control (whitefly), use of insect-resistant nets or cover crops, use of neem extract."
+      "impact": "Spreads Okra Yellow Vein Mosaic Virus.",
+      "solution": "Vector control using insect-resistant nets, cover crops, or neem extract."
     }
   ],
   "diseases": [
     {
       "name": "Powdery Mildew",
-      "causal_agent": "Podosphaera Spp",
-      "impact": "White powdery fungal parts initially appear on the underside of leaves. The upper side of leaves turns yellow. Mainly seen on mature leaves and stems. Eventually, leaves dry out and fall, leading to significant yield reduction. The disease can worsen due to high humidity and is common in dewy climates.",
+      "causal_agent": "Podosphaera Spp.",
+      "impact": "White powdery fungal growth on the underside of leaves, yellowing of upper leaf surface, primarily affects mature leaves and stems. Leaves eventually dry and fall, leading to significant yield reduction. Disease severity increases with high humidity and dew.",
       "solution": "Maintain clean cultivation, control micro-humidity and temperature, use recommended fungicides in severe cases or under favorable climatic conditions."
     },
     {
       "name": "Okra Yellow Vein Mosaic Virus",
-      "causal_agent": "Okra Yellow Vein Mosaic Virus (Begomovirus)",
-      "impact": "Characteristic yellowing of the entire leaf vein network. Reduced yield. Yellow mosaic pattern on leaves. Leaves curl, wrinkle, and develop spots. Stunted plant growth and impaired development. In severe infections, pods become small, deformed, yellowed, and shrunken. Not spread by seeds.",
-      "solution": "Vector control (whitefly), field sanitation (remove and destroy diseased plants immediately), use recommended seeds and resistant varieties, careful use of tools, IPM for disease control, crop rotation with non-host plants, use of healthy seeds, maintaining proper planting distance, proper plant nutrition, good water management, keeping the field clean, removing and destroying infected plants, using biological control methods."
+      "causal_agent": "Begomovirus",
+      "impact": "Characteristic yellowing of leaf veins, reduced yield, yellow mosaic patterns on leaves, leaves curl, wrinkle, and develop spots. Stunted plant growth. Severe infection leads to small, deformed, yellowed, and shriveled pods. Not seed-borne.",
+      "solution": "Control the Whitefly vector (using insect-resistant nets, cover crops, neem extract). Practice field sanitation, remove and destroy diseased plants immediately. Use recommended healthy seeds and resistant varieties. Exercise caution when using tools. Implement Integrated Pest Management (IPM) strategies, including crop rotation with non-host plants, maintaining proper planting distance, ensuring proper plant nutrition, good water management, keeping the field clean, and utilizing biological control methods."
     }
   ],
-  "expected_harvest_kg_per_ha": 12500.0
+  "expected_harvest_kg_per_ha": 12500.0,
+  "days_to_maturity": 50,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 4.5,
+  "seed_metric_type": "weight"
 }

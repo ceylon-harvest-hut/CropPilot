@@ -109,6 +109,12 @@ class GraphIngestionService:
                 )
             raise
 
+    def clear_graph_database(self) -> int:
+        clear = getattr(self._graph_store, "clear_graph", None)
+        if not callable(clear):
+            raise NotImplementedError("Graph store does not support clear_graph()")
+        return clear()
+
     def close(self) -> None:
         close = getattr(self._graph_store, "close", None)
         if callable(close):

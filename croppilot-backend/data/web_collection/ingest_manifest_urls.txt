@@ -16,6 +16,42 @@
 #https://dea.gov.lk/turmeric/,Turmeric,web_url
 #https://dea.gov.lk/vanilla/,Vanilla,web_url
 
+# DOA HORDI Sinhala crop pages (doa.gov.lk) — use loader doa_hordi
+https://doa.gov.lk/sinhala-hordi-crop-cabbage/,Cabbage,web_url
+https://doa.gov.lk/sinhala-hordi-crop-raddish/,Radish,web_url
+https://doa.gov.lk/sinhala-hordi-crop-carrot/,Carrot,web_url
+https://doa.gov.lk/sinhala-hordi-crop-tomato/,Tomato,web_url
+https://doa.gov.lk/sinhala-hordi-crop-capsicum/,Capsicum,web_url
+https://doa.gov.lk/sinhala-hordi-crop-brinjal/,Brinjal,web_url
+https://doa.gov.lk/sinhala-hordi-crop-okra/,Okra,web_url
+https://doa.gov.lk/sinhala-hordi-crop-bean/,Beans,web_url
+https://doa.gov.lk/sinhala-hordi-crop-winged-bean/,Winged Bean,web_url
+https://doa.gov.lk/sinhala-hordi-crop-yard-long-bean/,Yard Long Bean,web_url
+https://doa.gov.lk/sinhala-hordi-crop-pumpkin/,Pumpkin,web_url
+https://doa.gov.lk/sinhala-hordi-crop-potato/,Potato,web_url
+https://doa.gov.lk/sinhala-hordi-crop-cucumber/,Cucumber,web_url
+https://doa.gov.lk/sinhala-hordi-crop-snake-gourd/,Snake Gourd,web_url
+https://doa.gov.lk/sinhala-hordi-crop-luffa/,Luffa,web_url
+https://doa.gov.lk/sinhala-hordi-crop-bitter-gourd/,Bitter Gourd,web_url
+https://doa.gov.lk/sinhala-hordi-crop-beet-root/,Beetroot,web_url
+https://doa.gov.lk/sinhala-hordi-crop-mushroom/,Mushroom,web_url
+https://doa.gov.lk/sinhala-hordi-crop-cassava/,Cassava,web_url
+https://doa.gov.lk/sinhala-hordi-crop-sweet-potato/,Sweet Potato,web_url
+https://doa.gov.lk/sinhala-hordi-crop-leeks/,Leeks,web_url
+https://doa.gov.lk/sinhala-hordi-crop-yams/,Wild Yam,web_url
+https://doa.gov.lk/sinhala-hordi-crop-innala/,Innala,web_url
+https://doa.gov.lk/sinhala-hordi-crop-kiri-ala/,Kiri Ala,web_url
+https://doa.gov.lk/sinhala-hordi-crop-ela-batu/,Ela Batu,web_url
+https://doa.gov.lk/sinhala-hordi-crop-kekiri/,Kekiri,web_url
+https://doa.gov.lk/sinhala-hordi-crop-thithbatu/,Thibbatu,web_url
+https://doa.gov.lk/sinhala-hordi-crop-thumba-karawila/,Spiny Bitter Gourd,web_url
+https://doa.gov.lk/sinhala-hordi-crop-salad-leaves/,Salad Leaves,web_url
+https://doa.gov.lk/sinhala-hordi-crop-kohila/,Kohila,web_url
+https://doa.gov.lk/sinhala-hordi-crops-leafy-vegetables/,Leafy Vegetables,web_url
+https://doa.gov.lk/sinhala-hordi-crop-knol-khol/,Knol Khol,web_url
+https://doa.gov.lk/sinhala-hordi-crop-cauliflower/,Cauliflower,web_url
+https://doa.gov.lk/sinhala-hordi-crop-moringa/,Moringa,web_url
+
 # Sinhala URL paths (percent-encoded) — DEA export crops
 #https://dea.gov.lk/%e0%b6%b4%e0%b7%94%e0%b7%80%e0%b6%9a%e0%b7%8a/,පුවක්,web_url
 #https://dea.gov.lk/%e0%b6%b6%e0%b7%94%e0%b6%bd%e0%b6%ad%e0%b7%8a/,බුලත්,web_url
@@ -33,37 +69,37 @@
 #https://dea.gov.lk/%e0%b7%80%e0%b7%90%e0%b6%b1%e0%b7%92%e0%b6%bd%e0%b7%8f/,වැනිලා,web_url
 
 # DOA HORDI Sinhala crop pages (doa.gov.lk) — use loader doa_hordi
-https://doa.gov.lk/sinhala-hordi-crop-cabbage/,ගෝවා,web_url
-https://doa.gov.lk/sinhala-hordi-crop-raddish/,රාබු,web_url
-https://doa.gov.lk/sinhala-hordi-crop-carrot/,කැරට්,web_url
-https://doa.gov.lk/sinhala-hordi-crop-tomato/,තක්කාලි,web_url
-https://doa.gov.lk/sinhala-hordi-crop-capsicum/,මාළු මිරිස්,web_url
-https://doa.gov.lk/sinhala-hordi-crop-brinjal/,වම්බටු,web_url
-https://doa.gov.lk/sinhala-hordi-crop-okra/,බණ්ඩක්කා,web_url
-https://doa.gov.lk/sinhala-hordi-crop-bean/,බෝංචි,web_url
-https://doa.gov.lk/sinhala-hordi-crop-winged-bean/,දඹල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-yard-long-bean/,මෑ,web_url
-https://doa.gov.lk/sinhala-hordi-crop-pumpkin/,වට්ටක්කා,web_url
-https://doa.gov.lk/sinhala-hordi-crop-potato/,අර්තාපල්,web_url
-https://doa.gov.lk/sinhala-hordi-crop-cucumber/,පිපිඤ්ඤා,web_url
-https://doa.gov.lk/sinhala-hordi-crop-snake-gourd/,පතෝල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-luffa/,වැටකොළු,web_url
-https://doa.gov.lk/sinhala-hordi-crop-bitter-gourd/,කරවිල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-beet-root/,බීට් රූට්,web_url
-https://doa.gov.lk/sinhala-hordi-crop-mushroom/,බිම්මල්,web_url
-https://doa.gov.lk/sinhala-hordi-crop-cassava/,මඤ්ඤොක්කා,web_url
-https://doa.gov.lk/sinhala-hordi-crop-sweet-potato/,බතල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-leeks/,ලීක්ස්,web_url
-https://doa.gov.lk/sinhala-hordi-crop-yams/,වැල් අල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-innala/,ඉන්නල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-kiri-ala/,කිරි අල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-ela-batu/,එළබටු,web_url
-https://doa.gov.lk/sinhala-hordi-crop-kekiri/,කැකිරි,web_url
-https://doa.gov.lk/sinhala-hordi-crop-thithbatu/,තිබ්බටු,web_url
-https://doa.gov.lk/sinhala-hordi-crop-thumba-karawila/,තුඹ කරවිල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-salad-leaves/,සලාද,web_url
-https://doa.gov.lk/sinhala-hordi-crop-kohila/,කොහිල,web_url
-https://doa.gov.lk/sinhala-hordi-crops-leafy-vegetables/,කොළ එළවලු,web_url
-https://doa.gov.lk/sinhala-hordi-crop-knol-khol/,නෝකෝල,web_url
-https://doa.gov.lk/sinhala-hordi-crop-cauliflower/,මල් ගෝවා,web_url
-https://doa.gov.lk/sinhala-hordi-crop-moringa/,මුරුංගා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-cabbage/,ගෝවා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-raddish/,රාබු,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-carrot/,කැරට්,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-tomato/,තක්කාලි,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-capsicum/,මාළු මිරිස්,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-brinjal/,වම්බටු,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-okra/,බණ්ඩක්කා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-bean/,බෝංචි,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-winged-bean/,දඹල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-yard-long-bean/,මෑ,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-pumpkin/,වට්ටක්කා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-potato/,අර්තාපල්,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-cucumber/,පිපිඤ්ඤා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-snake-gourd/,පතෝල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-luffa/,වැටකොළු,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-bitter-gourd/,කරවිල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-beet-root/,බීට් රූට්,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-mushroom/,බිම්මල්,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-cassava/,මඤ්ඤොක්කා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-sweet-potato/,බතල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-leeks/,ලීක්ස්,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-yams/,වැල් අල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-innala/,ඉන්නල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-kiri-ala/,කිරි අල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-ela-batu/,එළබටු,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-kekiri/,කැකිරි,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-thithbatu/,තිබ්බටු,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-thumba-karawila/,තුඹ කරවිල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-salad-leaves/,සලාද,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-kohila/,කොහිල,web_url
+#https://doa.gov.lk/sinhala-hordi-crops-leafy-vegetables/,කොළ එළවලු,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-knol-khol/,නෝකෝල,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-cauliflower/,මල් ගෝවා,web_url
+#https://doa.gov.lk/sinhala-hordi-crop-moringa/,මුරුංගා,web_url

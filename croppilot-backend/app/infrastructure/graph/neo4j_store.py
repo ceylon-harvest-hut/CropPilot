@@ -19,7 +19,11 @@ SET c.name = $name,
     c.pit_width_cm = $pit_width_cm,
     c.row_distance_cm = $row_distance_cm,
     c.plant_distance_cm = $plant_distance_cm,
-    c.expected_harvest_kg_per_ha = $expected_harvest_kg_per_ha
+    c.expected_harvest_kg_per_ha = $expected_harvest_kg_per_ha,
+    c.days_to_maturity = $days_to_maturity,
+    c.nursery_period_days = $nursery_period_days,
+    c.seed_amount_per_ha = $seed_amount_per_ha,
+    c.seed_metric_type = $seed_metric_type
 """
 
 MERGE_GROWING_AREAS_CYPHER = """
@@ -87,6 +91,11 @@ MATCH (c:Crop {source_uri: $source_uri})
 DETACH DELETE c
 """
 
+CLEAR_GRAPH_CYPHER = """
+MATCH (n)
+DETACH DELETE n
+"""
+
 
 def _run_write(session, query: str, **params) -> None:
     """Execute a write query and consume the result so the transaction commits."""
@@ -118,6 +127,10 @@ def _scalar_params(
         "row_distance_cm": extracted.row_distance_cm,
         "plant_distance_cm": extracted.plant_distance_cm,
         "expected_harvest_kg_per_ha": extracted.expected_harvest_kg_per_ha,
+        "days_to_maturity": extracted.days_to_maturity,
+        "nursery_period_days": extracted.nursery_period_days,
+        "seed_amount_per_ha": extracted.seed_amount_per_ha,
+        "seed_metric_type": extracted.seed_metric_type,
     }
 
 
@@ -204,3 +217,9 @@ class Neo4jGraphStore:
             )
             record = result.single()
             return int(record["n"]) if record else 0
+
+    def clear_graph(self) -> int:
+        with self._driver.session() as session:
+            result = session.run(CLEAR_GRAPH_CYPHER)
+            summary = result.consume()
+            return summary.counters.nodes_deleted

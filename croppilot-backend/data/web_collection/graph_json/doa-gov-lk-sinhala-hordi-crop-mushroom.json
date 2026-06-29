@@ -1,5 +1,5 @@
 {
-  "crop_name": "බිම්මල්",
+  "crop_name": "Mushroom",
   "scientific_name": null,
   "growing_areas": [],
   "growing_seasons": [],
@@ -8,12 +8,7 @@
     "Abalone",
     "Pink Oyster"
   ],
-  "soil_types": [
-    "Cellulose-based medium",
-    "Lignin-based medium",
-    "Hemicellulose-based medium",
-    "Wood dust"
-  ],
+  "soil_types": [],
   "altitude_min_m": null,
   "altitude_max_m": null,
   "temp_min_c": 17.0,
@@ -29,40 +24,59 @@
   "fertilizer_schedule": [],
   "pests": [
     {
-      "name": "Mushroom flies (Bradysia, Cecid fly, Phorid fly, Sciarid flies)",
-      "impact": "Damage to mushrooms and mycelium",
-      "solution": "Construct a standard cultivation house with insect-resistant netting; maintain proper sanitation in cultivation houses; use neem water extract; use garlic and neem extract."
+      "name": "Bradysia",
+      "impact": "Mushroom flies affecting the crop.",
+      "solution": "Construct a standard cultivation house with insect-resistant netting to prevent insect entry. Maintain proper sanitation in cultivation houses. Use neem water extract, garlic, and neem extract."
     },
     {
-      "name": "Lycid beetle",
-      "impact": "Damage to mushrooms and mycelium",
-      "solution": "Construct a standard cultivation house with insect-resistant netting; maintain proper sanitation in cultivation houses; use neem water extract; use garlic and neem extract."
+      "name": "Cecid Fly",
+      "impact": "Mushroom flies affecting the crop.",
+      "solution": "Construct a standard cultivation house with insect-resistant netting to prevent insect entry. Maintain proper sanitation in cultivation houses. Use neem water extract, garlic, and neem extract."
     },
     {
-      "name": "Mites",
-      "impact": "Damage to mushrooms and mycelium",
-      "solution": "Use sulfur-containing insecticides."
+      "name": "Phorid Fly",
+      "impact": "Mushroom flies affecting the crop.",
+      "solution": "Construct a standard cultivation house with insect-resistant netting to prevent insect entry. Maintain proper sanitation in cultivation houses. Use neem water extract, garlic, and neem extract."
+    },
+    {
+      "name": "Sciarid Fly",
+      "impact": "Mushroom flies affecting the crop.",
+      "solution": "Construct a standard cultivation house with insect-resistant netting to prevent insect entry. Maintain proper sanitation in cultivation houses. Use neem water extract, garlic, and neem extract."
+    },
+    {
+      "name": "Lycid Beetle",
+      "impact": "Beetles affecting the crop.",
+      "solution": "Construct a standard cultivation house with insect-resistant netting to prevent insect entry. Maintain proper sanitation in cultivation houses. Use neem water extract, garlic, and neem extract."
+    },
+    {
+      "name": "Mite",
+      "impact": "Mites affecting the crop.",
+      "solution": "Construct a standard cultivation house with insect-resistant netting to prevent insect entry. Maintain proper sanitation in cultivation houses. Use neem water extract, garlic, and neem extract. Use sulfur-containing insecticides for mites."
     }
   ],
   "diseases": [
     {
-      "name": "Trichoderma infection",
-      "causal_agent": "Trichoderma spp.",
-      "impact": "Green spots visible on cultivation bags",
-      "solution": "Use fresh, non-old raw materials; properly sterilize cultivation bags; use infection-free, well-grown spawn; disinfect before spawning and spawn in a clean, covered area; properly manage temperature and humidity during the growth period; remove and destroy infected cultivation bags."
+      "name": "Trichoderma Spp. Infection",
+      "causal_agent": "Trichoderma Spp.",
+      "impact": "Green spots can be seen on cultivation bags.",
+      "solution": "Use fresh, uncontaminated raw materials. Properly sterilize cultivation bags. Use infection-free, well-grown spawn. Disinfect before inoculation and inoculate in a clean, covered area. Properly manage temperature and humidity during the growth period. Remove and destroy infected cultivation bags."
     },
     {
-      "name": "Aspergillus niger infection",
-      "causal_agent": "Aspergillus niger",
-      "impact": "Black spots visible on cultivation bags",
-      "solution": "Use fresh, non-old raw materials; properly sterilize cultivation bags; use infection-free, well-grown spawn; disinfect before spawning and spawn in a clean, covered area; properly manage temperature and humidity during the growth period; remove and destroy infected cultivation bags."
+      "name": "Aspergillus Niger Infection",
+      "causal_agent": "Aspergillus Niger",
+      "impact": "Black spots can be seen on cultivation bags.",
+      "solution": "Use fresh, uncontaminated raw materials. Properly sterilize cultivation bags. Use infection-free, well-grown spawn. Disinfect before inoculation and inoculate in a clean, covered area. Properly manage temperature and humidity during the growth period. Remove and destroy infected cultivation bags."
     },
     {
-      "name": "Bacterial infections",
+      "name": "Bacterial Infection",
       "causal_agent": null,
-      "impact": "Damage to mushrooms and mycelium",
-      "solution": "Apply 10g chlorine dissolved in 1 liter of water regularly at 3-5 day intervals."
+      "impact": "General bacterial infections.",
+      "solution": "Apply 10g of readily available chlorine dissolved in 1 liter of water regularly at 3-5 day intervals."
     }
   ],
-  "expected_harvest_kg_per_ha": null
+  "expected_harvest_kg_per_ha": null,
+  "days_to_maturity": 40,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": null,
+  "seed_metric_type": null
 }

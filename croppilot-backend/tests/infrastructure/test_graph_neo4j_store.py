@@ -22,6 +22,31 @@ def test_neo4j_store_upsert_runs_scalar_and_relationship_queries() -> None:
     assert "MERGE (c:Crop" in first_query
 
 
+def test_neo4j_store_upsert_includes_maturity_and_seed_params() -> None:
+    driver = MagicMock()
+    session = MagicMock()
+    driver.session.return_value.__enter__.return_value = session
+
+    store = Neo4jGraphStore(driver)
+    extracted = ExtractedCropKnowledge(
+        crop_name="Bean",
+        days_to_maturity=53,
+        nursery_period_days=14,
+        seed_amount_per_ha=12.5,
+        seed_metric_type="weight",
+    )
+    store.upsert_crop(extracted, source_uri="bean.html", crop_tag="Bean")
+
+    merge_query = session.run.call_args_list[0].args[0]
+    merge_params = session.run.call_args_list[0].kwargs
+    assert "days_to_maturity" in merge_query
+    assert "seed_metric_type" in merge_query
+    assert merge_params["days_to_maturity"] == 53
+    assert merge_params["nursery_period_days"] == 14
+    assert merge_params["seed_amount_per_ha"] == 12.5
+    assert merge_params["seed_metric_type"] == "weight"
+
+
 def test_neo4j_store_delete_and_count() -> None:
     driver = MagicMock()
     session = MagicMock()
@@ -34,3 +59,17 @@ def test_neo4j_store_delete_and_count() -> None:
     store = Neo4jGraphStore(driver)
     assert store.delete_by_source_uri("pepper.html") == 2
     assert store.count_by_source_uri("pepper.html") == 1
+
+
+def test_neo4j_store_clear_graph() -> None:
+    driver = MagicMock()
+    session = MagicMock()
+    driver.session.return_value.__enter__.return_value = session
+    summary = MagicMock()
+    summary.counters.nodes_deleted = 42
+    session.run.return_value.consume.return_value = summary
+
+    store = Neo4jGraphStore(driver)
+    assert store.clear_graph() == 42
+    query = session.run.call_args.args[0]
+    assert "DETACH DELETE" in query

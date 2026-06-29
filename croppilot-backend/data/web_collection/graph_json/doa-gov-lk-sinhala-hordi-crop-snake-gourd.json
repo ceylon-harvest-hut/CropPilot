@@ -1,24 +1,25 @@
 {
-  "crop_name": "පතෝල",
+  "crop_name": "Snake Gourd",
   "scientific_name": null,
   "growing_areas": [
     "Matale District",
     "Kandy District",
     "Hambantota District",
     "Kurunegala District",
-    "Ratnapura District"
+    "Ratnapura District",
+    "Areas Up To 500M Above Sea Level"
   ],
   "growing_seasons": [
-    "Yala (Dry Zone)",
-    "Year-round (Wet Zone)"
+    "Dry Zone: Yala",
+    "Wet Zone: Year-Round"
   ],
   "varieties": [
-    "TA-2",
-    "MI-Short",
+    "Ta-2",
+    "Mi-Short",
     "Thinnaweli"
   ],
   "soil_types": [
-    "Well-drained soil rich in organic matter"
+    "Well-Drained Soil Rich In Organic Matter"
   ],
   "altitude_min_m": 0.0,
   "altitude_max_m": 500.0,
@@ -34,13 +35,6 @@
   "plant_distance_cm": 150.0,
   "fertilizer_schedule": [
     {
-      "fertilizer": "Organic Matter",
-      "apply_start_weeks_after_planting": 0.0,
-      "repeat_count": 1,
-      "repeat_interval_weeks": 0.0,
-      "quantity_kg_per_ha": 10000.0
-    },
-    {
       "fertilizer": "Urea",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
@@ -55,7 +49,7 @@
       "quantity_kg_per_ha": 200.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 0.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -69,7 +63,7 @@
       "quantity_kg_per_ha": 75.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 4.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -83,7 +77,7 @@
       "quantity_kg_per_ha": 75.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 8.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -93,91 +87,85 @@
   "pests": [
     {
       "name": "Whitefly",
-      "impact": "Transmits Leaf Curl Virus (LCV), causing upward leaf curling, shortened internodes, distortion, stunted plants, and deformed fruits.",
-      "solution": "Control vectors (whiteflies) using recommended insecticides."
+      "impact": "Transmits Leaf Curl Virus (LCV).",
+      "solution": "Control Whitefly using recommended insecticides."
     },
     {
-      "name": "Aphids",
-      "impact": "Transmits Papaya Ringspot Virus (PRSV), causing mottled spots on leaves, leaf distortion, fruit distortion, small fruits, and oily spots on fruit surface in severe infections.",
-      "solution": "Control vectors (aphids) using recommended insecticides."
+      "name": "Aphid",
+      "impact": "Transmits Papaya Ringspot Virus (PRSV).",
+      "solution": "Control Aphids using recommended insecticides."
     },
     {
-      "name": "Leafhoppers",
-      "impact": "Transmits Phytoplasma disease (Little Leaf Disease), causing small, thick, yellowish-green leaves, shortened internodes, stunted plants, phyllody, and greening of flowers.",
-      "solution": "Control vectors (leafhoppers) using recommended insecticides."
-    },
-    {
-      "name": "Nematodes",
-      "impact": "Can spread Bacterial Wilt (Ralstonia solanacearum).",
-      "solution": "Implement crop rotation with resistant varieties and avoid moving contaminated tools."
-    },
-    {
-      "name": "Insects",
-      "impact": "Can spread Bacterial Wilt (Ralstonia solanacearum).",
-      "solution": "Implement crop rotation with resistant varieties and avoid moving contaminated tools."
+      "name": "Leafhopper",
+      "impact": "Transmits Phytoplasma disease.",
+      "solution": "Control Leafhoppers using recommended insecticides."
     }
   ],
   "diseases": [
     {
       "name": "Powdery Mildew",
-      "causal_agent": "Podosphaera xanthii",
-      "impact": "Light yellow spots on mature leaves, enlarging with white powdery mycelium growth on leaf surface. Severely affected leaves turn brown, shrivel, and drop.",
-      "solution": "Use recommended fungicides at early stages of disease development. Remove infected crop residues after harvest."
+      "causal_agent": "Podosphaera Xanthii",
+      "impact": "Initially appears as light yellow spots on mature leaves. Spots enlarge with white powdery mycelium growth on the leaf surface. Severely affected leaves turn brown, shrivel, and drop.",
+      "solution": "Use recommended fungicides at the early stage of disease development. Remove infected crop residue after harvest."
     },
     {
       "name": "Downy Mildew",
-      "causal_agent": "Pseudoperonospora cubensis",
-      "impact": "Angular yellow spots on the upper leaf surface, delimited by veins. Leaves become chlorotic, eventually necrotic, and host cells die.",
-      "solution": "Use recommended fungicides at early stages of disease development. Remove infected plant parts after harvest."
+      "causal_agent": "Pseudoperonospora Cubensis",
+      "impact": "Angular yellow spots on the upper leaf surface, limited by leaf veins. Leaves become chlorotic and eventually necrotic, leading to host cell death.",
+      "solution": "Use recommended fungicides at the early stage of disease development. Remove infected plant parts after harvest."
     },
     {
-      "name": "Foot Rot / Basal Rot",
-      "causal_agent": "Sclerotium spp., Fusarium spp.",
-      "impact": "Temporary wilting at early stages, followed by yellowing, wilting, and drooping of leaves. Eventually, the plant dies. Vascular bundles at the base turn yellow or brown. White fungal mycelium is visible at the base of the plant.",
-      "solution": "Destroy infected plants with soil. Improve drainage. Use recommended fungicides at early stages of disease development."
+      "name": "Foot Rot",
+      "causal_agent": "Sclerotium Spp., Fusarium Spp.",
+      "impact": "Plants show temporary wilting symptoms in the early stage. Leaves turn yellow, wilt, and droop. Eventually, the plant dies. Vascular bundles at the base turn yellow or brown. White fungal mycelium can be seen at the base of the plant.",
+      "solution": "Destroy infected plants along with the soil. Improve drainage. Use recommended fungicides at the early stage of disease development."
     },
     {
       "name": "Gummy Stem Blight",
-      "causal_agent": "Didymella bryoniae",
-      "impact": "Lesions start on leaves and fruits in water-soaked areas. Early stages may have chlorotic spots, then turn light brown and irregular. Dark, cracked, sunken spots on fruits. Sunken, cankerous lesions on stems cause plant collapse. Stem lesions often elongate like streaks, with gum exudation from cracks. Dark brown to black pycnidia visible on fruits, stems, or leaves.",
-      "solution": "Deep plow crop residues immediately after harvest to reduce fungal survival. Use recommended fungicides at early stages of disease development."
+      "causal_agent": "Didymella Bryoniae",
+      "impact": "Lesions typically start in water-soaked areas on leaves and fruits. Early stages may show chlorotic holes, which then turn light brown and become irregular. Dark, cracked, sunken spots appear on fruits. Sunken, cankerous lesions on stems may exude gum. Dark brown to black pycnidia can be seen on fruits, stems, or leaves.",
+      "solution": "Deep plow crop residue immediately after harvest to reduce fungal survival. Use recommended fungicides at the early stage of disease development."
     },
     {
       "name": "Bacterial Wilt",
-      "causal_agent": "Ralstonia solanacearum",
-      "impact": "Sudden wilting of leaves, eventually the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning). Permanent wilting. Diagnosis: A white milky exudate appears when an infected stem is cut and immersed in clear water.",
-      "solution": "Destroy infected plants with soil. Implement crop rotation with resistant varieties (e.g., okra, maize). Practice intercropping with Cruciferae family crops. Avoid moving tools from infected fields to uninfected fields."
+      "causal_agent": "Ralstonia Solanacearum",
+      "impact": "Sudden wilting of leaves, eventually the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning) is observed. Leads to permanent wilting. Spread by infected soil, water, crop residue, nematodes, insects, pruning, and weed host plants. Diagnosis: White milky exudate from a cut stem submerged in clear water.",
+      "solution": "Destroy infected plants along with the soil. Practice crop rotation with resistant varieties (Okra, Maize). Implement mixed cropping with Cruciferae family crops. Avoid moving equipment from infected to uninfected fields."
     },
     {
-      "name": "Leaf Curl Virus (LCV)",
+      "name": "Leaf Curl Virus",
       "causal_agent": null,
-      "impact": "Upward curling of leaves, shortened internodes, and distortion. Stunted plants and deformed fruits.",
-      "solution": "Control vectors (whiteflies) using recommended insecticides."
+      "impact": "Upward curling of leaves, shortening of internodes, and distortion. Leads to stunted plants and distorted fruits.",
+      "solution": "Control Whitefly (Bemicia tabaci) vectors using recommended insecticides."
     },
     {
-      "name": "Papaya Ringspot Virus (PRSV)",
+      "name": "Papaya Ringspot Virus",
       "causal_agent": null,
-      "impact": "Mottled spots on leaves, leaf distortion, fruit distortion, and small fruits. In severe infections, oily spots are visible on the fruit surface.",
-      "solution": "Control vectors (aphids) using recommended insecticides."
+      "impact": "Mottled spots on leaves. Leaf distortion, fruit distortion, and reduced fruit size. In severe infections, oily spots appear on the fruit surface.",
+      "solution": "Control Aphid vectors using recommended insecticides."
     },
     {
-      "name": "Cucumber Mosaic Virus (CMV)",
+      "name": "Cucumber Mosaic Virus",
       "causal_agent": null,
-      "impact": "Green mottling and leaf distortion. Green spots on fruits, turning bright yellow and decaying. Fruit distortion.",
-      "solution": "No specific solution mentioned, but general viral disease management practices apply."
+      "impact": "Green mottling and distortion of leaves. Green spots on fruits, which turn bright yellow and decay. Fruit distortion.",
+      "solution": "No specific solution mentioned."
     },
     {
-      "name": "Zucchini Yellow Mosaic Virus (ZYMV)",
+      "name": "Zucchini Yellow Mosaic Virus",
       "causal_agent": null,
-      "impact": "Stunted plants, yellowing, chlorosis (occasionally), and mottled distorted leaves (blistering). Fruit discoloration and distortion.",
-      "solution": "No specific solution mentioned, but general viral disease management practices apply."
+      "impact": "Stunted plants, yellowing, chlorosis (occasionally), mottled and distorted leaves (blistering). Fruit discoloration and distortion.",
+      "solution": "No specific solution mentioned."
     },
     {
-      "name": "Phytoplasma Disease / Little Leaf Disease",
-      "causal_agent": "Phytoplasma",
-      "impact": "Small, thick, yellowish-green leaves, shortened internodes, stunted plants, phyllody, and greening of flowers.",
-      "solution": "Remove infected plants. Control vectors (leafhoppers) using recommended insecticides."
+      "name": "Phytoplasma Disease",
+      "causal_agent": null,
+      "impact": "Small, thick, yellowish-green leaves. Shortened internodes and stunted plant growth. Phyllody (leaf-like floral organs) and virescence (greening of floral parts).",
+      "solution": "Remove infected plants. Control Leafhopper vectors using recommended insecticides."
     }
   ],
-  "expected_harvest_kg_per_ha": 20000.0
+  "expected_harvest_kg_per_ha": 20000.0,
+  "days_to_maturity": 68,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 4.0,
+  "seed_metric_type": "weight"
 }

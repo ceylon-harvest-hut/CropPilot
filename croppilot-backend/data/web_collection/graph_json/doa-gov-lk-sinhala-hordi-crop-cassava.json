@@ -1,28 +1,28 @@
 {
-  "crop_name": "මඤ්ඤොක්කා",
+  "crop_name": "Cassava",
   "scientific_name": null,
   "growing_areas": [
     "Wet Zone",
     "Dry Zone"
   ],
   "growing_seasons": [
-    "Year-round",
+    "Year-Round",
     "Yala",
     "Maha"
   ],
   "varieties": [
-    "MU-51",
+    "Mu-51",
     "Kirikawadi",
-    "CAR5 555",
+    "Car5 555",
     "Suranimala",
     "Swarna",
     "Shani",
-    "HORDI-MU-1",
-    "HORDI 06"
+    "Hordi-Mu-1",
+    "Hordi 06"
   ],
   "soil_types": [
-    "Well-drained soil",
-    "Non-alkaline soil"
+    "Well-Drained",
+    "Non-Alkaline"
   ],
   "altitude_min_m": null,
   "altitude_max_m": 1500.0,
@@ -52,7 +52,7 @@
       "quantity_kg_per_ha": 120.0
     },
     {
-      "fertilizer": "Muriate of Potash",
+      "fertilizer": "Muriate Of Potash",
       "apply_start_weeks_after_planting": 2.14,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
@@ -60,28 +60,28 @@
     },
     {
       "fertilizer": "Urea",
-      "apply_start_weeks_after_planting": 10.8,
+      "apply_start_weeks_after_planting": 11.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
       "quantity_kg_per_ha": 85.0
     },
     {
-      "fertilizer": "Muriate of Potash",
-      "apply_start_weeks_after_planting": 10.8,
+      "fertilizer": "Muriate Of Potash",
+      "apply_start_weeks_after_planting": 11.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
       "quantity_kg_per_ha": 60.0
     },
     {
       "fertilizer": "Urea",
-      "apply_start_weeks_after_planting": 17.3,
+      "apply_start_weeks_after_planting": 17.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
       "quantity_kg_per_ha": 85.0
     },
     {
-      "fertilizer": "Muriate of Potash",
-      "apply_start_weeks_after_planting": 17.3,
+      "fertilizer": "Muriate Of Potash",
+      "apply_start_weeks_after_planting": 17.0,
       "repeat_count": 1,
       "repeat_interval_weeks": 0.0,
       "quantity_kg_per_ha": 60.0
@@ -89,30 +89,34 @@
   ],
   "pests": [
     {
-      "name": "Whiteflies",
-      "impact": "Vectors of virus diseases.",
-      "solution": "Spray neem solution, cover crop with a living fence like maize, intercrop with maize, spray water on the crop."
+      "name": "Whitefly",
+      "impact": "Acts as a vector for virus diseases.",
+      "solution": "Spray neem solution on plants, cover cultivation with a biological fence like corn, intercrop with corn, or spray water on the crop."
     }
   ],
   "diseases": [
     {
-      "name": "Cassava Leaf Mosaic Virus (SLCMV)",
-      "causal_agent": "Virus",
-      "impact": "Yellow-green mosaic patterns on leaves, leaf curling and reduced leaf area, irregular leaf shape, stunting of plants, gradual weakening of plants, and reduced yield.",
-      "solution": "No treatment once infected. Use only stem cuttings from healthy plants. Uproot and destroy diseased plants. Remove wild cassava, wild clove, wild rubber, and Kuppamenia from the field. Do not start a new cultivation near a diseased one; first remove all diseased plants from the old cultivation. Always remove weeds around the crop and keep the field clean. Mark diseased plant stems with paint to facilitate removal during harvest."
+      "name": "Cassava Leaf Mosaic Virus",
+      "causal_agent": "Slcmv",
+      "impact": "Yellow-green mosaic patterns on leaves, leaf curling, reduced leaf area, irregular leaf shape, stunted plants, gradual weakening of the plant, and reduced yield.",
+      "solution": "There is no treatment once infected. Use only stem cuttings obtained from healthy plants. For commercial cultivation, obtain cuttings after field inspection. Uproot and destroy diseased plants. Remove other identified host plants such as wild cassava, wild karabu, wathu palu, wild rubber, and kuppamenia from the cultivation area. Do not start a new cultivation near a diseased one; if necessary, first uproot and destroy all diseased plants in the old cultivation. Always keep the field clean by removing weeds. Mark diseased stems (even if only one branch shows symptoms) with paint for easy separation and removal during harvest."
     },
     {
       "name": "Brown Spot Disease",
-      "causal_agent": "Corynespora cassiicola (Mycosphaerella spp. & fungus)",
-      "impact": "Brown spots on leaves. Mature lower leaves are usually infected first, with upper leaves also getting infected when damage is severe. Leaves turn yellow and fall off.",
-      "solution": "In home gardens, remove and burn infected leaves from the field. In commercial cultivations, when the disease is prevalent in young plants, apply Mancozeb 80% WP (32g per 16-liter tank of water) to leaves to control spread."
+      "causal_agent": "Corynespora Cassiicola",
+      "impact": "Brown spots appear on leaves, typically affecting mature lower leaves first, and then upper leaves in severe cases. Leaves turn yellow and drop.",
+      "solution": "For home gardens, remove and burn infected leaves from the field. For commercial cultivation, if the disease is prevalent in young plants, apply a recommended fungicide such as Mancozeb 80% WP (32g per 16L water tank) to the leaves to control its spread."
     },
     {
       "name": "Root Rot",
-      "causal_agent": "Sclerotium spp. fungus",
-      "impact": "Rotting of roots and stems of plants in patches. Leaves turn yellow, plant dries up and dies. White fungal mycelium visible at the base of the plant.",
-      "solution": "Improve soil drainage. If it's a paddy field, improve drainage by digging deep canals. Uproot diseased plants along with soil and remove from the field at the early stages of the disease."
+      "causal_agent": "Sclerotium Spp.",
+      "impact": "Rotting of roots and stems in patches within the cultivation. Leaves turn yellow, and the plant wilts and dies. White fungal mycelia are visible at the base of the plant.",
+      "solution": "Improve soil drainage as waterlogging promotes the disease; for paddy lands, deep drains can be used to enhance drainage. At the early stages of the disease, uproot diseased plants along with the surrounding soil and remove them from the field."
     }
   ],
-  "expected_harvest_kg_per_ha": 37500.0
+  "expected_harvest_kg_per_ha": 37500.0,
+  "days_to_maturity": 320,
+  "nursery_period_days": null,
+  "seed_amount_per_ha": 12500.0,
+  "seed_metric_type": "count"
 }

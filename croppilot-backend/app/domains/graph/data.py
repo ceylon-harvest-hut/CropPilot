@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Literal
 
 from app.domains.graph.schemas import Disease, FertilizerStep, Pest
 
@@ -38,6 +39,13 @@ class ExtractedCropKnowledge:
     pests: list[Pest] = field(default_factory=list)
     diseases: list[Disease] = field(default_factory=list)
     expected_harvest_kg_per_ha: float | None = None
+    # --- Added Maturity Metrics ---
+    days_to_maturity: int | None = None
+    nursery_period_days: int | None = None
+    
+    # --- Added Seed & Material Requirements ---
+    seed_amount_per_ha: float | None = None
+    seed_metric_type: Literal["weight", "count", "vines", "suckers"] | None = None
 
 
 @dataclass
