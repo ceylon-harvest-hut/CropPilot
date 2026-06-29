@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ApiError } from "./api/client";
+import { listIndexedCrops } from "./api/crops";
 import { listChunks, listCrops, listSources } from "./api/debug";
 import { askQuestion, listAskTemplates } from "./api/inference";
 import { ingestDocument } from "./api/ingestion";
@@ -7,12 +8,14 @@ import type {
   AskResponse,
   AskTemplateName,
   ChunkListResponse,
+  CropItem,
   CropListResponse,
   IngestResponse,
   PromptTemplateOption,
   SourceListResponse,
   StoredChunk,
 } from "./api/types";
+import CropSearchSelect from "./components/CropSearchSelect";
 import LabPanel from "./LabPanel";
 import "./App.css";
 
@@ -78,8 +81,9 @@ function App() {
   const [ingestResult, setIngestResult] = useState<IngestResponse | null>(null);
 
   // Ask state
-  const [question, setQuestion] = useState("What are pepper varieties?");
-  const [askCrop, setAskCrop] = useState("Pepper");
+  const [question, setQuestion] = useState("");
+  const [askCrop, setAskCrop] = useState("");
+  const [askCrops, setAskCrops] = useState<CropItem[]>([]);
   const [askTemplate, setAskTemplate] = useState<AskTemplateName>("context_only");
   const [askTemplates, setAskTemplates] = useState<PromptTemplateOption[]>([]);
   const [askResult, setAskResult] = useState<AskResponse | null>(null);
@@ -88,10 +92,14 @@ function App() {
     if (activeTab !== "ask") {
       return;
     }
-    listAskTemplates()
-      .then((data) => {
-        setAskTemplates(data.templates);
-        setAskTemplate(data.default_template);
+    Promise.all([
+      listAskTemplates(),
+      listIndexedCrops(),
+    ])
+      .then(([templates, crops]) => {
+        setAskTemplates(templates.templates);
+        setAskTemplate(templates.default_template);
+        setAskCrops(crops.crops);
       })
       .catch(() => {
         setAskTemplates([
@@ -139,7 +147,7 @@ function App() {
     try {
       const result = await askQuestion({
         question,
-        crop_name: askCrop || null,
+        crop_name: askCrop,
         template: askTemplate,
       });
       setAskResult(result);
@@ -301,12 +309,13 @@ function App() {
             )}
           </label>
           <label>
-            Crop name (optional filter)
-            <input
-              type="text"
+            Crop
+            <CropSearchSelect
+              crops={askCrops}
               value={askCrop}
-              onChange={(e) => setAskCrop(e.target.value)}
-              placeholder="e.g. Pepper"
+              onChange={setAskCrop}
+              disabled={loading !== null}
+              placeholder={askCrops.length === 0 ? "Loading crops…" : "Search crops…"}
             />
           </label>
           <label>
@@ -317,7 +326,7 @@ function App() {
               rows={3}
             />
           </label>
-          <button type="button" onClick={handleAsk} disabled={loading !== null || !question}>
+          <button type="button" onClick={handleAsk} disabled={loading !== null || !question.trim() || !askCrop}>
             {loading === "ask" ? "Asking…" : "Ask"}
           </button>
           {askResult && (

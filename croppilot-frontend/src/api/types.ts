@@ -15,7 +15,7 @@ export type AskTemplateName = "context_only" | "hybrid";
 
 export interface AskRequest {
   question: string;
-  crop_name?: string | null;
+  crop_name: string;
   template?: AskTemplateName | null;
 }
 
