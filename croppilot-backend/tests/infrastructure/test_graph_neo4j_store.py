@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from app.domains.graph.data import ExtractedCropKnowledge
+from app.domains.graph.schemas import ExtractedCropKnowledge
 from app.infrastructure.graph.neo4j_store import Neo4jGraphStore
 
 
@@ -11,11 +11,15 @@ def test_neo4j_store_upsert_runs_scalar_and_relationship_queries() -> None:
 
     store = Neo4jGraphStore(driver)
     extracted = ExtractedCropKnowledge(
-        crop_name="Pepper",
+        name="Pepper",
         growing_areas=["Matale"],
         pests=[],
     )
-    store.upsert_crop(extracted, source_uri="pepper.html", crop_tag="Pepper")
+    store.upsert_crop(
+        extracted,
+        source_uri="pepper.html",
+        manifest_crop_name="Pepper",
+    )
 
     assert session.run.call_count >= 2
     first_query = session.run.call_args_list[0].args[0]
@@ -29,18 +33,26 @@ def test_neo4j_store_upsert_includes_maturity_and_seed_params() -> None:
 
     store = Neo4jGraphStore(driver)
     extracted = ExtractedCropKnowledge(
-        crop_name="Bean",
+        name="Bean",
         days_to_maturity=53,
         nursery_period_days=14,
         seed_amount_per_ha=12.5,
         seed_metric_type="weight",
     )
-    store.upsert_crop(extracted, source_uri="bean.html", crop_tag="Bean")
+    store.upsert_crop(
+        extracted,
+        source_uri="bean.html",
+        manifest_crop_name="Bean",
+    )
 
     merge_query = session.run.call_args_list[0].args[0]
     merge_params = session.run.call_args_list[0].kwargs
     assert "days_to_maturity" in merge_query
+    assert "manifest_crop_name" in merge_query
     assert "seed_metric_type" in merge_query
+    assert merge_params["name"] == "Bean"
+    assert merge_params["crop_name"] == "Bean"
+    assert merge_params["manifest_crop_name"] == "Bean"
     assert merge_params["days_to_maturity"] == 53
     assert merge_params["nursery_period_days"] == 14
     assert merge_params["seed_amount_per_ha"] == 12.5

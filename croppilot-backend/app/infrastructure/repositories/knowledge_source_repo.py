@@ -47,6 +47,19 @@ class SqlKnowledgeSourceRepository:
         self._session.commit()
         return source.id
 
+    def ensure_crop_link(self, source_id: int, crop_name: str) -> None:
+        crop = self._get_or_create_crop(crop_name)
+        link = (
+            self._session.query(CropKnowledgeSource)
+            .filter_by(crop_id=crop.id, knowledge_source_id=source_id)
+            .one_or_none()
+        )
+        if link is None:
+            self._session.add(
+                CropKnowledgeSource(crop_id=crop.id, knowledge_source_id=source_id)
+            )
+        self._session.commit()
+
     def prepare_for_reingest(self, origin_url: str, crop_name: str) -> int:
         crop = self._get_or_create_crop(crop_name)
 

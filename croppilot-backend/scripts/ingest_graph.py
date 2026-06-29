@@ -52,7 +52,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--crop-name",
         required=True,
-        help="Crop name (canonical key for the graph Crop node)",
+        help="Manifest crop name (non-binding hint for LLM extraction)",
     )
     parser.add_argument(
         "--loader",
@@ -140,7 +140,7 @@ def main() -> int:
 
         result = service.ingest(
             args.source_uri,
-            args.crop_name,
+            manifest_crop_name=args.crop_name,
             source_type=args.source_type,
             loader=args.loader,
             replace_existing=args.replace,
@@ -152,7 +152,7 @@ def main() -> int:
             record_graph_manifest_success(
                 args.collection_dir,
                 source_uri=args.source_uri,
-                crop_name=args.crop_name,
+                crop_name=result.crop_name,
                 loader=args.loader,
                 html_path=result.html_path,
                 json_path=result.json_path,

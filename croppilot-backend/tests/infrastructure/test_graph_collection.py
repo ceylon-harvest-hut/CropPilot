@@ -8,8 +8,8 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.domains.graph.data import ExtractedCropKnowledge, GraphIngestResult
-from app.domains.graph.schemas import Pest
+from app.domains.graph.data import GraphIngestResult
+from app.domains.graph.schemas import ExtractedCropKnowledge, Pest
 from app.infrastructure.graph.graph_collection import (
     GRAPH_MANIFEST_FILENAME,
     clear_graph_artifacts,
@@ -130,14 +130,12 @@ def test_ingest_graph_manifest_entry_records_manifest_on_success(
 
 
 def test_extracted_crop_knowledge_serializes_nested_models() -> None:
-    from app.domains.graph.serialization import extracted_crop_knowledge_to_dict
-
     extracted = ExtractedCropKnowledge(
-        crop_name="Pepper",
+        name="Pepper",
         pests=[Pest(name="Aphid", impact="leaf curl", solution="soap spray")],
     )
-    payload = extracted_crop_knowledge_to_dict(extracted)
-    assert payload["crop_name"] == "Pepper"
+    payload = extracted.model_dump(mode="json")
+    assert payload["name"] == "Pepper"
     assert payload["pests"][0]["name"] == "Aphid"
 
 

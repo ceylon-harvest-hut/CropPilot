@@ -63,7 +63,7 @@ def ingest_graph_manifest_entry(
     try:
         result = service.ingest(
             entry.source_uri,
-            entry.crop_name,
+            manifest_crop_name=entry.crop_name,
             source_type=entry.resolved_source_type(),
             loader=loader,
             replace_existing=replace_existing,
@@ -74,7 +74,7 @@ def ingest_graph_manifest_entry(
             record_graph_manifest_success(
                 collection_dir,
                 source_uri=entry.source_uri,
-                crop_name=entry.crop_name,
+                crop_name=result.crop_name,
                 loader=loader,
                 html_path=result.html_path,
                 json_path=result.json_path,
@@ -83,7 +83,7 @@ def ingest_graph_manifest_entry(
             )
         return BatchGraphIngestItemResult(
             source_uri=entry.source_uri,
-            crop_name=entry.crop_name,
+            crop_name=result.crop_name,
             outcome="ok",
             source_id=result.source_id,
             message="replaced" if result.replaced else "graph-indexed",

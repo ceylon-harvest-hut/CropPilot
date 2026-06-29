@@ -4,13 +4,12 @@ import json
 import shutil
 from pathlib import Path
 
-from app.domains.graph.data import ExtractedCropKnowledge
-from app.domains.graph.serialization import extracted_crop_knowledge_to_dict
+from app.domains.graph.schemas import ExtractedCropKnowledge
 
 
 def save_extraction_json(extracted: ExtractedCropKnowledge, json_path: Path) -> None:
     json_path.parent.mkdir(parents=True, exist_ok=True)
-    payload = extracted_crop_knowledge_to_dict(extracted)
+    payload = extracted.model_dump(mode="json")
     json_path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",

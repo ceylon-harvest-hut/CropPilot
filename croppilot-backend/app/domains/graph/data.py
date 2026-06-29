@@ -1,10 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Literal
-
-from app.domains.graph.schemas import Disease, FertilizerStep, Pest
 
 
 @dataclass(frozen=True)
@@ -13,39 +10,6 @@ class GraphIngestArtifacts:
 
     html_output_path: Path | None = None
     json_output_path: Path | None = None
-
-
-@dataclass
-class ExtractedCropKnowledge:
-    crop_name: str
-    scientific_name: str | None = None
-    growing_areas: list[str] = field(default_factory=list)
-    growing_seasons: list[str] = field(default_factory=list)
-    varieties: list[str] = field(default_factory=list)
-    soil_types: list[str] = field(default_factory=list)
-    altitude_min_m: float | None = None
-    altitude_max_m: float | None = None
-    temp_min_c: float | None = None
-    temp_max_c: float | None = None
-    rainfall_min_mm: float | None = None
-    rainfall_max_mm: float | None = None
-    ph_min: float | None = None
-    ph_max: float | None = None
-    pit_length_cm: float | None = None
-    pit_width_cm: float | None = None
-    row_distance_cm: float | None = None
-    plant_distance_cm: float | None = None
-    fertilizer_schedule: list[FertilizerStep] = field(default_factory=list)
-    pests: list[Pest] = field(default_factory=list)
-    diseases: list[Disease] = field(default_factory=list)
-    expected_harvest_kg_per_ha: float | None = None
-    # --- Added Maturity Metrics ---
-    days_to_maturity: int | None = None
-    nursery_period_days: int | None = None
-    
-    # --- Added Seed & Material Requirements ---
-    seed_amount_per_ha: float | None = None
-    seed_metric_type: Literal["weight", "count", "vines", "suckers"] | None = None
 
 
 @dataclass

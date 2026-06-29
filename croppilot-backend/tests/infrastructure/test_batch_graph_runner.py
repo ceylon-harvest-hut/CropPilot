@@ -97,7 +97,7 @@ def test_ingest_graph_manifest_entry_success(source_repository) -> None:
     assert result.message == "graph-indexed"
     service.ingest.assert_called_once_with(
         "https://doa.gov.lk/cabbage/",
-        "ගෝවා",
+        manifest_crop_name="ගෝවා",
         source_type="web_url",
         loader="doa_hordi",
         replace_existing=False,
@@ -132,7 +132,7 @@ def test_ingest_graph_manifest_entry_passes_extract_options(source_repository) -
 
     service.ingest.assert_called_once_with(
         "https://doa.gov.lk/cabbage/",
-        "ගෝවා",
+        manifest_crop_name="ගෝවා",
         source_type="web_url",
         loader="doa_hordi",
         replace_existing=False,

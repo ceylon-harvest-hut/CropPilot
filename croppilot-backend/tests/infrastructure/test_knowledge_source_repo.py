@@ -118,6 +118,34 @@ def test_prepare_for_reingest_adds_crop_link_for_new_crop(
     assert db_session.query(CropKnowledgeSource).count() == 2
 
 
+def test_ensure_crop_link_adds_missing_crop_link(
+    repository: SqlKnowledgeSourceRepository,
+    db_session: Session,
+) -> None:
+    source_id = repository.create_pending("tests/fixtures/pepper.txt", "Pepper")
+
+    repository.ensure_crop_link(source_id, "Tomato")
+
+    assert db_session.query(Crop).count() == 2
+    assert db_session.query(CropKnowledgeSource).count() == 2
+    links = db_session.query(CropKnowledgeSource).all()
+    linked_crops = {db_session.get(Crop, link.crop_id).name for link in links}
+    assert linked_crops == {"Pepper", "Tomato"}
+
+
+def test_ensure_crop_link_is_idempotent(
+    repository: SqlKnowledgeSourceRepository,
+    db_session: Session,
+) -> None:
+    source_id = repository.create_pending("tests/fixtures/pepper.txt", "Pepper")
+
+    repository.ensure_crop_link(source_id, "Pepper")
+    repository.ensure_crop_link(source_id, "Pepper")
+
+    assert db_session.query(Crop).count() == 1
+    assert db_session.query(CropKnowledgeSource).count() == 1
+
+
 def test_reset_graph_indexed_sources_only_affects_graph_indexed(
     repository: SqlKnowledgeSourceRepository,
     db_session: Session,

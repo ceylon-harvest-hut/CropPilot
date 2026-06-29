@@ -2,8 +2,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from app.domains.graph.data import ExtractedCropKnowledge, GraphIngestArtifacts, GraphIngestResult
+from app.domains.graph.data import GraphIngestArtifacts, GraphIngestResult
 from app.domains.graph.persistence import SourceAlreadyGraphIngestedError
+from app.domains.graph.schemas import ExtractedCropKnowledge
 from app.domains.graph.service import GraphIngestionService
 from app.domains.ingestion.repositories import ExistingSourceInfo
 from app.infrastructure.repositories.db import (
@@ -21,7 +22,7 @@ def test_graph_ingestion_service_happy_path() -> None:
     ]
     extractor = MagicMock()
     extractor.extract.return_value = ExtractedCropKnowledge(
-        crop_name="Wrong",
+        name="Cabbage",
         scientific_name="Piper nigrum",
     )
     graph_store = MagicMock()
@@ -37,15 +38,15 @@ def test_graph_ingestion_service_happy_path() -> None:
         default_loader="html_plain",
     )
 
-    result = service.ingest("pepper.html", "Pepper", loader="html_plain")
+    result = service.ingest("pepper.html", manifest_crop_name="Pepper", loader="html_plain")
 
     assert isinstance(result, GraphIngestResult)
     assert result.source_id == 5
-    assert result.crop_name == "Pepper"
+    assert result.crop_name == "Cabbage"
     extractor.extract.assert_called_once()
     upsert_call = graph_store.upsert_crop.call_args
-    assert upsert_call.kwargs["crop_tag"] == "Pepper"
-    assert upsert_call.args[0].crop_name == "Pepper"
+    assert upsert_call.kwargs["manifest_crop_name"] == "Pepper"
+    assert upsert_call.args[0].name == "Cabbage"
 
 
 def test_graph_ingestion_service_marks_failed_on_error() -> None:
@@ -63,7 +64,7 @@ def test_graph_ingestion_service_marks_failed_on_error() -> None:
     )
 
     with pytest.raises(RuntimeError, match="load failed"):
-        service.ingest("pepper.html", "Pepper")
+        service.ingest("pepper.html", manifest_crop_name="Pepper")
 
     source_repo.update_status.assert_called_once_with(3, KNOWLEDGE_SOURCE_STATUS_FAILED)
 
@@ -74,7 +75,7 @@ def test_graph_ingestion_service_propagates_already_graph_ingested() -> None:
         KnowledgeDocument("text", {"source_uri": "pepper.html"}),
     ]
     extractor = MagicMock()
-    extractor.extract.return_value = ExtractedCropKnowledge(crop_name="Pepper")
+    extractor.extract.return_value = ExtractedCropKnowledge(name="Pepper")
     graph_store = MagicMock()
     graph_store.count_by_source_uri.return_value = 1
     source_repo = MagicMock()
@@ -92,7 +93,7 @@ def test_graph_ingestion_service_propagates_already_graph_ingested() -> None:
         default_loader="text",
     )
     with pytest.raises(SourceAlreadyGraphIngestedError):
-        service.ingest("pepper.html", "Pepper")
+        service.ingest("pepper.html", manifest_crop_name="Pepper")
 
 
 def test_graph_ingestion_service_saves_json_artifact(tmp_path) -> None:
@@ -102,7 +103,7 @@ def test_graph_ingestion_service_saves_json_artifact(tmp_path) -> None:
     ]
     extractor = MagicMock()
     extractor.extract.return_value = ExtractedCropKnowledge(
-        crop_name="Pepper",
+        name="Pepper",
         scientific_name="Piper nigrum",
     )
     graph_store = MagicMock()
@@ -121,7 +122,7 @@ def test_graph_ingestion_service_saves_json_artifact(tmp_path) -> None:
 
     result = service.ingest(
         "pepper.html",
-        "Pepper",
+        manifest_crop_name="Pepper",
         loader="html_plain",
         artifacts=GraphIngestArtifacts(json_output_path=json_path),
     )
@@ -138,7 +139,7 @@ def test_graph_ingestion_service_merges_html_persist_for_web_url(tmp_path) -> No
         KnowledgeDocument("web text", {"source_uri": "https://example.com/crop"}),
     ]
     extractor = MagicMock()
-    extractor.extract.return_value = ExtractedCropKnowledge(crop_name="Crop")
+    extractor.extract.return_value = ExtractedCropKnowledge(name="Crop")
     source_repo = MagicMock()
     source_repo.find_by_origin_url.return_value = None
     source_repo.create_pending.return_value = 1
@@ -154,7 +155,7 @@ def test_graph_ingestion_service_merges_html_persist_for_web_url(tmp_path) -> No
 
     service.ingest(
         "https://example.com/crop",
-        "Crop",
+        manifest_crop_name="Crop",
         loader="doa_hordi",
         extract_options=ExtractOptions(timeout_seconds=99),
         artifacts=GraphIngestArtifacts(html_output_path=html_path),

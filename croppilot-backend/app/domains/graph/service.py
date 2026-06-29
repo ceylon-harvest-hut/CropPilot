@@ -32,7 +32,7 @@ class GraphIngestionService:
     def ingest(
         self,
         source_uri: str,
-        crop_tag: str,
+        manifest_crop_name: str | None = None,
         *,
         source_type: str | None = None,
         loader: str | None = None,
@@ -75,9 +75,10 @@ class GraphIngestionService:
 
             text = prepare_extraction_text(documents)
             extracted = self._extractor.extract(
-                text, crop_tag=crop_tag, source_uri=source_uri
+                text,
+                manifest_crop_name=manifest_crop_name,
+                source_uri=source_uri,
             )
-            extracted.crop_name = crop_tag
 
             if artifacts and artifacts.json_output_path is not None:
                 save_extraction_json(extracted, artifacts.json_output_path)
@@ -85,11 +86,11 @@ class GraphIngestionService:
 
             result = persist_crop_graph(
                 source_uri=source_uri,
-                crop_name=crop_tag,
                 extracted=extracted,
                 graph_store=self._graph_store,
                 source_repository=self._source_repository,
                 replace_existing=replace_existing,
+                manifest_crop_name=manifest_crop_name,
             )
             return GraphIngestResult(
                 source_id=result.source_id,

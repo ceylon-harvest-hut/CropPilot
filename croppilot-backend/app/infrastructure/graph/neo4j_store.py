@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from app.domains.graph.data import ExtractedCropKnowledge
+from app.domains.graph.schemas import ExtractedCropKnowledge
 
 MERGE_CROP_CYPHER = """
 MERGE (c:Crop {source_uri: $source_uri})
 SET c.name = $name,
     c.crop_name = $crop_name,
+    c.manifest_crop_name = $manifest_crop_name,
     c.scientific_name = $scientific_name,
     c.altitude_min_m = $altitude_min_m,
     c.altitude_max_m = $altitude_max_m,
@@ -107,12 +108,13 @@ def _scalar_params(
     extracted: ExtractedCropKnowledge,
     *,
     source_uri: str,
-    crop_tag: str,
+    manifest_crop_name: str | None,
 ) -> dict:
     return {
         "source_uri": source_uri,
-        "crop_name": crop_tag,
-        "name": extracted.crop_name,
+        "crop_name": extracted.name,
+        "name": extracted.name,
+        "manifest_crop_name": manifest_crop_name,
         "scientific_name": extracted.scientific_name,
         "altitude_min_m": extracted.altitude_min_m,
         "altitude_max_m": extracted.altitude_max_m,
@@ -146,9 +148,13 @@ class Neo4jGraphStore:
         extracted: ExtractedCropKnowledge,
         *,
         source_uri: str,
-        crop_tag: str,
+        manifest_crop_name: str | None = None,
     ) -> None:
-        params = _scalar_params(extracted, source_uri=source_uri, crop_tag=crop_tag)
+        params = _scalar_params(
+            extracted,
+            source_uri=source_uri,
+            manifest_crop_name=manifest_crop_name,
+        )
         with self._driver.session() as session:
             _run_write(session, MERGE_CROP_CYPHER, **params)
             uri_param = {"source_uri": source_uri}

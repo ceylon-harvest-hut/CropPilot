@@ -66,7 +66,7 @@ class Disease(BaseModel):
         return normalize_string(v)
 
 
-class CropDataExtraction(BaseModel):
+class ExtractedCropKnowledge(BaseModel):
     name: str = Field(description="Common English name of the crop")
     scientific_name: Optional[str] = Field(None, description="Scientific/Botanical name")
     growing_areas: List[str] = Field(

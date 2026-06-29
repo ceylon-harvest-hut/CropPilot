@@ -33,5 +33,6 @@ CROP_EXTRACTION_SYSTEM_PROMPT = (
 )
 
 CROP_EXTRACTION_HUMAN_TEMPLATE = (
+    "{manifest_hint}"
     "Extract the agricultural specifications from this crop document:\n\n{document_text}"
 )
