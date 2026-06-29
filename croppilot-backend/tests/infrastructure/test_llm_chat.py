@@ -111,3 +111,13 @@ def test_openai_generate_returns_string(monkeypatch) -> None:
 
     assert isinstance(result, str)
     assert result == "Pepper has many varieties."
+
+
+def test_gemini_interpret_api_error_delegates_to_parser() -> None:
+    from app.infrastructure.llm.chat import GeminiLlmClient
+
+    client = GeminiLlmClient.__new__(GeminiLlmClient)
+    info = client.interpret_api_error(RuntimeError("429 RESOURCE_EXHAUSTED Please retry in 5s."))
+    assert info.code == "RESOURCE_EXHAUSTED"
+    assert info.retryable is True
+    assert info.retry_after_seconds == 5.0

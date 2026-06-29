@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from app.domains.ingestion.content import ExtractOptions, RawContent
-from app.domains.ingestion.extractor import ContentExtractor
+from app.shared.document.content import ExtractOptions, RawContent
+from app.shared.document.extractor import ContentExtractor
 from app.infrastructure.extractors.file_extractor import FileExtractor
 from app.infrastructure.extractors.http_extractor import HttpExtractor
 

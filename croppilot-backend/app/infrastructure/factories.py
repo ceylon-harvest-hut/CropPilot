@@ -3,13 +3,16 @@ from pathlib import Path
 from sqlalchemy.orm import Session
 
 from app.domains.debug.repositories import ChunkCatalogRepository
-from app.domains.inference.repositories import LlmService, RetrieverRepository
+from app.domains.inference.repositories import RetrieverRepository
+from app.shared.llm import LlmClient
 from app.domains.inference.service import InferenceService
 from app.domains.vector.repositories import KnowledgeVectorRepository
 from app.domains.ingestion.chunker import BaseChunker
-from app.domains.ingestion.loader import DocumentLoader
-from app.domains.ingestion.pipeline import DocumentPipeline
+from app.shared.document.loader import DocumentLoader
+from app.shared.document.pipeline import DocumentPipeline
 from app.domains.ingestion.service import IngestionService
+from app.domains.graph.repositories import GraphExtractionService, GraphWriteRepository
+from app.domains.graph.service import GraphIngestionService
 from app.infrastructure.chunkers.dea_gov_lk_chunker import DeaGovLkChunker
 from app.infrastructure.chunkers.dea_gov_lk_si_chunker import DeaGovLkSiChunker
 from app.infrastructure.chunkers.doa_hordi_chunker import DoaHordiChunker
@@ -92,28 +95,28 @@ def build_retriever(settings: Settings) -> RetrieverRepository:
     )
 
 
-def build_llm(settings: Settings) -> LlmService:
+def build_llm(settings: Settings) -> LlmClient:
     if settings.llm_backend == "gemini":
-        from app.infrastructure.llm.chat import GeminiLlmService
+        from app.infrastructure.llm.chat import GeminiLlmClient
 
         if not settings.google_api_key:
             raise ValueError(
                 "Gemini API key required. Set GOOGLE_API_KEY or GEMINI_API_KEY in .env"
             )
-        return GeminiLlmService(
+        return GeminiLlmClient(
             model_name=settings.gemini_model,
             api_key=settings.google_api_key,
         )
 
     if settings.llm_backend == "ollama":
-        from app.infrastructure.llm.chat import OllamaLlmService
+        from app.infrastructure.llm.chat import OllamaLlmClient
 
-        return OllamaLlmService(model_name=settings.ollama_model)
+        return OllamaLlmClient(model_name=settings.ollama_model)
 
     if settings.llm_backend == "openai":
-        from app.infrastructure.llm.chat import OpenAILlmService
+        from app.infrastructure.llm.chat import OpenAILlmClient
 
-        return OpenAILlmService(
+        return OpenAILlmClient(
             model_name=settings.openai_model,
             api_key=settings.openai_api_key,
         )
@@ -181,6 +184,46 @@ def build_ingestion_service(settings: Settings, session: Session) -> IngestionSe
         chunker=build_chunker(settings),
         embedder=build_embedder(settings),
         vector_store=build_vector_store(settings),
+        source_repository=SqlKnowledgeSourceRepository(session),
+        default_loader=settings.default_loader,
+    )
+
+
+def build_graph_extractor(settings: Settings) -> GraphExtractionService:
+    if settings.llm_backend != "gemini":
+        raise ValueError(
+            f"Graph extraction requires llm_backend=gemini; got {settings.llm_backend!r}"
+        )
+    if not settings.google_api_key:
+        raise ValueError(
+            "Gemini API key required for graph extraction. Set GOOGLE_API_KEY or GEMINI_API_KEY in .env"
+        )
+    from app.infrastructure.graph.llm_crop_extractor import LlmCropGraphExtractor
+
+    return LlmCropGraphExtractor(
+        build_llm(settings),
+        max_retries=settings.llm_max_retries,
+        retry_backoff=settings.llm_retry_backoff_seconds,
+    )
+
+
+def build_graph_store(settings: Settings) -> GraphWriteRepository:
+    from neo4j import GraphDatabase
+
+    from app.infrastructure.graph.neo4j_store import Neo4jGraphStore
+
+    driver = GraphDatabase.driver(
+        settings.neo4j_uri,
+        auth=(settings.neo4j_user, settings.neo4j_password),
+    )
+    return Neo4jGraphStore(driver)
+
+
+def build_graph_ingestion_service(settings: Settings, session: Session) -> GraphIngestionService:
+    return GraphIngestionService(
+        pipeline=build_document_pipeline(settings),
+        extractor=build_graph_extractor(settings),
+        graph_store=build_graph_store(settings),
         source_repository=SqlKnowledgeSourceRepository(session),
         default_loader=settings.default_loader,
     )

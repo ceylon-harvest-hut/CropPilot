@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.data import KnowledgeChunk
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 
 LONG_SECTION_THRESHOLD = 1200  # characters
 

@@ -5,9 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from app.domains.ingestion.chunker import BaseChunker
-from app.domains.ingestion.content import ExtractOptions
+from app.shared.document.content import ExtractOptions
 from app.domains.ingestion.persistence import SourceAlreadyIngestedError, persist_knowledge_chunks
-from app.domains.ingestion.pipeline import DocumentPipeline
+from app.shared.document.pipeline import DocumentPipeline
 from app.domains.ingestion.repositories import (
     ChunkEmbeddingService,
     KnowledgeSourceRepository,

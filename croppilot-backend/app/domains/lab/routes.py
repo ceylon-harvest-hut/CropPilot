@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from app.domains.ingestion.data import KnowledgeChunk
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 from app.domains.ingestion.persistence import SourceAlreadyIngestedError, persist_knowledge_chunks
 from app.domains.lab.dependencies import get_db_session, get_lab_settings
 from app.domains.lab.schemas import (

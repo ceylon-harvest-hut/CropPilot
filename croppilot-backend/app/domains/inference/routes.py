@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 
+from app.domains.debug.dependencies import get_source_catalog
+from app.domains.debug.repositories import SourceCatalogRepository
 from app.domains.inference.dependencies import get_inference_service
 from app.domains.inference.schemas import (
     AskRequest,
@@ -9,6 +11,7 @@ from app.domains.inference.schemas import (
     ReferenceDocumentResponse,
 )
 from app.domains.inference.service import InferenceService
+from app.domains.ingestion.schemas import CropItemResponse, CropListResponse
 from app.infrastructure.config import Settings, get_settings
 from app.infrastructure.llm.prompt_catalog import (
     list_prompt_template_options,
@@ -71,4 +74,22 @@ async def ask(
             )
             for ref in result.references
         ],
+    )
+
+
+@router.get(
+    "/crops",
+    status_code=status.HTTP_200_OK,
+    response_model=CropListResponse,
+    summary="List crops that have indexed content",
+)
+def list_crops(
+    catalog: SourceCatalogRepository = Depends(get_source_catalog),
+) -> CropListResponse:
+    """Returns only crops that have at least one INDEXED knowledge source,
+    i.e. crops that are actually searchable via /ask."""
+    crops = catalog.list_indexed_crops()
+    return CropListResponse(
+        total=len(crops),
+        crops=[CropItemResponse(**vars(c)) for c in crops],
     )

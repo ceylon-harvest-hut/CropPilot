@@ -1,0 +1,183 @@
+{
+  "crop_name": "පතෝල",
+  "scientific_name": null,
+  "growing_areas": [
+    "Matale District",
+    "Kandy District",
+    "Hambantota District",
+    "Kurunegala District",
+    "Ratnapura District"
+  ],
+  "growing_seasons": [
+    "Yala (Dry Zone)",
+    "Year-round (Wet Zone)"
+  ],
+  "varieties": [
+    "TA-2",
+    "MI-Short",
+    "Thinnaweli"
+  ],
+  "soil_types": [
+    "Well-drained soil rich in organic matter"
+  ],
+  "altitude_min_m": 0.0,
+  "altitude_max_m": 500.0,
+  "temp_min_c": 25.0,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 5.5,
+  "ph_max": 7.5,
+  "pit_length_cm": 30.0,
+  "pit_width_cm": 30.0,
+  "row_distance_cm": 150.0,
+  "plant_distance_cm": 150.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Organic Matter",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 10000.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 200.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 60.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 60.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 60.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Whitefly",
+      "impact": "Transmits Leaf Curl Virus (LCV), causing upward leaf curling, shortened internodes, distortion, stunted plants, and deformed fruits.",
+      "solution": "Control vectors (whiteflies) using recommended insecticides."
+    },
+    {
+      "name": "Aphids",
+      "impact": "Transmits Papaya Ringspot Virus (PRSV), causing mottled spots on leaves, leaf distortion, fruit distortion, small fruits, and oily spots on fruit surface in severe infections.",
+      "solution": "Control vectors (aphids) using recommended insecticides."
+    },
+    {
+      "name": "Leafhoppers",
+      "impact": "Transmits Phytoplasma disease (Little Leaf Disease), causing small, thick, yellowish-green leaves, shortened internodes, stunted plants, phyllody, and greening of flowers.",
+      "solution": "Control vectors (leafhoppers) using recommended insecticides."
+    },
+    {
+      "name": "Nematodes",
+      "impact": "Can spread Bacterial Wilt (Ralstonia solanacearum).",
+      "solution": "Implement crop rotation with resistant varieties and avoid moving contaminated tools."
+    },
+    {
+      "name": "Insects",
+      "impact": "Can spread Bacterial Wilt (Ralstonia solanacearum).",
+      "solution": "Implement crop rotation with resistant varieties and avoid moving contaminated tools."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Powdery Mildew",
+      "causal_agent": "Podosphaera xanthii",
+      "impact": "Light yellow spots on mature leaves, enlarging with white powdery mycelium growth on leaf surface. Severely affected leaves turn brown, shrivel, and drop.",
+      "solution": "Use recommended fungicides at early stages of disease development. Remove infected crop residues after harvest."
+    },
+    {
+      "name": "Downy Mildew",
+      "causal_agent": "Pseudoperonospora cubensis",
+      "impact": "Angular yellow spots on the upper leaf surface, delimited by veins. Leaves become chlorotic, eventually necrotic, and host cells die.",
+      "solution": "Use recommended fungicides at early stages of disease development. Remove infected plant parts after harvest."
+    },
+    {
+      "name": "Foot Rot / Basal Rot",
+      "causal_agent": "Sclerotium spp., Fusarium spp.",
+      "impact": "Temporary wilting at early stages, followed by yellowing, wilting, and drooping of leaves. Eventually, the plant dies. Vascular bundles at the base turn yellow or brown. White fungal mycelium is visible at the base of the plant.",
+      "solution": "Destroy infected plants with soil. Improve drainage. Use recommended fungicides at early stages of disease development."
+    },
+    {
+      "name": "Gummy Stem Blight",
+      "causal_agent": "Didymella bryoniae",
+      "impact": "Lesions start on leaves and fruits in water-soaked areas. Early stages may have chlorotic spots, then turn light brown and irregular. Dark, cracked, sunken spots on fruits. Sunken, cankerous lesions on stems cause plant collapse. Stem lesions often elongate like streaks, with gum exudation from cracks. Dark brown to black pycnidia visible on fruits, stems, or leaves.",
+      "solution": "Deep plow crop residues immediately after harvest to reduce fungal survival. Use recommended fungicides at early stages of disease development."
+    },
+    {
+      "name": "Bacterial Wilt",
+      "causal_agent": "Ralstonia solanacearum",
+      "impact": "Sudden wilting of leaves, eventually the entire plant wilts. Leaves turn brown and dry. Vascular discoloration (browning). Permanent wilting. Diagnosis: A white milky exudate appears when an infected stem is cut and immersed in clear water.",
+      "solution": "Destroy infected plants with soil. Implement crop rotation with resistant varieties (e.g., okra, maize). Practice intercropping with Cruciferae family crops. Avoid moving tools from infected fields to uninfected fields."
+    },
+    {
+      "name": "Leaf Curl Virus (LCV)",
+      "causal_agent": null,
+      "impact": "Upward curling of leaves, shortened internodes, and distortion. Stunted plants and deformed fruits.",
+      "solution": "Control vectors (whiteflies) using recommended insecticides."
+    },
+    {
+      "name": "Papaya Ringspot Virus (PRSV)",
+      "causal_agent": null,
+      "impact": "Mottled spots on leaves, leaf distortion, fruit distortion, and small fruits. In severe infections, oily spots are visible on the fruit surface.",
+      "solution": "Control vectors (aphids) using recommended insecticides."
+    },
+    {
+      "name": "Cucumber Mosaic Virus (CMV)",
+      "causal_agent": null,
+      "impact": "Green mottling and leaf distortion. Green spots on fruits, turning bright yellow and decaying. Fruit distortion.",
+      "solution": "No specific solution mentioned, but general viral disease management practices apply."
+    },
+    {
+      "name": "Zucchini Yellow Mosaic Virus (ZYMV)",
+      "causal_agent": null,
+      "impact": "Stunted plants, yellowing, chlorosis (occasionally), and mottled distorted leaves (blistering). Fruit discoloration and distortion.",
+      "solution": "No specific solution mentioned, but general viral disease management practices apply."
+    },
+    {
+      "name": "Phytoplasma Disease / Little Leaf Disease",
+      "causal_agent": "Phytoplasma",
+      "impact": "Small, thick, yellowish-green leaves, shortened internodes, stunted plants, phyllody, and greening of flowers.",
+      "solution": "Remove infected plants. Control vectors (leafhoppers) using recommended insecticides."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 20000.0
+}

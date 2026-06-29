@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.domains.debug.data import CropRecord, SourceRecord
 from app.domains.ingestion.models import Crop, CropKnowledgeSource, KnowledgeSource
+from app.infrastructure.repositories.db import KNOWLEDGE_SOURCE_STATUS_INDEXED
 
 
 class SqlDebugCatalogRepository:
@@ -56,6 +57,29 @@ class SqlDebugCatalogRepository:
 
     def list_crops(self) -> list[CropRecord]:
         crops = self._session.query(Crop).all()
+        return [
+            CropRecord(
+                crop_id=crop.id,
+                name=crop.name,
+                botanical_name=crop.botanical_name,
+            )
+            for crop in crops
+        ]
+
+    def list_indexed_crops(self) -> list[CropRecord]:
+        """Return crops that have at least one INDEXED knowledge source."""
+        crops = (
+            self._session.query(Crop)
+            .join(CropKnowledgeSource, Crop.id == CropKnowledgeSource.crop_id)
+            .join(
+                KnowledgeSource,
+                CropKnowledgeSource.knowledge_source_id == KnowledgeSource.id,
+            )
+            .filter(KnowledgeSource.status == KNOWLEDGE_SOURCE_STATUS_INDEXED)
+            .distinct()
+            .order_by(Crop.name)
+            .all()
+        )
         return [
             CropRecord(
                 crop_id=crop.id,

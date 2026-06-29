@@ -1,0 +1,97 @@
+{
+  "crop_name": "ලීක්ස්",
+  "scientific_name": null,
+  "growing_areas": [
+    "Upcountry cool zone"
+  ],
+  "growing_seasons": [],
+  "varieties": [
+    "Large Long Summer"
+  ],
+  "soil_types": [
+    "Well-drained soil with high organic matter"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 5.0,
+  "ph_max": 6.0,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 15.0,
+  "plant_distance_cm": 10.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 85.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 270.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 50.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 2,
+      "repeat_interval_weeks": 8.0,
+      "quantity_kg_per_ha": 85.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 2,
+      "repeat_interval_weeks": 8.0,
+      "quantity_kg_per_ha": 85.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 2,
+      "repeat_interval_weeks": 8.0,
+      "quantity_kg_per_ha": 50.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Root Maggot",
+      "impact": "Wilting of young plants and plants with twisted leaves. White maggots can be seen when examining the root system. Larvae feed on developing roots and tender stems.",
+      "solution": "Regular crop inspection, yellow sticky traps with grease to control adult flies, crop rotation, uproot and burn infested plants with larvae, deep plowing to destroy pupae, use properly prepared organic fertilizer. If damage is severe, apply Fipronil 50 SC."
+    },
+    {
+      "name": "Cutworm",
+      "impact": "Larvae, most active at night, cut young plant stems at the base. Damage is more prevalent in dry weather conditions.",
+      "solution": "Deep plowing brings larvae and pupae to the surface, making them prey for birds. Good weed control and field sanitation in and around the field. Regular field inspection to hand-pick hidden larvae when population is low. If damage is severe, apply recommended insecticides immediately after planting: Profenophos 500g/LEC (32ML/16L) or Etofenprox 100g/LEC (24ML/16L)."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Purple Blotch",
+      "causal_agent": null,
+      "impact": "Symptoms implied by the name: purple blotches.",
+      "solution": "Maintain field cleanliness, use recommended fungicides – Mancozeb, Maneb, Propineb, Tebuconazole."
+    },
+    {
+      "name": "Leaf Tip Burn",
+      "causal_agent": null,
+      "impact": "Burning of leaf tips.",
+      "solution": "Use recommended fungicide – Chlorothalonil."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 25000.0
+}

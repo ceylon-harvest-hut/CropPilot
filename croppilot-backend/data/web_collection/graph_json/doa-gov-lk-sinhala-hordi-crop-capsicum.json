@@ -1,0 +1,143 @@
+{
+  "crop_name": "මාළු මිරිස්",
+  "scientific_name": null,
+  "growing_areas": [
+    "Dry Zone",
+    "Intermediate Zone",
+    "All Districts",
+    "Nuwara Eliya",
+    "Badulla",
+    "Kurunegala",
+    "Puttalam",
+    "Anuradhapura",
+    "All Agro-Ecological Zones"
+  ],
+  "growing_seasons": [
+    "Yala",
+    "Maha",
+    "Year-round",
+    "April",
+    "May",
+    "November",
+    "December"
+  ],
+  "varieties": [
+    "CA 8",
+    "Hungarian Yellow Wax (HYW)",
+    "Gannoruwa Prarthana",
+    "Local Yellow Wax (LYW)"
+  ],
+  "soil_types": [
+    "Well-drained, deep and fertile loamy soil",
+    "Sandy soil (with added organic matter)"
+  ],
+  "altitude_min_m": 0.0,
+  "altitude_max_m": 1500.0,
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 5.5,
+  "ph_max": 6.8,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 40.0,
+  "plant_distance_cm": 40.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 100.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 215.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 100.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 100.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    }
+  ],
+  "pests": [],
+  "diseases": [
+    {
+      "name": "Damping-off",
+      "causal_agent": null,
+      "impact": "Seedlings die before emerging (pre-emergence damping-off). Seeds and seedlings rot. Post-emergence damping-off on basal part or roots. Infected tissues show wet and soft rot. When severe, infected areas shrivel and fall. Leaves wilt before plants fall. Seedlings die in patches.",
+      "solution": "Establish nurseries in well-drained areas not previously cultivated with solanaceous crops (tomato, eggplant, chili). Implement crop rotation with coarse grain crops. Sterilize nurseries (e.g., burning, sun exposure). Avoid high seed density in nurseries (40g seeds for 3m x 1m beds). Remove and dispose of diseased plants with surrounding soil."
+    },
+    {
+      "name": "Anthracnose",
+      "causal_agent": "Colletotrichum spp",
+      "impact": "Many spots on young pods causing them to drop. Small circular sunken spots on fruits spreading longitudinally. Symptoms appear on leaves, stems, and fruits. Peduncles, flower buds, and shoots become discolored. Flower drop occurs. Brown circular spots appear on ripe pods, leading to rotting. When severe, dieback occurs from the apex of the stem (post-emergence dieback during growth stage). The disease spreads throughout the plant, eventually killing it.",
+      "solution": "Use healthy seeds. Practice field sanitation (destroy crop residues). Treat seeds. Remove diseased plant parts from the field. Implement crop rotation with non-host crops every 2-3 years. Maintain recommended plant spacing. Ensure good field drainage. Use resistant varieties. Utilize Trichoderma species and Pseudomonas fluorescens."
+    },
+    {
+      "name": "Bacterial Wilt",
+      "causal_agent": "Ralstonia Solanacearum",
+      "impact": "Single plants or patches of plants wilt in the field. Immature leaves wilt during the hottest part of the day, followed by rapid permanent wilting. The plant dies a few days after leaf drop. Can be identified by white bacterial ooze from a cut stem placed in water.",
+      "solution": "Implement crop rotation with non-host crops. Use resistant varieties. Remove and destroy all host plants and infected roots. Remove and destroy infected plants with surrounding soil. Prevent water supply from infected fields to healthy fields. Maintain good field drainage in the field."
+    },
+    {
+      "name": "Leaf Curl Virus",
+      "causal_agent": null,
+      "impact": "Leaves turn pale yellow and veins become prominent. Internodes shorten and excessive shoots develop, leading to stunted growth. Leaf size reduces and leaves curl upwards. Small fruits develop.",
+      "solution": "Use high-quality seeds and maintain nurseries properly. Start cultivation at the right time. Establish windbreaks. Destroy host plants. Remove and destroy diseased plants immediately. Control vectors (whiteflies)."
+    },
+    {
+      "name": "Leaf Spot Disease / Leaf Blight",
+      "causal_agent": "Cercospora spp",
+      "impact": "Brown leaf spots with a light gray center and a yellow halo. Leaves turn yellow and drop. Infected leaves roll, wilt, and drop. Severe leaf drop occurs during periods of high humidity. Sometimes dark brown spots appear on the petiole, pod, or branches. Mature lower leaves are infected first, and upper leaves are infected when the disease is severe. Infected crop residues, temperatures of 20-25°C, and high humidity are favorable conditions for the disease.",
+      "solution": "Collect and destroy infected leaves. Prevent high humidity by using recommended spacing and water management. Apply organic fertilizers properly."
+    },
+    {
+      "name": "Powdery Mildew",
+      "causal_agent": null,
+      "impact": "Light yellow spots appear on the leaf surface. Small powdery spots on the underside of leaves spread quickly and become large. Leaves gradually turn yellow and drop. In severe cases, leaves appear white and powdery.",
+      "solution": "Practice field sanitation. Ensure good air circulation around crops by maintaining proper spacing and weed control. Utilize Trichoderma spp."
+    },
+    {
+      "name": "Choanephora Blight",
+      "causal_agent": "Choanephora spp",
+      "impact": "Symptoms first appear on flowers, flower buds, and apical parts of the plant. Infected parts turn brown or black, and the fungus rapidly grows downwards, causing the upper parts to die. Wet rot is observed. Spore structures are visible to the naked eye, making infected parts appear grayish-silver. Pod infection starts from the sepals. Infection can occur from the seedling stage to the flowering stage. Infections can occur even without insect or mechanical wounds, but wounds facilitate entry into the plant.",
+      "solution": "Maintain recommended spacing. Remove diseased parts as soon as symptoms are observed."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 12500.0
+}

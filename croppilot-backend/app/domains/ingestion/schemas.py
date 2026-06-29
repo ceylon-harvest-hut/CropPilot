@@ -17,3 +17,14 @@ class IngestResponse(BaseModel):
     status: str
     replaced: bool = False
     previous_chunk_count: int = 0
+
+
+class CropItemResponse(BaseModel):
+    crop_id: int
+    name: str
+    botanical_name: str | None
+
+
+class CropListResponse(BaseModel):
+    total: int
+    crops: list[CropItemResponse]

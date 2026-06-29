@@ -19,7 +19,7 @@ class InferenceService:
     def ask(
         self,
         question: str,
-        crop_tag: str | None = None,
+        crop_tag: str,
         template: str = "context_only",
     ) -> AnswerResult:
         chunks = self._retriever.search(question, crop_tag=crop_tag, k=self._top_k)

@@ -1,0 +1,68 @@
+{
+  "crop_name": "බිම්මල්",
+  "scientific_name": null,
+  "growing_areas": [],
+  "growing_seasons": [],
+  "varieties": [
+    "American Oyster",
+    "Abalone",
+    "Pink Oyster"
+  ],
+  "soil_types": [
+    "Cellulose-based medium",
+    "Lignin-based medium",
+    "Hemicellulose-based medium",
+    "Wood dust"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": 17.0,
+  "temp_max_c": 30.0,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": null,
+  "ph_max": null,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": null,
+  "plant_distance_cm": null,
+  "fertilizer_schedule": [],
+  "pests": [
+    {
+      "name": "Mushroom flies (Bradysia, Cecid fly, Phorid fly, Sciarid flies)",
+      "impact": "Damage to mushrooms and mycelium",
+      "solution": "Construct a standard cultivation house with insect-resistant netting; maintain proper sanitation in cultivation houses; use neem water extract; use garlic and neem extract."
+    },
+    {
+      "name": "Lycid beetle",
+      "impact": "Damage to mushrooms and mycelium",
+      "solution": "Construct a standard cultivation house with insect-resistant netting; maintain proper sanitation in cultivation houses; use neem water extract; use garlic and neem extract."
+    },
+    {
+      "name": "Mites",
+      "impact": "Damage to mushrooms and mycelium",
+      "solution": "Use sulfur-containing insecticides."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Trichoderma infection",
+      "causal_agent": "Trichoderma spp.",
+      "impact": "Green spots visible on cultivation bags",
+      "solution": "Use fresh, non-old raw materials; properly sterilize cultivation bags; use infection-free, well-grown spawn; disinfect before spawning and spawn in a clean, covered area; properly manage temperature and humidity during the growth period; remove and destroy infected cultivation bags."
+    },
+    {
+      "name": "Aspergillus niger infection",
+      "causal_agent": "Aspergillus niger",
+      "impact": "Black spots visible on cultivation bags",
+      "solution": "Use fresh, non-old raw materials; properly sterilize cultivation bags; use infection-free, well-grown spawn; disinfect before spawning and spawn in a clean, covered area; properly manage temperature and humidity during the growth period; remove and destroy infected cultivation bags."
+    },
+    {
+      "name": "Bacterial infections",
+      "causal_agent": null,
+      "impact": "Damage to mushrooms and mycelium",
+      "solution": "Apply 10g chlorine dissolved in 1 liter of water regularly at 3-5 day intervals."
+    }
+  ],
+  "expected_harvest_kg_per_ha": null
+}

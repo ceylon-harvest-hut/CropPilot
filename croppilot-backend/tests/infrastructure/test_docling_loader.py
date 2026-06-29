@@ -5,9 +5,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.loader import KnowledgeDocument
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.content import RawContent
+from app.shared.document.loader import KnowledgeDocument
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.loaders.docling_loader import DoclingLoader
 from app.infrastructure.loaders.validation import LoaderValidationError, validate_loader_selection
 

@@ -88,7 +88,7 @@ def test_ask_passes_template_to_llm() -> None:
     llm.generate.return_value = "Hybrid answer."
 
     service = InferenceService(retriever=retriever, llm=llm)
-    service.ask("question", template="hybrid")
+    service.ask("question", crop_tag="Pepper", template="hybrid")
 
     llm.generate.assert_called_once()
     assert llm.generate.call_args[1]["template"] == "hybrid"

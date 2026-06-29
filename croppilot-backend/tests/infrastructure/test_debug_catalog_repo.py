@@ -86,3 +86,37 @@ def test_list_sources_includes_crop_names(seeded_session: Session) -> None:
     source_map = {s.origin_url: s for s in sources}
     assert "Pepper" in source_map["pepper.txt"].crop_names
     assert "Tomato" in source_map["tomato.txt"].crop_names
+
+
+def test_list_indexed_crops_excludes_pending(seeded_session: Session) -> None:
+    """Only crops with at least one INDEXED source should be returned."""
+    repo = SqlDebugCatalogRepository(seeded_session)
+    crops = repo.list_indexed_crops()
+    names = [c.name for c in crops]
+    # Pepper has an INDEXED source; Tomato is still PENDING
+    assert "Pepper" in names
+    assert "Tomato" not in names
+
+
+def test_list_indexed_crops_returns_distinct(seeded_session: Session) -> None:
+    """A crop with multiple indexed sources should appear only once."""
+    ingest_repo = SqlKnowledgeSourceRepository(seeded_session)
+    source2 = ingest_repo.create_pending("pepper2.txt", "Pepper")
+    ingest_repo.update_status(source2, KNOWLEDGE_SOURCE_STATUS_INDEXED)
+
+    repo = SqlDebugCatalogRepository(seeded_session)
+    crops = repo.list_indexed_crops()
+    pepper_entries = [c for c in crops if c.name == "Pepper"]
+    assert len(pepper_entries) == 1
+
+
+def test_list_indexed_crops_ordered_by_name(seeded_session: Session) -> None:
+    """Results should be alphabetically ordered."""
+    ingest_repo = SqlKnowledgeSourceRepository(seeded_session)
+    source_t = ingest_repo.create_pending("tomato2.txt", "Tomato")
+    ingest_repo.update_status(source_t, KNOWLEDGE_SOURCE_STATUS_INDEXED)
+
+    repo = SqlDebugCatalogRepository(seeded_session)
+    crops = repo.list_indexed_crops()
+    names = [c.name for c in crops]
+    assert names == sorted(names)

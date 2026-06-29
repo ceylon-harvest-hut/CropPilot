@@ -3,6 +3,9 @@ from __future__ import annotations
 from typing import Protocol
 
 from app.domains.inference.data import RetrievedChunk
+from app.shared.llm import LlmClient
+
+LlmService = LlmClient
 
 
 class QueryEmbeddingService(Protocol):
@@ -16,12 +19,3 @@ class RetrieverRepository(Protocol):
         crop_tag: str | None,
         k: int = 3,
     ) -> list[RetrievedChunk]: ...
-
-
-class LlmService(Protocol):
-    def generate(
-        self,
-        question: str,
-        context: str,
-        template: str = "context_only",
-    ) -> str: ...

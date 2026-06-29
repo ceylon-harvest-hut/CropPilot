@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from app.domains.ingestion.content import ExtractOptions, RawContent
+from app.shared.document.content import ExtractOptions, RawContent
 
 
 class ContentExtractor(ABC):

@@ -6,8 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.shared.document.content import RawContent
+from app.shared.document.source_types import SOURCE_TYPE_FILE
 from app.infrastructure.chunkers.doa_hordi_chunker import DoaHordiChunker
 from app.infrastructure.loaders.doa_hordi_loader import DoaHordiLoader
 

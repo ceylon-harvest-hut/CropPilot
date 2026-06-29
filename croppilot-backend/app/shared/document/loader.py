@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
 
-from app.domains.ingestion.content import LoaderOptions, RawContent
+from app.shared.document.content import LoaderOptions, RawContent
 
 
 class KnowledgeDocument:

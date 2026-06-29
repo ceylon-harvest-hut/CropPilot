@@ -1,5 +1,9 @@
 from pydantic import BaseModel
 
+from app.domains.ingestion.schemas import CropItemResponse, CropListResponse
+
+__all__ = ["CropItemResponse", "CropListResponse"]
+
 
 class ChunkItemResponse(BaseModel):
     chunk_id: str
@@ -29,14 +33,3 @@ class SourceListResponse(BaseModel):
     limit: int
     offset: int
     sources: list[SourceItemResponse]
-
-
-class CropItemResponse(BaseModel):
-    crop_id: int
-    name: str
-    botanical_name: str | None
-
-
-class CropListResponse(BaseModel):
-    total: int
-    crops: list[CropItemResponse]

@@ -4,9 +4,9 @@ import mimetypes
 from pathlib import Path
 from urllib.parse import urlparse
 
-from app.domains.ingestion.content import ExtractOptions, RawContent
-from app.domains.ingestion.extractor import ContentExtractor
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.shared.document.content import ExtractOptions, RawContent
+from app.shared.document.extractor import ContentExtractor
+from app.shared.document.source_types import SOURCE_TYPE_FILE
 
 _EXTENSION_MEDIA_TYPES: dict[str, str] = {
     ".txt": "text/plain",

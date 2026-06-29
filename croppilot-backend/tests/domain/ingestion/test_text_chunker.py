@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 from app.infrastructure.chunkers.section_chunker import SectionChunker
 from pathlib import Path as _Path
 

@@ -8,8 +8,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-from app.domains.ingestion.content import ExtractOptions, LoaderOptions
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.content import ExtractOptions, LoaderOptions
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 
 MANIFEST_VERSION = 1
 MANIFEST_FILENAME = "manifest.json"
@@ -64,7 +64,7 @@ def snapshot_url_to_files(
     from app.infrastructure.extractors.http_extractor import DEFAULT_TIMEOUT_SECONDS
     from app.infrastructure.extractors.registry import ExtractorRegistry, build_all_extractors
     from app.infrastructure.loaders.registry import DocumentLoaderRegistry, build_all_loaders
-    from app.domains.ingestion.pipeline import DocumentPipeline
+    from app.shared.document.pipeline import DocumentPipeline
 
     pipeline = DocumentPipeline(
         extractors=ExtractorRegistry(build_all_extractors()),

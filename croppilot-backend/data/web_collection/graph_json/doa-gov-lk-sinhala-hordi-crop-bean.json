@@ -1,0 +1,204 @@
+{
+  "crop_name": "බෝංචි",
+  "scientific_name": "Phaseolus spp.",
+  "growing_areas": [
+    "Badulla",
+    "Nuwara Eliya",
+    "Matale",
+    "Kandy",
+    "Upcountry Intermediate Zone",
+    "Upcountry Wet Zone"
+  ],
+  "growing_seasons": [
+    "Maha (November-December)",
+    "Yala (March-April)"
+  ],
+  "varieties": [
+    "Balangoda Nil",
+    "Bandarawela Kola",
+    "Gannoruwa Bill",
+    "Kekulu Beans",
+    "Gannoruwa Kola",
+    "Keppetipola Nil",
+    "HORDI Kola",
+    "Kentucky Wonder Green (KWG)",
+    "Lanka Butter",
+    "HORDI Beans -03 (HORDI Pokuru)",
+    "Cherokee Wax",
+    "Sanjaya",
+    "Wade",
+    "Top Crop"
+  ],
+  "soil_types": [
+    "Well-drained loamy soil",
+    "Sandy loam soil",
+    "Red Yellow Podzolic soil"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": null,
+  "temp_max_c": 30.0,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 5.5,
+  "ph_max": 6.5,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 50.0,
+  "plant_distance_cm": 40.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea (Pole Beans Basal)",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 110.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate (Pole Beans Basal)",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 270.0
+    },
+    {
+      "fertilizer": "Muriate of Potash (Pole Beans Basal)",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    },
+    {
+      "fertilizer": "Urea (Pole Beans Top Dressing)",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 110.0
+    },
+    {
+      "fertilizer": "Muriate of Potash (Pole Beans Top Dressing)",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    },
+    {
+      "fertilizer": "Urea (Bush Beans Basal)",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 85.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate (Bush Beans Basal)",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 165.0
+    },
+    {
+      "fertilizer": "Muriate of Potash (Bush Beans Basal)",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Urea (Bush Beans Top Dressing)",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 85.0
+    },
+    {
+      "fertilizer": "Muriate of Potash (Bush Beans Top Dressing)",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Bean fly",
+      "impact": "Harms the crop from planting to harvest.",
+      "solution": "Use recommended pesticides."
+    },
+    {
+      "name": "Mite",
+      "impact": "Harms the crop from planting to harvest.",
+      "solution": "Use recommended pesticides."
+    },
+    {
+      "name": "Thrips",
+      "impact": "Harms the crop from planting to harvest.",
+      "solution": "Use recommended pesticides."
+    },
+    {
+      "name": "Whitefly",
+      "impact": "Harms the crop from planting to harvest.",
+      "solution": "Use recommended pesticides."
+    },
+    {
+      "name": "Aphids",
+      "impact": "Harms the crop from planting to harvest.",
+      "solution": "Use recommended pesticides."
+    },
+    {
+      "name": "Pod borer",
+      "impact": "Harms the crop from planting to harvest.",
+      "solution": "Use recommended pesticides."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Anthracnose",
+      "causal_agent": "Colletotrichum lindemuthianum",
+      "impact": "Affects leaves, vines, and pods.",
+      "solution": "Use recommended fungicides."
+    },
+    {
+      "name": "Rust",
+      "causal_agent": "Uromyces appendiculatus",
+      "impact": "Affects leaves and pods.",
+      "solution": "Use recommended fungicides."
+    },
+    {
+      "name": "Angular Leaf Spot",
+      "causal_agent": "Phaeoisariopsis griseola",
+      "impact": "Affects leaves and pods.",
+      "solution": "Use recommended fungicides."
+    },
+    {
+      "name": "Root Rot",
+      "causal_agent": "Fusarium oxysporum, Fusarium solani",
+      "impact": "Affects roots and stem base.",
+      "solution": "Use recommended fungicides."
+    },
+    {
+      "name": "Bean Common Mosaic Virus (BCMV)",
+      "causal_agent": "BCMV",
+      "impact": "Infected leaves show mottling or turn yellow/golden.",
+      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control aphid vectors."
+    },
+    {
+      "name": "Bean Yellow Mosaic Virus (BYMV)",
+      "causal_agent": "BYMV",
+      "impact": "Infected leaves show mottling or turn yellow/golden.",
+      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control aphid vectors."
+    },
+    {
+      "name": "Bean Golden Mosaic Virus (BGMV)",
+      "causal_agent": "BGMV",
+      "impact": "Infected leaves show mottling or turn yellow/golden.",
+      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control whitefly vectors."
+    },
+    {
+      "name": "Cowpea Yellow Mosaic Virus (HYMV)",
+      "causal_agent": "HYMV",
+      "impact": "Infected leaves show mottling or turn yellow/golden.",
+      "solution": "Remove and destroy diseased plants immediately. Use recommended insecticides to control thrips vectors."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 14000.0
+}

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urlparse
 
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, infer_source_type
+from app.shared.document.source_types import SOURCE_TYPE_FILE, infer_source_type
 
 
 @dataclass(frozen=True)

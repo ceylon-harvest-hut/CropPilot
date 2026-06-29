@@ -12,3 +12,4 @@ langchain-google-genai
 langchain-openai
 langchain-ollama
 langchain-docling
+neo4j

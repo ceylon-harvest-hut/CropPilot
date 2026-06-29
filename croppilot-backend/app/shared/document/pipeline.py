@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from app.domains.ingestion.content import ExtractOptions, LoaderOptions, RawContent
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.content import ExtractOptions, LoaderOptions, RawContent
+from app.shared.document.loader import KnowledgeDocument
 
 
 class DocumentPipeline:

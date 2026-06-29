@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from app.domains.ingestion.content import LoaderOptions, RawContent
-from app.domains.ingestion.loader import DocumentLoader, KnowledgeDocument
+from app.shared.document.content import LoaderOptions, RawContent
+from app.shared.document.loader import DocumentLoader, KnowledgeDocument
 from app.infrastructure.loaders.persist import maybe_persist_output
 
 _SUPPORTED_MEDIA_TYPES = frozenset({"text/plain", "text/markdown"})

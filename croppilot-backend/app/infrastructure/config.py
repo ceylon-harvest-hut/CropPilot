@@ -40,6 +40,10 @@ class Settings(BaseSettings):
     )
     openai_api_key: str | None = None
 
+    # LLM retry (graph ingestion)
+    llm_max_retries: int = 5
+    llm_retry_backoff_seconds: float = 30.0
+
     # --- Embedding model cache ---
     # Permanent directory for FastEmbed ONNX models.
     # Never rely on the /tmp default — that is wiped on reboot.
@@ -54,6 +58,11 @@ class Settings(BaseSettings):
     # Safety guard: if True, embedder constructors are allowed to trigger a download.
     # Must be False in production and CI; only True inside bootstrap_models.py.
     allow_model_download: bool = False
+
+    # Neo4j graph database
+    neo4j_uri: str = "bolt://localhost:7687"
+    neo4j_user: str = "neo4j"
+    neo4j_password: str = ""
 
 
 @lru_cache

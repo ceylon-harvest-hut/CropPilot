@@ -4,7 +4,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.data import KnowledgeChunk
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 
 
 class RecursiveChunker(BaseChunker):

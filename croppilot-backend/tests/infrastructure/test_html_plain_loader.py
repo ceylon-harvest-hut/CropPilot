@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pytest
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.content import RawContent
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.loaders.html_plain_loader import HtmlPlainLoader
 
 

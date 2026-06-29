@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.loader import DocumentLoader
+from app.shared.document.content import RawContent
+from app.shared.document.loader import DocumentLoader
 from app.infrastructure.loaders.dea_gov_lk_loader import DeaGovLkLoader
 from app.infrastructure.loaders.dea_gov_lk_si_loader import DeaGovLkSiLoader
 from app.infrastructure.loaders.doa_hordi_loader import DoaHordiLoader

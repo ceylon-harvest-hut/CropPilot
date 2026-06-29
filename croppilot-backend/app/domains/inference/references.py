@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from app.domains.inference.data import RetrievedChunk
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL, infer_source_type
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL, infer_source_type
 
 EXCERPT_MAX_LENGTH = 200
 

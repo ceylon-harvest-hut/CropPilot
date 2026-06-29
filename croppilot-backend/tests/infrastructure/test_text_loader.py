@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.shared.document.content import RawContent
+from app.shared.document.source_types import SOURCE_TYPE_FILE
 from app.infrastructure.loaders.text_loader import TextLoader
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"

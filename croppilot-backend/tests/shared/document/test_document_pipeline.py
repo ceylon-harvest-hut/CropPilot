@@ -5,9 +5,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from app.domains.ingestion.content import ExtractOptions, LoaderOptions, RawContent
-from app.domains.ingestion.pipeline import DocumentPipeline
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.content import ExtractOptions, LoaderOptions, RawContent
+from app.shared.document.pipeline import DocumentPipeline
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.extractors.registry import ExtractorRegistry, build_all_extractors
 from app.infrastructure.loaders.registry import DocumentLoaderRegistry, build_all_loaders
 from app.infrastructure.loaders.validation import LoaderValidationError

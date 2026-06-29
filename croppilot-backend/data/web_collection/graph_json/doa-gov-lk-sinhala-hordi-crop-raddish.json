@@ -1,0 +1,92 @@
+{
+  "crop_name": "රාබු",
+  "scientific_name": null,
+  "growing_areas": [
+    "All agro-climatic zones of Sri Lanka"
+  ],
+  "growing_seasons": [
+    "Year-round"
+  ],
+  "varieties": [
+    "Japanese Ball Radish",
+    "Beeralu Radish"
+  ],
+  "soil_types": [
+    "Well-drained soil"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 6.0,
+  "ph_max": 7.5,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 25.0,
+  "plant_distance_cm": 10.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 125.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 200.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 125.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 75.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Leaf-eating caterpillar",
+      "impact": "Young larvae are light green, later dark green. When damage is severe, they eat all parts except the veins.",
+      "solution": "If damage is severe, apply recommended insecticide."
+    },
+    {
+      "name": "Leaf miner",
+      "impact": "Forms irregular tunnel-like structures on leaves. These are gray/white, with black fecal matter visible inside.",
+      "solution": ""
+    },
+    {
+      "name": "Sawfly",
+      "impact": "The larval stage is harmful. Fully grown larvae are 4-6 cm long, black or brown. They hide in the soil during the day and cause damage at night. They eat young plants at soil level and irregularly eat the leaves of mature plants.",
+      "solution": "Till and rake the soil. Hand-pick larvae hidden in the soil. Tilling the soil exposes larvae to birds for destruction. Apply a suitable insecticide to the plant and soil on the day of planting. Add more organic fertilizer to the soil. Practice field sanitation."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Clubroot",
+      "causal_agent": null,
+      "impact": "Causes severe damage when cultivated in low pH (acidic) soils. The roots of plants swell and become tuber-like.",
+      "solution": "The pathogen persists in the soil for a long time and cannot be destroyed by strong chemicals. Control is difficult. Test the soil before cultivation and raise the pH with lime if necessary. Uproot and burn infected plants. Practice crop rotation with non-Brassicaceae crops for about four years to reduce the disease."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 45000.0
+}

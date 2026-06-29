@@ -1,0 +1,85 @@
+{
+  "crop_name": "දඹල",
+  "scientific_name": null,
+  "growing_areas": [],
+  "growing_seasons": [
+    "Maha",
+    "Year-round"
+  ],
+  "varieties": [
+    "SLS 44",
+    "Krishna"
+  ],
+  "soil_types": [
+    "Well-drained sandy loam",
+    "Well-drained clay loam",
+    "Sandy soils",
+    "Heavy clay soils"
+  ],
+  "altitude_min_m": 0.0,
+  "altitude_max_m": 2000.0,
+  "temp_min_c": 18.0,
+  "temp_max_c": 32.0,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": null,
+  "ph_max": null,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 75.0,
+  "plant_distance_cm": 60.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Well-decomposed organic matter",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 10000.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 45.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 215.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 20.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 10.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 20.0
+    }
+  ],
+  "pests": [],
+  "diseases": [
+    {
+      "name": "Bacterial Wilt",
+      "causal_agent": "Ralstonia solanacearum",
+      "impact": "Sudden wilting even with optimal soil moisture. A milky exudate can be observed from the cut stem near the root when placed in water.",
+      "solution": "Remove infected plants along with surrounding soil. Improve drainage to reduce spread. There is no chemical treatment for this disease. Improve field sanitation."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 22250.0
+}

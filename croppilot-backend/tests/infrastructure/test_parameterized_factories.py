@@ -2,9 +2,9 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.loader import KnowledgeDocument
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.shared.document.content import RawContent
+from app.shared.document.loader import KnowledgeDocument
+from app.shared.document.source_types import SOURCE_TYPE_FILE
 from app.infrastructure.chunkers.recursive_chunker import RecursiveChunker
 from app.infrastructure.chunkers.section_chunker import SectionChunker
 from app.infrastructure.config import Settings

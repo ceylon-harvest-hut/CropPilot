@@ -67,27 +67,34 @@ def test_ask_endpoint_accepts_hybrid_template(client: TestClient) -> None:
     mock_service = app.dependency_overrides[get_inference_service]()
     response = client.post(
         "/api/v1/ask",
-        json={"question": "What is pepper?", "template": "hybrid"},
+        json={"question": "What is pepper?", "crop_name": "Pepper", "template": "hybrid"},
     )
 
     assert response.status_code == 200
     assert response.json()["template"] == "hybrid"
     mock_service.ask.assert_called_once_with(
         "What is pepper?",
-        crop_tag=None,
+        crop_tag="Pepper",
         template="hybrid",
     )
 
 
-def test_ask_endpoint_without_crop_name(client: TestClient) -> None:
+def test_ask_endpoint_without_crop_name_returns_422(client: TestClient) -> None:
+    """crop_name is now required — omitting it must return 422."""
     response = client.post(
         "/api/v1/ask",
         json={"question": "What crops grow in tropical climates?"},
     )
+    assert response.status_code == 422
 
-    assert response.status_code == 200
-    assert "answer" in response.json()
-    assert "references" in response.json()
+
+def test_ask_endpoint_blank_crop_name_returns_422(client: TestClient) -> None:
+    """Blank (whitespace-only) crop_name must be rejected."""
+    response = client.post(
+        "/api/v1/ask",
+        json={"question": "What is pepper?", "crop_name": "   "},
+    )
+    assert response.status_code == 422
 
 
 def test_ask_endpoint_rejects_missing_question(client: TestClient) -> None:
@@ -102,7 +109,7 @@ def test_ask_endpoint_rejects_missing_question(client: TestClient) -> None:
 def test_ask_endpoint_rejects_unknown_template(client: TestClient) -> None:
     response = client.post(
         "/api/v1/ask",
-        json={"question": "What is pepper?", "template": "unknown"},
+        json={"question": "What is pepper?", "crop_name": "Pepper", "template": "unknown"},
     )
 
     assert response.status_code == 422

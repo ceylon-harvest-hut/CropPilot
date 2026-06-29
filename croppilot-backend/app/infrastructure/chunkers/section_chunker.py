@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.data import KnowledgeChunk
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 
 INTRODUCTION_SECTION = "Introduction"
 MAX_SECTION_HEADER_LENGTH = 100

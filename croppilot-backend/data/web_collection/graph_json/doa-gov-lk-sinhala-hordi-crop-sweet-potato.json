@@ -1,0 +1,92 @@
+{
+  "crop_name": "බතල",
+  "scientific_name": null,
+  "growing_areas": [
+    "All areas except extremely dry regions and cold regions (temperature below 20 degrees Celsius)"
+  ],
+  "growing_seasons": [
+    "Year-round"
+  ],
+  "varieties": [
+    "Wariyapola Red",
+    "CARI-9",
+    "CARI 273",
+    "CARI 426",
+    "Wariyapola White",
+    "Shanthi",
+    "Chithra",
+    "Gannoruwa White",
+    "Ama",
+    "Dhawa",
+    "Hordi Mali",
+    "Ranabima"
+  ],
+  "soil_types": [
+    "Light loamy soil"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": 20.0,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": null,
+  "ph_max": null,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 90.0,
+  "plant_distance_cm": 20.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 2.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 60.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 2.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 120.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 2.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 120.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 6.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 60.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 6.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 60.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Sweet Potato Weevil",
+      "impact": "Most harmful pest affecting the crop.",
+      "solution": ""
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Root Rot",
+      "causal_agent": "Fusarium spp.",
+      "impact": "Yellowing of leaves, followed by wilting of vines and root rot.",
+      "solution": "Remove diseased plants with soil from the field."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 20000.0
+}

@@ -1,0 +1,93 @@
+{
+  "crop_name": "මෑ",
+  "scientific_name": null,
+  "growing_areas": [
+    "Low Country Wet Zone",
+    "Low Country Intermediate Zone",
+    "Low Country Dry Zone"
+  ],
+  "growing_seasons": [
+    "After monsoon rains (Wet Zone)",
+    "Yala (rain-fed, Dry Zone)",
+    "Yala (irrigated, Dry Zone)",
+    "Maha (Dry Zone)"
+  ],
+  "varieties": [
+    "Gannoruwa Hawari",
+    "Gannoruwa A9 Mae",
+    "Hawari Mae",
+    "Sena",
+    "Polon Mae",
+    "Bushita (local)",
+    "BS1",
+    "Bush Polon"
+  ],
+  "soil_types": [
+    "Sandy loam"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 5.6,
+  "ph_max": 7.0,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 67.5,
+  "plant_distance_cm": 20.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 35.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 130.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 35.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 55.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 4.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 35.0
+    }
+  ],
+  "pests": [],
+  "diseases": [
+    {
+      "name": "Root Rot / Stem Rot",
+      "causal_agent": "Fusarium spp., Pythium spp., Sclerotium spp",
+      "impact": "The base of the plant turns brown and rots externally. If infected by Sclerotium fungus, white fungal networks are seen at the base of the plant. Plants in the field wilt in patches.",
+      "solution": "Improve drainage, apply fungicide to the base, practice crop rotation, remove and destroy infected plant parts from the field."
+    },
+    {
+      "name": "Ashy Stem Blight",
+      "causal_agent": "macrophomina phaseolina",
+      "impact": "Initial symptoms are grayish-brown sunken dry spots at the base of the stem. This can extend to the apex of the plant. Plants wilt and then die. Leaves of diseased plants first wilt and then die.",
+      "solution": "Apply Tebruconazole 250g/lEW fungicide around 4 weeks after planting."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 17700.0
+}

@@ -6,8 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.content import RawContent
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.loaders.dea_gov_lk_loader import (
     DeaGovLkLoader,
     _extract_crop_name,

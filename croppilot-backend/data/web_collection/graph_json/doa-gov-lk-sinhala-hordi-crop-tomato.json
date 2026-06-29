@@ -1,0 +1,171 @@
+{
+  "crop_name": "තක්කාලි",
+  "scientific_name": null,
+  "growing_areas": [
+    "All agro-climatic zones of Sri Lanka except the Upcountry Wet Zone"
+  ],
+  "growing_seasons": [
+    "Yala",
+    "Maha"
+  ],
+  "varieties": [
+    "HORDI Tomato hybrid 03",
+    "Thilina",
+    "KWR",
+    "T245",
+    "Ravi",
+    "Lanka Sour",
+    "Maheshi",
+    "Tharindu",
+    "Rajitha",
+    "Rashmi",
+    "Bhathiya",
+    "KC 1",
+    "Lanka Cherry"
+  ],
+  "soil_types": [],
+  "altitude_min_m": 1000.0,
+  "altitude_max_m": 2000.0,
+  "temp_min_c": 21.0,
+  "temp_max_c": 24.0,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 5.5,
+  "ph_max": 7.5,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 80.0,
+  "plant_distance_cm": 50.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 325.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 6.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 6.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 65.0
+    }
+  ],
+  "pests": [],
+  "diseases": [
+    {
+      "name": "Damping-off",
+      "causal_agent": "Phythium spp., Phytophthora spp., Fusarium spp., Rhizoctonia spp., Sclerotium spp., Colletotrichum spp.",
+      "impact": "Seedling death due to root infection.",
+      "solution": "Prepare nursery beds in land not previously cultivated with Solanaceae crops. Heat sterilize nursery beds. Seed treatment: Thiram 80wp 5g/1Kg or Homai 4g/1kg. Soil treatment: Thiram 80wp 7g/5 l/m-2 or Homai 5g/5 l/m-2."
+    },
+    {
+      "name": "Early Blight",
+      "causal_agent": "Alternaria solani",
+      "impact": "Spiral spots on leaves, fruits, and stems.",
+      "solution": "Use recommended fungicides at early stages of disease development: Mancozeb 80% WP (20g/10l), Metalaxyl 8% + Mancozeb 64% WP (12.5g/10l), Metiram 55% + Pyraclostrobin 5% WG (8ml/10l)."
+    },
+    {
+      "name": "Late Blight",
+      "causal_agent": "Phytophthora infestans",
+      "impact": "Rapid death of leaves, stems, and fruits. Symptoms first appear on lower mature leaves. Gray wet spots on leaves, later turning black with fungal growth.",
+      "solution": "Use recommended fungicides at early stages of disease development: Mancozeb 80% WP (20g/10l), Metalaxyl 8% + Mancozeb 64% WP (12.5g/10l), Metiram 55% + Pyraclostrobin 5% WG (8ml/10l)."
+    },
+    {
+      "name": "Target Spot",
+      "causal_agent": "Corynespora cassiicola",
+      "impact": "Round, dark brown necrotic spots with a yellow halo on leaves, spreading to all leaflets. Leaves turn yellow, fall rapidly, and die. Spots also appear on stems and fruits.",
+      "solution": "Suitable fungicides are under research."
+    },
+    {
+      "name": "Powdery Mildew",
+      "causal_agent": "Oidium lycopersicum",
+      "impact": "Light green to bright yellow spots on the upper surface of leaves. White powdery spots develop on the upper surface when fungal spores form. Severe infection leads to defoliation.",
+      "solution": "Use recommended fungicides at early stages of disease development: 80% WG Sulfur (50 g/10 l water), Chlorothalonil 500g/l SC (30 ml/10 l water), Carbendazim 50% WP (7 g/10 l water)."
+    },
+    {
+      "name": "Anthracnose",
+      "causal_agent": "Colletotrichum coccodes",
+      "impact": "Plant death from apical buds, flower drop. Black, sunken spots on leaves, stems, and fruits. Fruit rot.",
+      "solution": "Seed treatment with recommended fungicides before sowing. Use recommended fungicides at early stages of disease development."
+    },
+    {
+      "name": "Septoria Leaf Spot",
+      "causal_agent": "Septoria lycopersici",
+      "impact": "Wet spots on affected leaves become round, with centers turning from brown to gray.",
+      "solution": "Use recommended fungicides: Daconil (15-30 ml/10L), Mancozeb (20 ml/10L), Topsin (6g/10L), Carbendazim (7g/10L)."
+    },
+    {
+      "name": "Collar Rot / Root Rot",
+      "causal_agent": "Fusarium spp., Rhizoctonia spp., Sclerotium spp.",
+      "impact": "Pathogen damages the base of the plant, infection leads to drying of lower leaves, and eventually the entire plant dries up, showing general wilting symptoms, leading to death.",
+      "solution": "Not explicitly mentioned in the provided text."
+    },
+    {
+      "name": "Bacterial Wilt",
+      "causal_agent": "Ralstonia solanacearum",
+      "impact": "Plant shows permanent wilting even with optimal soil moisture. Viscous exudate from cut stem when immersed in water.",
+      "solution": "Use resistant varieties, crop rotation with legumes/cereals, maintain field sanitation."
+    },
+    {
+      "name": "Bacterial Canker",
+      "causal_agent": "Clavibacter michiganensis subsp. michiganensis (Cmm)",
+      "impact": "Tomato leaf margins turn brown with a yellow border. Lower leaves often wilt on one side only. Entire plant may collapse and die. Brown streaks in vascular system when stem is cut open. Stem cracks forming brown scars. Internal stem discoloration. Creamy, white spots with small brown centers on fruits (bird's eye spots).",
+      "solution": "Use healthy seeds, crop rotation, maintain field sanitation."
+    },
+    {
+      "name": "Tomato Yellow Leaf Curl Virus (TYLCV)",
+      "causal_agent": "TYLCV virus transmitted by whiteflies",
+      "impact": "Upward curling of leaves. Leaf margins are chlorotic (yellowish). Leaves are smaller than normal. Tomato plants are stunted and flowers drop. If infected at early stages of growth, no fruit set occurs. Infected plants may appear randomly throughout the field.",
+      "solution": "Use healthy seeds, crop rotation, maintain field sanitation."
+    },
+    {
+      "name": "Curlitop Virus (CTV)",
+      "causal_agent": "Transmitted by leafhoppers",
+      "impact": "Leaves curl upwards along the midrib. Petioles and midribs gradually curve downwards, showing leaf inclination but no wilting symptoms. Leaves become thick, crinkled, and brittle, with purple veins on dark green leaves.",
+      "solution": "Use healthy seeds, crop rotation, maintain field sanitation."
+    },
+    {
+      "name": "Tomato Spotted Wilt Virus (TSWV)",
+      "causal_agent": "TSWV disease spread by thrips",
+      "impact": "Leaves turn bronze and wrinkle, necrotic streaks and spots appear on leaves. Dark brown streaks on leaf veins, stems, and growing tips. Plants are small and stunted. Ripe fruits show light red or yellow areas. In severe necrotic conditions, plants die.",
+      "solution": "Weed removal, remove old crop debris. Use healthy seeds, crop rotation, maintain field sanitation."
+    },
+    {
+      "name": "Cucumber Mosaic Virus (CMV)",
+      "causal_agent": "Transmitted by aphids",
+      "impact": "Early stages show yellowing and significant stunting. Later, shoestring-like leaf blades develop. Plant stunting, leaf yellowing, leaf thinning, small fruits, reduced yield, and delayed ripening. Leaf spots.",
+      "solution": "Use disease-free seeds, weed-free fields and field sanitation, reduce vector population (by insecticides)."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 25000.0
+}

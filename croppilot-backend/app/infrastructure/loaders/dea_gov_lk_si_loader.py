@@ -18,8 +18,8 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from app.domains.ingestion.content import LoaderOptions, RawContent
-from app.domains.ingestion.loader import DocumentLoader, KnowledgeDocument
+from app.shared.document.content import LoaderOptions, RawContent
+from app.shared.document.loader import DocumentLoader, KnowledgeDocument
 from app.infrastructure.loaders.dea_gov_lk_loader import _nodes_to_text
 from app.infrastructure.loaders.persist import maybe_persist_output
 

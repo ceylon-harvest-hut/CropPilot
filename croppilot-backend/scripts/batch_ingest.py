@@ -14,7 +14,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from sqlalchemy import create_engine  # noqa: E402
 from sqlalchemy.orm import sessionmaker  # noqa: E402
 
-from app.domains.ingestion.content import ExtractOptions  # noqa: E402
+from app.shared.document.content import ExtractOptions  # noqa: E402
 from app.infrastructure.chunkers.catalog import list_chunker_names  # noqa: E402
 from app.infrastructure.config import get_settings  # noqa: E402
 from app.infrastructure.extractors.http_extractor import DEFAULT_TIMEOUT_SECONDS  # noqa: E402

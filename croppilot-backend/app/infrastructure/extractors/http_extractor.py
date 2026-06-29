@@ -7,9 +7,9 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
-from app.domains.ingestion.content import ExtractOptions, RawContent
-from app.domains.ingestion.extractor import ContentExtractor
-from app.domains.ingestion.source_types import SOURCE_TYPE_WEB_URL
+from app.shared.document.content import ExtractOptions, RawContent
+from app.shared.document.extractor import ContentExtractor
+from app.shared.document.source_types import SOURCE_TYPE_WEB_URL
 
 DEFAULT_TIMEOUT_SECONDS = 30
 USER_AGENT = "CropPilot/1.0"

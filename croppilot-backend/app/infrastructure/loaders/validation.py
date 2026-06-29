@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.loader import DocumentLoader
-from app.domains.ingestion.source_types import validate_source_uri_shape
+from app.shared.document.content import RawContent
+from app.shared.document.loader import DocumentLoader
+from app.shared.document.source_types import validate_source_uri_shape
 
 
 class LoaderValidationError(Exception):

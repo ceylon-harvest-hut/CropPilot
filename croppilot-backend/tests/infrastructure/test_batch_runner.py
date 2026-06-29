@@ -7,9 +7,9 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.domains.ingestion.content import ExtractOptions
+from app.shared.document.content import ExtractOptions
 from app.domains.ingestion.data import KnowledgeChunk
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 from app.domains.ingestion.persistence import SourceAlreadyIngestedError
 from app.infrastructure.ingestion.batch_manifest import ManifestEntry
 from app.infrastructure.ingestion.batch_runner import ingest_manifest_entry

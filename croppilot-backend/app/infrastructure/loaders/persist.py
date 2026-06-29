@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from app.domains.ingestion.content import LoaderOptions
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.content import LoaderOptions
+from app.shared.document.loader import KnowledgeDocument
 
 
 def maybe_persist_output(docs: list[KnowledgeDocument], options: LoaderOptions) -> None:

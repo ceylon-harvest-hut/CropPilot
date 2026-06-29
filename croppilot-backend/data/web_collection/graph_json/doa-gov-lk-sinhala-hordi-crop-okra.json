@@ -1,0 +1,129 @@
+{
+  "crop_name": "බණ්ඩක්කා",
+  "scientific_name": null,
+  "growing_areas": [
+    "Any climatic zone except the Upcountry Wet Zone",
+    "Hambantota District",
+    "Kurunegala District",
+    "Ratnapura District",
+    "Matale District",
+    "Anuradhapura District",
+    "Puttalam District",
+    "Matara District",
+    "Badulla District",
+    "Monaragala District"
+  ],
+  "growing_seasons": [
+    "Year-round",
+    "Yala (early April to early May)",
+    "Maha (early September to early October)"
+  ],
+  "varieties": [
+    "MI5",
+    "MI7",
+    "OKH1",
+    "Haritha"
+  ],
+  "soil_types": [
+    "Well-drained soil"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": 6.0,
+  "ph_max": 7.0,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 90.0,
+  "plant_distance_cm": 60.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 50.0
+    },
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 195.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 25.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 2.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 50.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 2.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 25.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 5.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 100.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 5.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 50.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 100.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 50.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Whitefly",
+      "impact": "Vector for Okra Yellow Vein Mosaic Virus.",
+      "solution": "Vector control (whitefly), use of insect-resistant nets or cover crops, use of neem extract."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Powdery Mildew",
+      "causal_agent": "Podosphaera Spp",
+      "impact": "White powdery fungal parts initially appear on the underside of leaves. The upper side of leaves turns yellow. Mainly seen on mature leaves and stems. Eventually, leaves dry out and fall, leading to significant yield reduction. The disease can worsen due to high humidity and is common in dewy climates.",
+      "solution": "Maintain clean cultivation, control micro-humidity and temperature, use recommended fungicides in severe cases or under favorable climatic conditions."
+    },
+    {
+      "name": "Okra Yellow Vein Mosaic Virus",
+      "causal_agent": "Okra Yellow Vein Mosaic Virus (Begomovirus)",
+      "impact": "Characteristic yellowing of the entire leaf vein network. Reduced yield. Yellow mosaic pattern on leaves. Leaves curl, wrinkle, and develop spots. Stunted plant growth and impaired development. In severe infections, pods become small, deformed, yellowed, and shrunken. Not spread by seeds.",
+      "solution": "Vector control (whitefly), field sanitation (remove and destroy diseased plants immediately), use recommended seeds and resistant varieties, careful use of tools, IPM for disease control, crop rotation with non-host plants, use of healthy seeds, maintaining proper planting distance, proper plant nutrition, good water management, keeping the field clean, removing and destroying infected plants, using biological control methods."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 12500.0
+}

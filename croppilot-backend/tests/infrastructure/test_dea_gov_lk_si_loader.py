@@ -7,8 +7,8 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.shared.document.content import RawContent
+from app.shared.document.source_types import SOURCE_TYPE_FILE
 from app.infrastructure.chunkers.dea_gov_lk_si_chunker import DeaGovLkSiChunker
 from app.infrastructure.loaders.dea_gov_lk_si_loader import (
     DeaGovLkSiLoader,

@@ -6,8 +6,8 @@ from urllib.error import URLError
 
 import pytest
 
-from app.domains.ingestion.content import ExtractOptions
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.content import ExtractOptions
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.extractors.http_extractor import HttpExtractor
 
 

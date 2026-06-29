@@ -6,15 +6,15 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.loader import KnowledgeDocument
+from app.shared.document.loader import KnowledgeDocument
 from app.infrastructure.chunkers.dea_gov_lk_chunker import (
     LONG_SECTION_THRESHOLD,
     DeaGovLkChunker,
     _split_at_bold_headers,
 )
 from app.infrastructure.loaders.dea_gov_lk_loader import DeaGovLkLoader
-from app.domains.ingestion.content import RawContent
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE
+from app.shared.document.content import RawContent
+from app.shared.document.source_types import SOURCE_TYPE_FILE
 
 PEPPER_HTML = (
     Path(__file__).parent.parent.parent

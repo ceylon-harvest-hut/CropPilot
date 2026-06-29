@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from app.domains.ingestion.source_types import ALL_SOURCE_TYPES
+from app.shared.document.source_types import ALL_SOURCE_TYPES
 
 
 @dataclass(frozen=True)

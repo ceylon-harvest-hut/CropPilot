@@ -3,13 +3,13 @@ from __future__ import annotations
 from app.domains.ingestion.chunker import BaseChunker
 from app.domains.ingestion.data import IngestResult
 from app.domains.ingestion.persistence import SourceAlreadyIngestedError, persist_knowledge_chunks
-from app.domains.ingestion.pipeline import DocumentPipeline
+from app.shared.document.pipeline import DocumentPipeline
 from app.domains.ingestion.repositories import (
     ChunkEmbeddingService,
     KnowledgeSourceRepository,
     VectorStoreRepository,
 )
-from app.domains.ingestion.source_types import infer_source_type
+from app.shared.document.source_types import infer_source_type
 from app.infrastructure.repositories.db import KNOWLEDGE_SOURCE_STATUS_FAILED
 
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from app.domains.ingestion.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
+from app.shared.document.source_types import SOURCE_TYPE_FILE, SOURCE_TYPE_WEB_URL
 from app.infrastructure.extractors.file_extractor import FileExtractor
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"

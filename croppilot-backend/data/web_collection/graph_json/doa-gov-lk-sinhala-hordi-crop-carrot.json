@@ -1,0 +1,131 @@
+{
+  "crop_name": "කැරට්",
+  "scientific_name": null,
+  "growing_areas": [
+    "All agro-ecological zones",
+    "Upcountry cold regions"
+  ],
+  "growing_seasons": [],
+  "varieties": [
+    "New Kuroda",
+    "Lanka Carrot"
+  ],
+  "soil_types": [
+    "Soil with high organic matter",
+    "Well-drained soil"
+  ],
+  "altitude_min_m": null,
+  "altitude_max_m": null,
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "rainfall_min_mm": null,
+  "rainfall_max_mm": null,
+  "ph_min": null,
+  "ph_max": null,
+  "pit_length_cm": null,
+  "pit_width_cm": null,
+  "row_distance_cm": 25.0,
+  "plant_distance_cm": 5.0,
+  "fertilizer_schedule": [
+    {
+      "fertilizer": "Triple Super Phosphate",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 270.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 55.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 3.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 43.0
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 6.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 82.5
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 6.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 63.5
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 82.5
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 8.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 63.5
+    },
+    {
+      "fertilizer": "Urea",
+      "apply_start_weeks_after_planting": 9.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 110.0
+    },
+    {
+      "fertilizer": "Muriate of Potash",
+      "apply_start_weeks_after_planting": 9.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 85.0
+    }
+  ],
+  "pests": [
+    {
+      "name": "Leaf Miner",
+      "impact": "Adult females puncture leaves for feeding and egg-laying, causing white spots and leaf drying due to water evaporation. Larvae feed inside leaves, creating thin white tunnels, reducing photosynthesis. Wounds allow secondary fungal or other pathogen infections. More damage occurs in dry weather conditions.",
+      "solution": "Constant field inspection before and after planting. Biological control using natural enemies (Diglyphas isaea, Hemiptersenus semiabiclavus, Opius Spp) by breeding them in wooden cages or on white polythene with discarded leaves, then releasing them into the field. Use yellow sticky traps. Use a butterfly net in the morning when leaf miners are active. Install a 5-foot high net around the field before planting. Deep plowing to destroy weeds and pupae. Remove old infected leaves and bury damaged leaves. Do not select infected seedlings from nurseries. For chemical control, use recommended insecticides: Neem extract (640g/16L) for early stages. If infestation is high, apply Azadiractin 1% EC (16ml/16L) or Abamectin 18g/L EC (9.6ml/16L)."
+    },
+    {
+      "name": "Cutworm",
+      "impact": "Larvae are active at night, cutting young plants at the base. Damage is more prevalent in dry weather conditions. High larval populations in the soil during root development can damage roots, leading to loss of market value.",
+      "solution": "Deep plowing exposes larvae and pupae to predatory birds. Good weed control and field sanitation. Regular field inspection to hand-pick hidden larvae when populations are low. If damage is high, apply recommended insecticides immediately after planting: Profenophos 500g/LEC (32ml/16L) or Etofenprox 100g/LEC (24ml/16L)."
+    },
+    {
+      "name": "Root-knot Nematodes",
+      "impact": "No symptoms at low nematode populations. At high populations, plants show yellowing, stunting, wilting, and uneven growth. Examination of roots reveals galls. Also, root forking, distorted roots, and hairy roots on the taproot can be observed.",
+      "solution": "Maintain uninfected fields. Clean tools used in infected fields before using them in uninfected fields. Prevent entry of animals and water from nearby infected fields. For infected fields: deep plowing and exposing soil to sunlight for several days. Implement crop rotation. Apply chicken manure two weeks before planting, in addition to other organic fertilizers."
+    },
+    {
+      "name": "Snails and Slugs",
+      "impact": "Eat young shoots during germination, potentially destroying the entire crop. Damage is more common during rainy seasons.",
+      "solution": "Improve field sanitation and weed control. Remove potential hiding places in the field during the day. Inspect fields at night and hand-pick. Place baits in the field. Apply recommended molluscicides: Metaldehyde 3% RB (10-40 kg/ha), Metaldehyde 4% RB (10-40 kg/ha), or Metaldehyde 5% GR (10-40 kg/ha)."
+    }
+  ],
+  "diseases": [
+    {
+      "name": "Blight",
+      "causal_agent": null,
+      "impact": "Not explicitly described, but generally refers to rapid and extensive browning, wilting, and death of plant tissues.",
+      "solution": "Use healthy planting material. Keep the field clean. Use recommended fungicides such as Mancozeb and Maneb."
+    },
+    {
+      "name": "Soft Rot",
+      "causal_agent": null,
+      "impact": "Not explicitly described, but generally refers to a bacterial disease causing soft, watery decay of plant tissues.",
+      "solution": "Keep the field clean. Improve field drainage."
+    }
+  ],
+  "expected_harvest_kg_per_ha": 35000.0
+}
