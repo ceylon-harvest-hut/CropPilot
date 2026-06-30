@@ -3,8 +3,10 @@ import { ApiError } from "./api/client";
 import { listIndexedCrops } from "./api/crops";
 import { listChunks, listCrops, listSources } from "./api/debug";
 import { askQuestion, listAskTemplates } from "./api/inference";
+import { askAgent } from "./api/agent";
 import { ingestDocument } from "./api/ingestion";
 import type {
+  AskAgentResponse,
   AskResponse,
   AskTemplateName,
   ChunkListResponse,
@@ -19,7 +21,15 @@ import CropSearchSelect from "./components/CropSearchSelect";
 import LabPanel from "./LabPanel";
 import "./App.css";
 
-type ActiveTab = "lab" | "ingest" | "ask" | "debug";
+type ActiveTab = "lab" | "ingest" | "ask" | "ask-agent" | "debug";
+
+const TAB_LABELS: Record<ActiveTab, string> = {
+  lab: "Lab",
+  ingest: "Ingest",
+  ask: "Ask",
+  "ask-agent": "Ask Agent",
+  debug: "Debug",
+};
 
 const DEBUG_PAGE_SIZE = 20;
 
@@ -88,6 +98,10 @@ function App() {
   const [askTemplates, setAskTemplates] = useState<PromptTemplateOption[]>([]);
   const [askResult, setAskResult] = useState<AskResponse | null>(null);
 
+  // Ask Agent state
+  const [agentQuestion, setAgentQuestion] = useState("");
+  const [agentResult, setAgentResult] = useState<AskAgentResponse | null>(null);
+
   useEffect(() => {
     if (activeTab !== "ask") {
       return;
@@ -126,7 +140,7 @@ function App() {
   const [selectedChunkId, setSelectedChunkId] = useState<string | null>(null);
 
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<"ingest" | "ask" | "debug" | null>(null);
+  const [loading, setLoading] = useState<"ingest" | "ask" | "ask-agent" | "debug" | null>(null);
 
   async function handleIngest() {
     setError(null);
@@ -153,6 +167,19 @@ function App() {
       setAskResult(result);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Ask failed");
+    } finally {
+      setLoading(null);
+    }
+  }
+
+  async function handleAskAgent() {
+    setError(null);
+    setLoading("ask-agent");
+    try {
+      const result = await askAgent({ question: agentQuestion });
+      setAgentResult(result);
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "Ask agent failed");
     } finally {
       setLoading(null);
     }
@@ -239,14 +266,14 @@ function App() {
       <header className="app-navbar">
         <h1 className="app-logo">CropPilot</h1>
         <nav className="tabs">
-          {(["lab", "ingest", "ask", "debug"] as ActiveTab[]).map((tab) => (
+          {(["lab", "ingest", "ask", "ask-agent", "debug"] as ActiveTab[]).map((tab) => (
             <button
               key={tab}
               type="button"
               className={`tab-btn${activeTab === tab ? " active" : ""}`}
               onClick={() => { setActiveTab(tab); setError(null); }}
             >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {TAB_LABELS[tab]}
             </button>
           ))}
         </nav>
@@ -355,6 +382,55 @@ function App() {
                           <p className="ask-reference-uri monospace">{ref.source_uri}</p>
                         )}
                         <p className="ask-reference-excerpt">{ref.excerpt}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+      )}
+
+      {activeTab === "ask-agent" && (
+        <section className="panel app-content-panel">
+          <h2>Ask Agent</h2>
+          <p className="field-hint">
+            Graph agent with Neo4j tools. Ask in any language; the agent infers the crop from your question.
+          </p>
+          <label>
+            Question
+            <textarea
+              value={agentQuestion}
+              onChange={(e) => setAgentQuestion(e.target.value)}
+              rows={4}
+              placeholder="e.g. I have 0.5 hectare. How many Cabbage plants can I fit?"
+            />
+          </label>
+          <button
+            type="button"
+            onClick={handleAskAgent}
+            disabled={loading !== null || !agentQuestion.trim()}
+          >
+            {loading === "ask-agent" ? "Thinking…" : "Ask Agent"}
+          </button>
+          {agentResult && (
+            <div className="result ask-result">
+              <div className="ask-answer-block">
+                <h3 className="ask-result-heading">Answer</h3>
+                <p className="answer">{agentResult.answer}</p>
+              </div>
+              {agentResult.tools_used.length > 0 && (
+                <div className="ask-tools-block">
+                  <h3 className="ask-result-heading">Tools Used</h3>
+                  <ul className="ask-tools-list">
+                    {agentResult.tools_used.map((tool, index) => (
+                      <li key={`${tool.name}-${index}`} className="ask-tool-item">
+                        <strong className="ask-tool-name">{tool.name}</strong>
+                        <pre className="ask-tool-detail monospace">
+                          {JSON.stringify(tool.arguments, null, 2)}
+                        </pre>
+                        <p className="ask-tool-result">{tool.result}</p>
                       </li>
                     ))}
                   </ul>

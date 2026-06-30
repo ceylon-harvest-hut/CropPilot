@@ -170,6 +170,38 @@ button:disabled {
   background: #fff;
 }
 
+.ask-tools-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ask-tool-item {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.ask-tool-name {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.ask-tool-detail {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+}
+
+.ask-tool-result {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
 .ask-reference-title {
   display: block;
   font-size: 0.95rem;

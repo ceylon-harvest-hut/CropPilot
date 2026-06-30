@@ -29,6 +29,10 @@ build/
 #experiments
 croppilot-backend/experiments/
 
+# --- FastEmbed model cache (populated by bootstrap_models.py) ---
+croppilot-backend/models/
+models/fastembed/
+
 # --- Infrastructure / Terraform ---
 .terraform/
 *.tfstate

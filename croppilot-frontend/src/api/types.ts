@@ -44,6 +44,22 @@ export interface AskResponse {
   template: AskTemplateName;
 }
 
+/** Mirrors app/domains/agent/schemas.py */
+export interface AskAgentRequest {
+  question: string;
+}
+
+export interface ToolCallResponse {
+  name: string;
+  arguments: Record<string, unknown>;
+  result: string;
+}
+
+export interface AskAgentResponse {
+  answer: string;
+  tools_used: ToolCallResponse[];
+}
+
 export interface ApiErrorDetail {
   detail:
     | string
