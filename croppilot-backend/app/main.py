@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.domains.agent.routes import router as agent_router
 from app.domains.debug.routes import router as debug_router
 from app.domains.inference.routes import router as inference_router
 from app.domains.inference.dependencies import get_inference_service
@@ -41,5 +42,6 @@ app.add_middleware(
 
 app.include_router(ingestion_router, prefix="/api/v1", tags=["ingestion"])
 app.include_router(inference_router, prefix="/api/v1", tags=["inference"])
+app.include_router(agent_router, prefix="/api/v1", tags=["agent"])
 app.include_router(debug_router, prefix="/api/v1/debug", tags=["debug"])
 app.include_router(lab_router, prefix="/api/v1/lab", tags=["lab"])

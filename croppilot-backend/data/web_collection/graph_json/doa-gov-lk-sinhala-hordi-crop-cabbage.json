@@ -1,5 +1,5 @@
 {
-  "crop_name": "Cabbage",
+  "name": "Cabbage",
   "scientific_name": null,
   "growing_areas": [
     "All Agro-Ecological Zones",
@@ -8,7 +8,7 @@
   ],
   "growing_seasons": [],
   "varieties": [
-    "Green Cornati"
+    "Green Coronet"
   ],
   "soil_types": [
     "Well-Drained Soil With High Organic Matter"
@@ -26,6 +26,13 @@
   "row_distance_cm": 50.0,
   "plant_distance_cm": 40.0,
   "fertilizer_schedule": [
+    {
+      "fertilizer": "Organic Fertilizer",
+      "apply_start_weeks_after_planting": 0.0,
+      "repeat_count": 1,
+      "repeat_interval_weeks": 0.0,
+      "quantity_kg_per_ha": 10000.0
+    },
     {
       "fertilizer": "Urea",
       "apply_start_weeks_after_planting": 0.0,
@@ -79,81 +86,81 @@
   "pests": [
     {
       "name": "Diamondback Moth",
-      "impact": "Larvae are small, light green caterpillars. Immature larvae damage the underside of leaves, while mature larvae eat leaves in a circular pattern. High populations can consume entire leaves, leaving only veins.",
-      "solution": "Regular nursery inspection and maintenance, constant field inspection, crop rotation, destruction of crop residues after harvest, field sanitation, avoid unnecessary insecticide application to protect natural enemies. If pest population reaches damaging levels, apply Emamectin benzoate 5%SG (8g/16l), Etofenprox 100g/l EC (24ml/16l), Chlorfluazuron 50g/l EC (16ml/16l), Bistrifluron 100g/l EC (24ml/16l), Tebufenozide 200g/l SC (24ml/16l), Chromafenozide 50g/l SC (32ml/16l), Chlorantraniliprole 200g/ SC (6ml/16l), Lufenuron 50g/l EC (16ml/16l), Spinosad 25g/l SC (16ml/16l), or Flubendiamide 24% WG (6ml/16l)."
+      "impact": "Larvae are small, light green caterpillars. Immature larvae damage the underside of leaves, while mature larvae eat round holes in leaves. If the population is high, the entire leaf is eaten, leaving only the veins.",
+      "solution": "Regular nursery inspection and maintenance, constant crop inspection, crop rotation, destruction of crop residues after harvest, field sanitation, avoid unnecessary insecticide application to protect natural enemies. If pest population reaches damaging levels, apply Emamectin benzoate 5%SG, Etofenprox 100g/l EC, Chlorfluazuron 50g/l EC, Bistrifluron 100g/l EC, Tebufenozide 200g/l SC, Chromafenozide 50g/l SC, Chlorantraniliprole 200g/ SC, Lufenuron 50g/l EC, Spinosad 25g/l SC, or Flubendiamide 24% WG."
     },
     {
       "name": "Looper Caterpillar",
-      "impact": "Green caterpillar that moves in a semi-loop. Eats large holes in leaves. Caterpillar waste can be seen at the base of leaves. High populations can consume entire leaves, leaving only veins.",
-      "solution": "Regular nursery inspection and maintenance, constant field inspection, crop rotation, destruction of crop residues after harvest, field sanitation, avoid unnecessary insecticide application to protect natural enemies. If pest population reaches damaging levels, apply Emamectin benzoate 5%SG (8g/16l), Etofenprox 100g/l EC (24ml/16l), Chlorfluazuron 50g/l EC (16ml/16l), Bistrifluron 100g/l EC (24ml/16l), Tebufenozide 200g/l SC (24ml/16l), Chromafenozide 50g/l SC (32ml/16l), Chlorantraniliprole 200g/ SC (6ml/16l), Lufenuron 50g/l EC (16ml/16l), Spinosad 25g/l SC (16ml/16l), or Flubendiamide 24% WG (6ml/16l)."
+      "impact": "The damaging larva is a green caterpillar that moves in a semi-ring shape. It eats large holes in leaves. Caterpillar droppings can be seen at the base of the leaves. If the population is high, the entire leaf is eaten, leaving only the veins.",
+      "solution": "Regular nursery inspection and maintenance, constant crop inspection, crop rotation, destruction of crop residues after harvest, field sanitation, avoid unnecessary insecticide application to protect natural enemies. If pest population reaches damaging levels, apply Emamectin benzoate 5%SG, Etofenprox 100g/l EC, Chlorfluazuron 50g/l EC, Bistrifluron 100g/l EC, Tebufenozide 200g/l SC, Chromafenozide 50g/l SC, Chlorantraniliprole 200g/ SC, Lufenuron 50g/l EC, Spinosad 25g/l SC, or Flubendiamide 24% WG."
     },
     {
       "name": "Tobacco Cutworm",
-      "impact": "Larvae feed in clusters, consuming the entire plant and leaving only veins.",
-      "solution": "Regular nursery inspection and maintenance, constant field inspection, crop rotation, destruction of crop residues after harvest, field sanitation, avoid unnecessary insecticide application to protect natural enemies. If pest population reaches damaging levels, apply Emamectin benzoate 5%SG (8g/16l), Etofenprox 100g/l EC (24ml/16l), Chlorfluazuron 50g/l EC (16ml/16l), Bistrifluron 100g/l EC (24ml/16l), Tebufenozide 200g/l SC (24ml/16l), Chromafenozide 50g/l SC (32ml/16l), Chlorantraniliprole 200g/ SC (6ml/16l), Lufenuron 50g/l EC (16ml/16l), Spinosad 25g/l SC (16ml/16l), or Flubendiamide 24% WG (6ml/16l)."
+      "impact": "Larvae feed on leaves in clusters, consuming the entire plant and leaving only the veins.",
+      "solution": "Regular nursery inspection and maintenance, constant crop inspection, crop rotation, destruction of crop residues after harvest, field sanitation, avoid unnecessary insecticide application to protect natural enemies. If pest population reaches damaging levels, apply Emamectin benzoate 5%SG, Etofenprox 100g/l EC, Chlorfluazuron 50g/l EC, Bistrifluron 100g/l EC, Tebufenozide 200g/l SC, Chromafenozide 50g/l SC, Chlorantraniliprole 200g/ SC, Lufenuron 50g/l EC, Spinosad 25g/l SC, or Flubendiamide 24% WG."
     },
     {
       "name": "Cutworm",
-      "impact": "Larvae are most active at night, cutting young plant stems at the base. Mature larvae can be seen eating leaves. Damage is more prevalent in dry weather conditions.",
-      "solution": "Deep plowing exposes larvae and pupae to the soil surface, making them vulnerable to predatory birds. Maintain good weed control in and around the field, and practice field sanitation. Regularly inspect the field and manually collect hidden larvae when the population is low. If damage is severe, apply recommended insecticides such as Profenophos 500g/LEC (32ml/16l) or Etofenprox 100g/LEC (24ml/16l) immediately after planting."
+      "impact": "Larvae are more active at night, cutting young plant stems at the base. Mature larvae can be seen eating leaves. Damage is more prevalent during dry weather conditions.",
+      "solution": "Deep plowing brings larvae and pupae to the soil surface, making them prey for birds. Good weed control in and around the field, field sanitation. Regular field inspection to hand-pick hidden larvae when the population is low. If damage is severe, apply recommended insecticides immediately after planting, such as Profenophos 500g/LEC or Etofenprox 100g/LEC."
     },
     {
       "name": "Root Maggot",
-      "impact": "Larvae feed on developing roots and young stems. Infested young plants show wilting and twisted leaves. White maggots can be found when examining the root system of such plants.",
-      "solution": "Constant field inspection. Use yellow sticky traps (greased yellow polythene sheets placed near the ground) to control adult flies. Practice crop rotation. Uproot and burn infested plants along with the larvae. Deep plowing to destroy pupae. Use properly prepared organic fertilizers. If damage is severe, apply recommended insecticides such as Fipronil 50 SC."
+      "impact": "Young plants wilt and have curled leaves. When such a plant is pulled out, white maggots can be seen in the root system.",
+      "solution": "Constant crop inspection, use yellow sticky traps (greased yellow polythene sheets placed near the ground) to control adult flies, crop rotation, uproot and burn damaged plants with larvae, deep plowing to destroy pupae, use correctly prepared organic fertilizers. If damage is severe, apply recommended insecticides such as Fipronil 50 SC."
     },
     {
       "name": "Aphid",
-      "impact": "Population increases rapidly under dry weather conditions. Winged and wingless adults can be seen on the underside of leaves. These 1-3 mm soft-bodied insects come in various colors like green, yellow, and purple. They suck sap from plants, causing leaves to curl and reducing yield quality.",
-      "solution": "Monitor the crop from the beginning, for example, by placing yellow water-filled basins coated with adhesive in various places in the field. Maintain good weed control in the field to remove host plants. Protect natural enemies of aphids, which are abundant in the environment, by avoiding unnecessary insecticide applications. If the aphid population is high, apply Thiamethoxam 25% WG (5g/16l), Imidacloprid 70%WG (2g/16l), Thiocyclam (Hydrogen Oxalate) 50% SP (40g/16l), Chlorantraniliprole 20% + Thiamethoxam 20% WG (5g/16l), Buprofezin 25% SC (45ml/16l), or Azadirachtine 5%EC (16ml/16l)."
+      "impact": "Sucks sap from plants, causing leaves to curl and reducing yield quality. Winged and wingless adults can be seen on the underside of leaves. They are 1-3 mm soft-bodied insects of various colors like green, yellow, and purple.",
+      "solution": "Monitor the crop from the beginning by placing yellow-coated water basins in the field. Effective weed control to remove host plants. Protect natural enemies as many are found in the environment. If necessary, apply Thiamethoxam 25% WG, Imidacloprid 70%WG, Thiocyclam (Hydrogen Oxalate) 50% SP, Chlorantraniliprole 20% + Thiamethoxam 20% WG, Buprofezin 25% SC, or Azadirachtine 5%EC."
     },
     {
       "name": "Snails And Slugs",
-      "impact": "Damage is commonly observed during periods of high rainfall. They cause irregular feeding damage to leaves, which hinders crop growth and reduces market value.",
-      "solution": "Improve field sanitation. Maintain good weed control. Remove potential hiding places in the field during the day. Inspect the field at night and manually collect and destroy them. Use beer traps as bait in various spots in the field. Apply recommended molluscicides such as Metaldehyde 3% RB (10-40kg/ha), Metaldehyde 4% RB (10-40kg/ha), or Metaldehyde 5% RB (10-40kg/ha)."
+      "impact": "Irregularly eat leaves, hindering crop growth and reducing market value. Damage is common during periods of high rainfall.",
+      "solution": "Improve field sanitation, good weed control, remove hiding places from the field during the day, inspect the field at night and hand-pick and destroy them, use beer traps as bait in various places in the field, apply recommended molluscicides such as Metaldehyde 3% RB, Metaldehyde 4% RB, or Metaldehyde 5% RB."
     }
   ],
   "diseases": [
     {
-      "name": "Cabbage Clubroot",
+      "name": "Clubroot Disease",
       "causal_agent": null,
-      "impact": "The disease is more likely to occur when the soil is acidic.",
-      "solution": "Use clean seeds. Increase soil pH by adding lime. Practice crop rotation with non-Brassica crops. Remove other host plants from the field. Use clean tools."
+      "impact": "Increased susceptibility when soil is acidic, affecting the roots.",
+      "solution": "Use clean seeds, increase soil pH by adding lime, practice crop rotation with non-Brassica crops, remove other host plants from the field, use clean tools."
     },
     {
       "name": "Cercospora Leaf Spot",
       "causal_agent": null,
-      "impact": "Not explicitly stated, but implies spots on leaves.",
-      "solution": "Keep the field clean. Use recommended fungicides such as Maneb, Mancozeb, Propineb, or Tebuconazole."
+      "impact": "Not explicitly described.",
+      "solution": "Keep the field clean, use recommended fungicides such as Maneb, Mancozeb, Propineb, Tebuconazole."
     },
     {
       "name": "Black Rot",
       "causal_agent": null,
-      "impact": "Not explicitly stated, but implies decay.",
-      "solution": "Use clean, disease-free seeds for planting. Maintain good drainage in the field. Keep the field clean. Practice crop rotation with non-Brassica crops. Regularly inspect the field and remove diseased plants. Use recommended fungicides such as Chlorothalonil."
+      "impact": "Not explicitly described.",
+      "solution": "Use clean, disease-free seeds for planting, maintain good drainage in the field, keep the field clean, practice crop rotation with non-Brassica crops, constantly monitor the field and remove diseased plants, use recommended fungicides such as Chlorothalonil."
     },
     {
       "name": "Head Rot",
       "causal_agent": null,
-      "impact": "Not explicitly stated, but implies decay of the cabbage head.",
-      "solution": "Practice field sanitation. Use recommended fungicides."
+      "impact": "Not explicitly described.",
+      "solution": "Field sanitation, use recommended fungicides."
     },
     {
       "name": "Cabbage Leaf Spot",
       "causal_agent": null,
-      "impact": "Not explicitly stated, but implies spots on leaves.",
-      "solution": "Use clean, disease-free seeds for planting. Keep the field clean. Remove other host plants from the field. Maintain proper spacing between plants. Use recommended fungicides such as Hexaconazole or Teboconazole."
+      "impact": "Not explicitly described.",
+      "solution": "Use clean, disease-free seeds for planting, keep the field clean, remove other host plants from the field, maintain proper spacing between plants, use recommended fungicides such as Hexaconazole, Teboconazole."
     },
     {
       "name": "Downy Mildew",
       "causal_agent": null,
-      "impact": "Not explicitly stated.",
-      "solution": "Keep the field clean. Control weeds. Use recommended fungicides such as Captan, Maneb, or Mancozeb."
+      "impact": "Not explicitly described.",
+      "solution": "Keep the field clean, control weeds, use recommended fungicides such as Captan, Maneb, Mancozeb."
     }
   ],
   "expected_harvest_kg_per_ha": 42500.0,
   "days_to_maturity": 100,
   "nursery_period_days": null,
-  "seed_amount_per_ha": 0.225,
+  "seed_amount_per_ha": 225.0,
   "seed_metric_type": "weight"
 }

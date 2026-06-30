@@ -13,6 +13,7 @@ from app.shared.document.pipeline import DocumentPipeline
 from app.domains.ingestion.service import IngestionService
 from app.domains.graph.repositories import GraphExtractionService, GraphWriteRepository
 from app.domains.graph.service import GraphIngestionService
+from app.domains.agent.service import AgentService
 from app.infrastructure.chunkers.dea_gov_lk_chunker import DeaGovLkChunker
 from app.infrastructure.chunkers.dea_gov_lk_si_chunker import DeaGovLkSiChunker
 from app.infrastructure.chunkers.doa_hordi_chunker import DoaHordiChunker
@@ -207,16 +208,40 @@ def build_graph_extractor(settings: Settings) -> GraphExtractionService:
     )
 
 
-def build_graph_store(settings: Settings) -> GraphWriteRepository:
+def build_neo4j_driver(settings: Settings):
     from neo4j import GraphDatabase
 
-    from app.infrastructure.graph.neo4j_store import Neo4jGraphStore
-
-    driver = GraphDatabase.driver(
+    return GraphDatabase.driver(
         settings.neo4j_uri,
         auth=(settings.neo4j_user, settings.neo4j_password),
     )
-    return Neo4jGraphStore(driver)
+
+
+def build_graph_store(settings: Settings) -> GraphWriteRepository:
+    from app.infrastructure.graph.neo4j_store import Neo4jGraphStore
+
+    return Neo4jGraphStore(build_neo4j_driver(settings))
+
+
+def build_agent_service(settings: Settings) -> AgentService:
+    if settings.llm_backend != "gemini":
+        raise ValueError(
+            f"Ask agent requires llm_backend=gemini; got {settings.llm_backend!r}"
+        )
+    if not settings.google_api_key:
+        raise ValueError(
+            "Gemini API key required for ask agent. Set GOOGLE_API_KEY or GEMINI_API_KEY in .env"
+        )
+    from app.infrastructure.agent.gemini_agent_client import GeminiAgentClient
+    from app.infrastructure.agent.tools.spacing import build_spacing_tool
+
+    driver = build_neo4j_driver(settings)
+    tools = [build_spacing_tool(driver)]
+    client = GeminiAgentClient(
+        api_key=settings.google_api_key,
+        model=settings.gemini_model,
+    )
+    return AgentService(client=client, tools=tools)
 
 
 def build_graph_ingestion_service(settings: Settings, session: Session) -> GraphIngestionService:
