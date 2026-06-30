@@ -1,12 +1,25 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
-from app.domains.debug.dependencies import get_chunk_catalog, get_source_catalog
+from app.domains.debug.dependencies import (
+    get_chunk_catalog,
+    get_graph_read_catalog,
+    get_source_catalog,
+)
+from app.domains.debug.graph_data import GraphCropNode
+from app.domains.debug.graph_repositories import GraphReadRepository
 from app.domains.debug.repositories import ChunkCatalogRepository, SourceCatalogRepository
 from app.domains.debug.schemas import (
     ChunkItemResponse,
     ChunkListResponse,
     CropItemResponse,
     CropListResponse,
+    GraphCropDetailResponse,
+    GraphCropListResponse,
+    GraphCropNodeResponse,
+    GraphCropSummaryResponse,
+    GraphDiseaseResponse,
+    GraphFertilizerResponse,
+    GraphPestResponse,
     SourceItemResponse,
     SourceListResponse,
 )
@@ -18,6 +31,41 @@ router = APIRouter()
 def _check_debug_enabled(settings: Settings = Depends(get_settings)) -> None:
     if not settings.debug_enabled:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found")
+
+
+def _graph_crop_node_response(node: GraphCropNode) -> GraphCropNodeResponse:
+    return GraphCropNodeResponse(
+        source_uri=node.source_uri,
+        name=node.name,
+        manifest_crop_name=node.manifest_crop_name,
+        scientific_name=node.scientific_name,
+        altitude_min_m=node.altitude_min_m,
+        altitude_max_m=node.altitude_max_m,
+        temp_min_c=node.temp_min_c,
+        temp_max_c=node.temp_max_c,
+        rainfall_min_mm=node.rainfall_min_mm,
+        rainfall_max_mm=node.rainfall_max_mm,
+        ph_min=node.ph_min,
+        ph_max=node.ph_max,
+        pit_length_cm=node.pit_length_cm,
+        pit_width_cm=node.pit_width_cm,
+        row_distance_cm=node.row_distance_cm,
+        plant_distance_cm=node.plant_distance_cm,
+        expected_harvest_kg_per_ha=node.expected_harvest_kg_per_ha,
+        days_to_maturity=node.days_to_maturity,
+        nursery_period_days=node.nursery_period_days,
+        seed_amount_per_ha=node.seed_amount_per_ha,
+        seed_metric_type=node.seed_metric_type,
+        growing_areas=node.growing_areas,
+        growing_seasons=node.growing_seasons,
+        varieties=node.varieties,
+        soil_types=node.soil_types,
+        fertilizer_schedule=[
+            GraphFertilizerResponse(**vars(item)) for item in node.fertilizer_schedule
+        ],
+        pests=[GraphPestResponse(**vars(item)) for item in node.pests],
+        diseases=[GraphDiseaseResponse(**vars(item)) for item in node.diseases],
+    )
 
 
 @router.get(
@@ -82,3 +130,46 @@ def list_crops(
     crops = catalog.list_crops()
     items = [CropItemResponse(**vars(c)) for c in crops]
     return CropListResponse(total=len(items), crops=items)
+
+
+@router.get(
+    "/graph/crops",
+    response_model=GraphCropListResponse,
+    summary="List crops from Neo4j graph",
+    dependencies=[Depends(_check_debug_enabled)],
+)
+def list_graph_crops(
+    catalog: GraphReadRepository = Depends(get_graph_read_catalog),
+) -> GraphCropListResponse:
+    try:
+        summaries = catalog.list_crop_summaries()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"Graph read failed: {exc}",
+        ) from exc
+    crops = [GraphCropSummaryResponse(**vars(item)) for item in summaries]
+    return GraphCropListResponse(total=len(crops), crops=crops)
+
+
+@router.get(
+    "/graph/crops/{crop_name}",
+    response_model=GraphCropDetailResponse,
+    summary="Get crop graph detail from Neo4j",
+    dependencies=[Depends(_check_debug_enabled)],
+)
+def get_graph_crop_detail(
+    crop_name: str,
+    catalog: GraphReadRepository = Depends(get_graph_read_catalog),
+) -> GraphCropDetailResponse:
+    try:
+        detail = catalog.get_crop_detail(crop_name)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"Graph read failed: {exc}",
+        ) from exc
+    return GraphCropDetailResponse(
+        name=detail.name,
+        nodes=[_graph_crop_node_response(node) for node in detail.nodes],
+    )

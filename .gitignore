@@ -42,3 +42,4 @@ models/fastembed/
 .DS_Store
 .vscode/
 .idea/
+.cursor/mcp.json

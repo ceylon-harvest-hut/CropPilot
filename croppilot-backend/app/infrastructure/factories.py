@@ -223,25 +223,50 @@ def build_graph_store(settings: Settings) -> GraphWriteRepository:
     return Neo4jGraphStore(build_neo4j_driver(settings))
 
 
-def build_agent_service(settings: Settings) -> AgentService:
-    if settings.llm_backend != "gemini":
-        raise ValueError(
-            f"Ask agent requires llm_backend=gemini; got {settings.llm_backend!r}"
-        )
-    if not settings.google_api_key:
-        raise ValueError(
-            "Gemini API key required for ask agent. Set GOOGLE_API_KEY or GEMINI_API_KEY in .env"
-        )
-    from app.infrastructure.agent.gemini_agent_client import GeminiAgentClient
-    from app.infrastructure.agent.tools.spacing import build_spacing_tool
+def build_graph_read_store(settings: Settings):
+    from app.infrastructure.graph.neo4j_read_store import Neo4jGraphReadStore
 
-    driver = build_neo4j_driver(settings)
-    tools = [build_spacing_tool(driver)]
-    client = GeminiAgentClient(
-        api_key=settings.google_api_key,
-        model=settings.gemini_model,
+    return Neo4jGraphReadStore(build_neo4j_driver(settings))
+
+
+def build_agent_client(settings: Settings):
+    from app.domains.agent.service import AgentClient
+    from app.infrastructure.agent.gemini_agent_client import GeminiAgentClient
+    from app.infrastructure.agent.openai_agent_client import OpenAIAgentClient
+    from app.infrastructure.agent.tools.spacing import build_spacing_langchain_tool
+
+    tools = [build_spacing_langchain_tool(build_neo4j_driver(settings))]
+
+    if settings.llm_backend == "gemini":
+        if not settings.google_api_key:
+            raise ValueError(
+                "Gemini API key required for ask agent. "
+                "Set GOOGLE_API_KEY or GEMINI_API_KEY in .env"
+            )
+        return GeminiAgentClient(
+            api_key=settings.google_api_key,
+            model=settings.gemini_model,
+            tools=tools,
+        )
+
+    if settings.llm_backend == "openai":
+        if not settings.openai_api_key:
+            raise ValueError(
+                "OpenAI API key required for ask agent. Set OPENAI_API_KEY in .env"
+            )
+        return OpenAIAgentClient(
+            api_key=settings.openai_api_key,
+            model=settings.openai_model,
+            tools=tools,
+        )
+
+    raise ValueError(
+        f"Ask agent supports llm_backend=gemini or openai only; got {settings.llm_backend!r}"
     )
-    return AgentService(client=client, tools=tools)
+
+
+def build_agent_service(settings: Settings) -> AgentService:
+    return AgentService(client=build_agent_client(settings))
 
 
 def build_graph_ingestion_service(settings: Settings, session: Session) -> GraphIngestionService:

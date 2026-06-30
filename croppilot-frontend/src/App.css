@@ -1539,3 +1539,115 @@ select {
   left: 0;
   right: 0;
 }
+
+.graph-debug-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.graph-debug-search input {
+  width: 100%;
+}
+
+.graph-debug-crop-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.graph-debug-crop-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.graph-debug-crop-btn:hover {
+  background: #f1f3f5;
+}
+
+.graph-debug-crop-btn-active {
+  background: #d8f3dc;
+  border-color: #95d5b2;
+}
+
+.graph-debug-node-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1b4332;
+  background: #b7e4c7;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+}
+
+.graph-debug-node-card + .graph-debug-node-card {
+  margin-top: 1rem;
+}
+
+.graph-debug-props {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.graph-debug-prop-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.graph-debug-prop-row dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.graph-debug-prop-row dd {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.graph-debug-rel-section {
+  margin-top: 1rem;
+}
+
+.graph-debug-rel-section h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #495057;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.graph-debug-tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.graph-debug-tag-list li {
+  font-size: 0.8rem;
+  background: #f1f3f5;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+}

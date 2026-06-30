@@ -18,10 +18,11 @@ import type {
   StoredChunk,
 } from "./api/types";
 import CropSearchSelect from "./components/CropSearchSelect";
+import GraphDebugPanel from "./GraphDebugPanel";
 import LabPanel from "./LabPanel";
 import "./App.css";
 
-type ActiveTab = "lab" | "ingest" | "ask" | "ask-agent" | "debug";
+type ActiveTab = "lab" | "ingest" | "ask" | "ask-agent" | "debug" | "graph-debug";
 
 const TAB_LABELS: Record<ActiveTab, string> = {
   lab: "Lab",
@@ -29,6 +30,7 @@ const TAB_LABELS: Record<ActiveTab, string> = {
   ask: "Ask",
   "ask-agent": "Ask Agent",
   debug: "Debug",
+  "graph-debug": "Graph Debug",
 };
 
 const DEBUG_PAGE_SIZE = 20;
@@ -262,11 +264,11 @@ function App() {
     chunksData?.chunks.find((c) => c.chunk_id === selectedChunkId) ?? null;
 
   return (
-    <main className={`app${activeTab === "lab" ? " app-lab" : ""}${activeTab === "debug" ? " app-debug" : ""}`}>
+    <main className={`app${activeTab === "lab" ? " app-lab" : ""}${activeTab === "debug" || activeTab === "graph-debug" ? " app-debug" : ""}`}>
       <header className="app-navbar">
         <h1 className="app-logo">CropPilot</h1>
         <nav className="tabs">
-          {(["lab", "ingest", "ask", "ask-agent", "debug"] as ActiveTab[]).map((tab) => (
+          {(["lab", "ingest", "ask", "ask-agent", "debug", "graph-debug"] as ActiveTab[]).map((tab) => (
             <button
               key={tab}
               type="button"
@@ -279,7 +281,7 @@ function App() {
         </nav>
       </header>
 
-      {error && activeTab !== "lab" && activeTab !== "debug" && (
+      {error && activeTab !== "lab" && activeTab !== "debug" && activeTab !== "graph-debug" && (
         <p className="error app-error">{error}</p>
       )}
 
@@ -619,6 +621,8 @@ function App() {
           </section>
         </>
       )}
+
+      {activeTab === "graph-debug" && <GraphDebugPanel />}
     </main>
   );
 }

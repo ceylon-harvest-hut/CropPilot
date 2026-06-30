@@ -195,3 +195,72 @@ export interface CropListResponse {
   total: number;
   crops: CropItem[];
 }
+
+/** Mirrors app/domains/debug/schemas.py graph responses */
+export interface GraphCropSummary {
+  name: string;
+  node_count: number;
+  source_uris: string[];
+}
+
+export interface GraphCropListResponse {
+  total: number;
+  crops: GraphCropSummary[];
+}
+
+export interface GraphFertilizer {
+  fertilizer: string;
+  apply_start_weeks_after_planting: number | null;
+  repeat_count: number | null;
+  repeat_interval_weeks: number | null;
+  quantity_kg_per_ha: number | null;
+}
+
+export interface GraphPest {
+  name: string;
+  impact: string | null;
+  solution: string | null;
+}
+
+export interface GraphDisease {
+  name: string;
+  causal_agent: string | null;
+  impact: string | null;
+  solution: string | null;
+}
+
+export interface GraphCropNode {
+  source_uri: string;
+  name: string;
+  manifest_crop_name: string | null;
+  scientific_name: string | null;
+  altitude_min_m: number | null;
+  altitude_max_m: number | null;
+  temp_min_c: number | null;
+  temp_max_c: number | null;
+  rainfall_min_mm: number | null;
+  rainfall_max_mm: number | null;
+  ph_min: number | null;
+  ph_max: number | null;
+  pit_length_cm: number | null;
+  pit_width_cm: number | null;
+  row_distance_cm: number | null;
+  plant_distance_cm: number | null;
+  expected_harvest_kg_per_ha: number | null;
+  days_to_maturity: number | null;
+  nursery_period_days: number | null;
+  seed_amount_per_ha: number | null;
+  seed_metric_type: string | null;
+  growing_areas: string[];
+  growing_seasons: string[];
+  varieties: string[];
+  soil_types: string[];
+  fertilizer_schedule: GraphFertilizer[];
+  pests: GraphPest[];
+  diseases: GraphDisease[];
+}
+
+export interface GraphCropDetailResponse {
+  name: string;
+  nodes: GraphCropNode[];
+}
